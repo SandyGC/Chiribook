@@ -29,12 +29,15 @@ public class ControladorMuro {
         this.a = a;
         this.vistaMuro = vistaMuro;
     }
-
+    
     public void crearPublicacion(String m, Usuario a) {
         p = new Texto(m, a);
         a.comentarMiMuro(p);
         System.out.println(p.toString());
         daoPublicacion.create(p);
+    }
+    public void ejemplo(){
+    
     }
 
 }
