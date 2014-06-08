@@ -7,11 +7,13 @@
 package DAO;
 
 import Modelo.Texto;
+import Modelo.Usuario;
+import java.util.List;
 
 /**
  *
  * @author SANGYG
  */
 public interface ITextoDAO extends IDAO<Texto>{
-    
+
 }

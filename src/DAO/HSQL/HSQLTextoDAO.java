@@ -6,8 +6,13 @@
 package DAO.HSQL;
 
 import DAO.ITextoDAO;
+import Modelo.Publicacion;
 import Modelo.Texto;
+import Modelo.Usuario;
 import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +27,9 @@ public class HSQLTextoDAO implements ITextoDAO {
     public void create(Texto t) {
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-          //  p.insert(false, t.getComentario(), foto, t.getFecha(), null, Integer.MIN_VALUE, t.getUsuario());
-        } catch (ClassNotFoundException ex) {
+            p.insert(false, t.getComentario(),null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+        
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -36,7 +42,13 @@ public class HSQLTextoDAO implements ITextoDAO {
 
     @Override
     public List<Texto> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HSQLPublicacion h = new HSQLPublicacion();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -48,5 +60,6 @@ public class HSQLTextoDAO implements ITextoDAO {
     public void delete(Texto t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

@@ -9,6 +9,7 @@ import DAO.HSQL.HSQLUsuarioDAO;
 import DAO.UtilConnectionHSQL;
 import Modelo.Usuario;
 import VistaLoginApp.Login;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,9 +31,20 @@ public class ControladorLogin {
         String nombre = l.getJtNombre().getText();
         String pass = new String(l.getJtPass().getPassword());
         Usuario a = new Usuario(nombre, pass);
-        if (daoUsuario.read(a)!=null) {
-            return a;
+//        Usuario dao = daoUsuario.read(a);
+//        if (dao.equals(a)) {
+//            System.out.println(dao.toString());
+//            return dao;
+//        }
+       Usuario correcto= daoUsuario.read(a);
+        if (correcto!=null) {
+            return correcto;
         }
-        return null;
+//       List<Usuario> us= daoUsuario.readAll();
+//        for (Usuario usuario : us) {
+//            System.out.println(usuario.toString());
+//        }
+      return null;
+        
     }
 }

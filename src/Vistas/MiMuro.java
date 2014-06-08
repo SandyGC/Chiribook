@@ -12,6 +12,8 @@ import Modelo.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -36,13 +38,15 @@ public class MiMuro extends javax.swing.JPanel {
         c = new ControladorRadioButtonMuro(this);
         initComponents();
         panelCard(u);
+        panel2();
+
     }
 
     public final void panelCard(Usuario u) {
 
         panelMuro1.setLayout(new CardLayout());
 
-        PublicacionTextoView p = new PublicacionTextoView(miMuro,u);
+        PublicacionTextoView p = new PublicacionTextoView(miMuro, u);
         panelMuro1.add(p, "texto");
         PublicacionFotoView p2 = new PublicacionFotoView();
         panelMuro1.add(p2, "foto");
@@ -51,6 +55,10 @@ public class MiMuro extends javax.swing.JPanel {
         p2.getRadioTexto().addActionListener(c);
     }
 
+    public void panel2() {
+        panelMuro2.setLayout(new BoxLayout(panelMuro2, BoxLayout.Y_AXIS));
+
+    }
 
     public JPanel getPanelMuro1() {
         return panelMuro1;
@@ -76,7 +84,7 @@ public class MiMuro extends javax.swing.JPanel {
         panelMuro1.setLayout(panelMuro1Layout);
         panelMuro1Layout.setHorizontalGroup(
             panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 591, Short.MAX_VALUE)
         );
         panelMuro1Layout.setVerticalGroup(
             panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +95,7 @@ public class MiMuro extends javax.swing.JPanel {
         panelMuro2.setLayout(panelMuro2Layout);
         panelMuro2Layout.setHorizontalGroup(
             panelMuro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelMuro2Layout.setVerticalGroup(
             panelMuro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,8 +106,8 @@ public class MiMuro extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMuro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelMuro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelMuro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

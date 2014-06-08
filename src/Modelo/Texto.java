@@ -18,6 +18,7 @@ public class Texto extends Publicacion {
         this.comentario = comentario;
     }
 
+
     public String getComentario() {
         return comentario;
     }
@@ -26,9 +27,7 @@ public class Texto extends Publicacion {
     public void comentarPublicacion(Publicacion p, Usuario a) {
         super.comentarPublicacion(p, a); //To change body of generated methods, choose Tools | Templates.
     }
-
-
-
+    
     @Override
     public String toString() {
         return "el comentario es: " + comentario+ " del usuario: "+super.getUsuario().getNombreCompleto();

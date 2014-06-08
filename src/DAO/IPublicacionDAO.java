@@ -7,11 +7,13 @@
 package DAO;
 
 import Modelo.Publicacion;
+import Modelo.Usuario;
+import java.util.List;
 
 /**
  *
  * @author SANGYG
  */
 public interface IPublicacionDAO extends IDAO<Publicacion>{
-    
+    public List<Publicacion> publicacionfromUser(Usuario a);
 }

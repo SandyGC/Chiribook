@@ -13,45 +13,27 @@ import java.awt.Image;
  */
 public class Foto extends Publicacion {
 
-    private  Image imagen;
-    private String titulo;
+    private  byte[] imagen;
 
-    public Foto(Image imagen, String titulo, Usuario u) {
+
+    public Foto(byte[] imagen, Usuario u) {
         super( u);
         this.imagen = imagen;
-        this.titulo = titulo;
+
     }
 
-    public Image getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
 
     @Override
     public void comentarPublicacion(Publicacion p, Usuario a) {
         super.comentarPublicacion(p, a); //To change body of generated methods, choose Tools | Templates.
     }
-
-
- 
-      @Override
-    public String toString() {
-        return "el comentario es: " +titulo;
-    }
-
-
-
-
 
 }

@@ -37,14 +37,23 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
     public Usuario read(Usuario t) {
         try {
             HSQLUsuario u = new HSQLUsuario();
-           ResultSet r= u.readWhere("\"nombre\" = '" + t.getNombreCompleto() + "' and \"password\"='" + t.getContraseña() + "'");
-            if (r.next()) {
-                return t;
+            ResultSet r = u.readWhere("\"nombre\" = '" + t.getNombreCompleto() + "' and \"password\"='" + t.getContraseña() + "'");
+             Usuario a=null;
+            while (r.next()) {
+                int id = r.getInt("id");
+                String n = r.getString("nombre");
+                int e = r.getInt("edad");
+                String em = r.getString("email");
+                String pas = r.getString("password");
+                byte[] foto = r.getBytes("foto");
+              a = new Usuario(id, n, em, e, pas, foto);
             }
+            return a;
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(HSQLUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+
     }
 
     @Override
