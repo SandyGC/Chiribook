@@ -49,31 +49,37 @@ public final class ControladorMuro {
         a.comentarMiMuro(t);
         textoDAO.create(t);
         comentarioTexto = new Texto(m, a);
-        mostrarPublicacion();
+        mostrarPublicacion(t,a);
     }
 
     /**
      * Metodo que crea una vista de publicacion cada vez que le de al boton
      * comentar, crerara un panel de tipo Publicacion Publicada
+     * @param t
+     * @param a
      */
-    public void mostrarPublicacion() {
+    public void mostrarPublicacion(Texto tex, Usuario aa) {
 
-        PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(t, a);
+        PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(tex, aa);
         v.esconderPaneles();
         //llamo al metodo de la vista que rellenara esta vista
-        v.rellenarpublicacionPublicada();
+        v.rellenarpublicacionPublicada(tex,aa);
   
         vistaMuro.getPanelMuro2().add(v);
         v.setVisible(true);
         vistaMuro.updateUI();
         
     }
+   
     
-    public void rellenarMuro(Usuario a){
+    public void rellenarMuro(Usuario as){
     List<Publicacion> comentarios=daoPublicacion.publicacionfromUser(a);
         for (Publicacion publicacion : comentarios) {
             if (publicacion instanceof Texto) {
-                System.out.println(publicacion.toString());
+                Texto te = (Texto) publicacion;
+                
+                mostrarPublicacion(te, as);
+                 
                 
             }else{
                 System.out.println("  fddd");

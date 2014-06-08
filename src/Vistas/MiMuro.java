@@ -30,15 +30,16 @@ public class MiMuro extends javax.swing.JPanel {
 
     public MiMuro(Usuario u) {
 
-        //controlador que controla la vista muro y le paso this
-        //para poder editar lso componentes de esta vista
-        miMuro = new ControladorMuro(this, u);
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
         c = new ControladorRadioButtonMuro(this);
         initComponents();
-        panelCard(u);
+
         panel2();
+        //controlador que controla la vista muro y le paso this
+        //para poder editar lso componentes de esta vista
+        miMuro = new ControladorMuro(this, u);
+        panelCard(u);
 
     }
 
@@ -55,7 +56,7 @@ public class MiMuro extends javax.swing.JPanel {
         p2.getRadioTexto().addActionListener(c);
     }
 
-    public void panel2() {
+    public final void panel2() {
         panelMuro2.setLayout(new BoxLayout(panelMuro2, BoxLayout.Y_AXIS));
 
     }

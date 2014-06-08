@@ -30,7 +30,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
        // rellenarpublicacionPublicada();
     }
 
-    public final void rellenarpublicacionPublicada() {
+    public final void rellenarpublicacionPublicada(Texto t,Usuario a) {
         textoPublicado.setEditable(false);
         textoPublicado.setText(t.getComentario());
     }
