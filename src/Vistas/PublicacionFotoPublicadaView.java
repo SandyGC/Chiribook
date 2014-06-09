@@ -8,6 +8,9 @@ package Vistas;
 import Modelo.Foto;
 import Modelo.Texto;
 import Modelo.Usuario;
+import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -31,8 +34,18 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
        // rellenarpublicacionPublicada();
     }
 
-    public final void rellenarpublicacionPublicada() {
-       //utilizar la clase de conversion de byte que recuperar d la db a Image
+    public final void rellenarpublicacionPublicada(Foto f) {
+   
+        Image i = ImageConverter.bytes2Image(f.getImagen());
+        if (i != null) {
+            fotoPublicada.setText("");
+            fotoPublicada.setIcon(new ImageIcon(i));
+        } else {
+
+            fotoPublicada.setText("No Image");
+            fotoPublicada.setIcon(null);
+        }
+    
     }
     
     public void esconderPaneles(){
@@ -51,20 +64,20 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
     private void initComponents() {
 
         panelPublicacionPublicada = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        fotoPerfil = new javax.swing.JLabel();
         btComentar = new javax.swing.JButton();
         meGusta = new javax.swing.JToggleButton();
-        jLabel2 = new javax.swing.JLabel();
+        fotoPublicada = new javax.swing.JLabel();
         panelHacerComentario = new javax.swing.JPanel();
         panelComentarios = new javax.swing.JPanel();
 
-        jLabel1.setText("jLabel1");
+        fotoPerfil.setText("jLabel1");
 
         btComentar.setText("jButton1");
 
         meGusta.setText("jToggleButton1");
 
-        jLabel2.setText("jLabel2");
+        fotoPublicada.setText("jLabel2");
 
         javax.swing.GroupLayout panelPublicacionPublicadaLayout = new javax.swing.GroupLayout(panelPublicacionPublicada);
         panelPublicacionPublicada.setLayout(panelPublicacionPublicadaLayout);
@@ -72,9 +85,9 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fotoPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,9 +106,9 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fotoPublicada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -149,8 +162,8 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btComentar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel fotoPerfil;
+    private javax.swing.JLabel fotoPublicada;
     private javax.swing.JToggleButton meGusta;
     private javax.swing.JPanel panelComentarios;
     private javax.swing.JPanel panelHacerComentario;

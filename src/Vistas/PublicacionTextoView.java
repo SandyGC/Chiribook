@@ -46,7 +46,8 @@ public class PublicacionTextoView extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mensaje = texto.getText();
-                controladorM.crearPublicacion(mensaje, u);
+                controladorM.crearPublicacionTexto(mensaje, u);
+                texto.setText("");
             }
         });
     }

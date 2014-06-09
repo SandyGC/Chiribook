@@ -62,11 +62,15 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
                     if (rs.getBoolean("tipofoto")) {
 
                         Publicacion p1 = new Foto(rs.getBytes("foto"), a);
+                          System.out.println(p1.toString());
                         publicaciones.add(p1);
+                      
                     } else {
 
                         Publicacion p2 = new Texto(rs.getString("texto"), a);
+                              System.out.println(p2.toString());
                         publicaciones.add(p2);
+                  
                     }
                 }
             }
@@ -74,6 +78,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(IPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
         return publicaciones;
     }
 

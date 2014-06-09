@@ -31,14 +31,14 @@ public class MiMuro extends javax.swing.JPanel {
      */
     ControladorRadioButtonMuro c;
     ControladorMuro miMuro;
-    
+
     public MiMuro(Usuario u) {
 
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
         c = new ControladorRadioButtonMuro(this);
         initComponents();
-        
+
         panel2();
         //controlador que controla la vista muro y le paso this
         //para poder editar lso componentes de esta vista
@@ -46,43 +46,43 @@ public class MiMuro extends javax.swing.JPanel {
         jLnOMBRE.setText(u.getNombreCompleto());
         cargarImagen(u);
         panelCard(u);
-        
+
     }
-    
+
     public final void panelCard(Usuario u) {
-        
+
         panelMuro1.setLayout(new CardLayout());
-        
+
         PublicacionTextoView p = new PublicacionTextoView(miMuro, u);
         panelMuro1.add(p, "texto");
-        PublicacionFotoView p2 = new PublicacionFotoView();
+        PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u);
         panelMuro1.add(p2, "foto");
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);
         p2.getRadioTexto().addActionListener(c);
     }
-    
+
     public final void cargarImagen(Usuario u) {
         Image i = ImageConverter.bytes2Image(u.getFotoPerfil());
         if (i != null) {
             jLFoto.setText("");
             jLFoto.setIcon(new ImageIcon(i));
         } else {
-            
+
             jLFoto.setText("No Image");
             jLFoto.setIcon(null);
         }
     }
-    
+
     public final void panel2() {
         panelMuro2.setLayout(new BoxLayout(panelMuro2, BoxLayout.Y_AXIS));
-        
+
     }
-    
+
     public JPanel getPanelMuro1() {
         return panelMuro1;
     }
-    
+
     public JPanel getPanelMuro2() {
         return panelMuro2;
     }

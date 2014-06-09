@@ -8,7 +8,12 @@ package DAO.HSQL;
 
 import DAO.IFotoDAO;
 import Modelo.Foto;
+import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +23,12 @@ public class HSQLFotoDAO implements IFotoDAO{
 
     @Override
     public void create(Foto t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HSQLPublicacion p = new HSQLPublicacion();
+            p.insert(true,null,t.getImagen(), t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(HSQLFotoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

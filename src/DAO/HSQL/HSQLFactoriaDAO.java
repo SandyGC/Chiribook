@@ -31,10 +31,7 @@ public class HSQLFactoriaDAO implements IFactoriaDAO{
       return new HSQLFotoDAO();
     }
 
-    @Override
-    public ITextoDAO getITextoDAO() {
-        return new HSQLTextoDAO();
-    }
+ 
 
     @Override
     public IUsuarioDAO getUsuarioDAO() {
@@ -47,8 +44,17 @@ public class HSQLFactoriaDAO implements IFactoriaDAO{
     }
 
     @Override
-    public IMuroDAO getIMuroDAO() {
-     return new HSQLMuroDAO();
+    public ITextoDAO getTextoDAO() {
+       return new HSQLTextoDAO();
     }
+
+    @Override
+    public IMuroDAO getMuroDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+
+  
 
 }

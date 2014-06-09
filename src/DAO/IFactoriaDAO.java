@@ -13,8 +13,8 @@ package DAO;
 public interface IFactoriaDAO {
     public IAmistadDAO getAmistadDAO();
     public IFotoDAO getFotoDAO();
-    public ITextoDAO getITextoDAO();
+    public ITextoDAO getTextoDAO();
     public IUsuarioDAO getUsuarioDAO();
     public IPublicacionDAO getPublicacionDAO();
-    public IMuroDAO getIMuroDAO();
+    public IMuroDAO getMuroDAO();
 }
