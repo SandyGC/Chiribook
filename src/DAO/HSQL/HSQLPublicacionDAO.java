@@ -72,7 +72,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return publicaciones;
     }

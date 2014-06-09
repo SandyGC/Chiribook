@@ -9,10 +9,14 @@ import ControladorApp.ControladorMuro;
 import ControladorApp.ControladorRadioButtonMuro;
 import Modelo.Publicacion;
 import Modelo.Usuario;
+import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.awt.CardLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -27,26 +31,28 @@ public class MiMuro extends javax.swing.JPanel {
      */
     ControladorRadioButtonMuro c;
     ControladorMuro miMuro;
-
+    
     public MiMuro(Usuario u) {
 
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
         c = new ControladorRadioButtonMuro(this);
         initComponents();
-
+        
         panel2();
         //controlador que controla la vista muro y le paso this
         //para poder editar lso componentes de esta vista
         miMuro = new ControladorMuro(this, u);
+        jLnOMBRE.setText(u.getNombreCompleto());
+        cargarImagen(u);
         panelCard(u);
-
+        
     }
-
+    
     public final void panelCard(Usuario u) {
-
+        
         panelMuro1.setLayout(new CardLayout());
-
+        
         PublicacionTextoView p = new PublicacionTextoView(miMuro, u);
         panelMuro1.add(p, "texto");
         PublicacionFotoView p2 = new PublicacionFotoView();
@@ -55,16 +61,28 @@ public class MiMuro extends javax.swing.JPanel {
         p.getRadioFoto().addActionListener(c);
         p2.getRadioTexto().addActionListener(c);
     }
-
+    
+    public final void cargarImagen(Usuario u) {
+        Image i = ImageConverter.bytes2Image(u.getFotoPerfil());
+        if (i != null) {
+            jLFoto.setText("");
+            jLFoto.setIcon(new ImageIcon(i));
+        } else {
+            
+            jLFoto.setText("No Image");
+            jLFoto.setIcon(null);
+        }
+    }
+    
     public final void panel2() {
         panelMuro2.setLayout(new BoxLayout(panelMuro2, BoxLayout.Y_AXIS));
-
+        
     }
-
+    
     public JPanel getPanelMuro1() {
         return panelMuro1;
     }
-
+    
     public JPanel getPanelMuro2() {
         return panelMuro2;
     }
@@ -78,14 +96,19 @@ public class MiMuro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         panelMuro1 = new javax.swing.JPanel();
         panelMuro2 = new javax.swing.JPanel();
+        jLFoto = new javax.swing.JLabel();
+        jLnOMBRE = new javax.swing.JLabel();
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout panelMuro1Layout = new javax.swing.GroupLayout(panelMuro1);
         panelMuro1.setLayout(panelMuro1Layout);
         panelMuro1Layout.setHorizontalGroup(
             panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
         panelMuro1Layout.setVerticalGroup(
             panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +123,7 @@ public class MiMuro extends javax.swing.JPanel {
         );
         panelMuro2Layout.setVerticalGroup(
             panelMuro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
+            .addGap(0, 222, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -109,18 +132,36 @@ public class MiMuro extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelMuro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelMuro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jLnOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLnOMBRE, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelMuro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelMuro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelMuro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLFoto;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLnOMBRE;
     private javax.swing.JPanel panelMuro1;
     private javax.swing.JPanel panelMuro2;
     // End of variables declaration//GEN-END:variables

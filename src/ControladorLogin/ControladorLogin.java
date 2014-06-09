@@ -5,7 +5,9 @@
  */
 package ControladorLogin;
 
+import DAO.DBConfig;
 import DAO.HSQL.HSQLUsuarioDAO;
+import DAO.IUsuarioDAO;
 import DAO.UtilConnectionHSQL;
 import Modelo.Usuario;
 import VistaLoginApp.Login;
@@ -19,11 +21,11 @@ import java.util.List;
 public class ControladorLogin {
 
     Login l;
-    HSQLUsuarioDAO daoUsuario;
+    IUsuarioDAO daoUsuario;
 
     public ControladorLogin(Login l) {
         this.l = l;
-        daoUsuario = new HSQLUsuarioDAO();
+        daoUsuario = DBConfig.getInstance().getFactoria().getUsuarioDAO();
     }
 
     public Usuario buscarUsuario() {

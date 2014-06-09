@@ -5,8 +5,9 @@
  */
 package ControladorApp;
 
-import DAO.HSQL.HSQLPublicacionDAO;
-import DAO.HSQL.HSQLTextoDAO;
+import DAO.DBConfig;
+import DAO.IPublicacionDAO;
+import DAO.ITextoDAO;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
@@ -24,14 +25,14 @@ public final class ControladorMuro {
     private MiMuro vistaMuro;
     private Usuario a;
     private Texto t;
-    private HSQLTextoDAO textoDAO;
-    private HSQLPublicacionDAO daoPublicacion;
+    private ITextoDAO textoDAO;
+    private IPublicacionDAO daoPublicacion;
     private Texto comentarioTexto;
 //le paso la vista a la que va a modificar
 
     public ControladorMuro(MiMuro vistaMuro, Usuario a) {
-        textoDAO = new HSQLTextoDAO();
-        daoPublicacion= new HSQLPublicacionDAO();
+        textoDAO =  DBConfig.getInstance().getFactoria().getITextoDAO();
+        daoPublicacion= DBConfig.getInstance().getFactoria().getPublicacionDAO();
         this.a = a;
         this.vistaMuro = vistaMuro;
         rellenarMuro(a);
@@ -55,8 +56,8 @@ public final class ControladorMuro {
     /**
      * Metodo que crea una vista de publicacion cada vez que le de al boton
      * comentar, crerara un panel de tipo Publicacion Publicada
-     * @param t
-     * @param a
+     * @param tex
+     * @param aa
      */
     public void mostrarPublicacion(Texto tex, Usuario aa) {
 

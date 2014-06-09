@@ -30,7 +30,7 @@ public class HSQLTextoDAO implements ITextoDAO {
             p.insert(false, t.getComentario(),null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
         
         } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ITextoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -46,7 +46,7 @@ public class HSQLTextoDAO implements ITextoDAO {
             HSQLPublicacion h = new HSQLPublicacion();
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ITextoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

@@ -22,32 +22,33 @@ public class HSQLFactoriaDAO implements IFactoriaDAO{
 
     @Override
     public IAmistadDAO getAmistadDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    return new HSQLAmistadDAO();
     }
 
     @Override
     public IFotoDAO getFotoDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return new HSQLFotoDAO();
     }
 
     @Override
     public ITextoDAO getITextoDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new HSQLTextoDAO();
     }
 
     @Override
     public IUsuarioDAO getUsuarioDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new HSQLUsuarioDAO();
     }
 
     @Override
     public IPublicacionDAO getPublicacionDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return new HSQLPublicacionDAO();
     }
 
     @Override
     public IMuroDAO getIMuroDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return new HSQLMuroDAO();
     }
 
 }
