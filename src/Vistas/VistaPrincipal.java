@@ -86,7 +86,7 @@ public class VistaPrincipal {
 
         panelCards = new JPanel();
         JPanel muro = new MiMuro(u);
-        JPanel miPerfil = new MiPerfil();
+        JPanel miPerfil = new MiPerfil(u);
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
         panelCards.add(miPerfil, "perfil");

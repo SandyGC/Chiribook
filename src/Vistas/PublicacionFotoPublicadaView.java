@@ -6,7 +6,6 @@
 package Vistas;
 
 import Modelo.Foto;
-import Modelo.Texto;
 import Modelo.Usuario;
 import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.awt.Image;
@@ -17,41 +16,42 @@ import javax.swing.ImageIcon;
  * @author SANGYG
  */
 public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
-
+    
     Foto f;
     Usuario a;
 
     /**
      * Creates new form PublicacionPublicadaView
      *
-     * @param t
+     * @param f
      * @param a
      */
     public PublicacionFotoPublicadaView(Foto f, Usuario a) {
         this.f = f;
         this.a = a;
         initComponents();
-       // rellenarpublicacionPublicada();
     }
-
+    
     public final void rellenarpublicacionPublicada(Foto f) {
-   
+        
         Image i = ImageConverter.bytes2Image(f.getImagen());
         if (i != null) {
             fotoPublicada.setText("");
             fotoPublicada.setIcon(new ImageIcon(i));
+            fotoPerfil.setIcon(new ImageIcon(a.getFotoPerfil()));
+            labelFecha.setText(f.getFecha().toString());
         } else {
-
+            
             fotoPublicada.setText("No Image");
             fotoPublicada.setIcon(null);
         }
-    
+        
     }
     
-    public void esconderPaneles(){
-    
-    panelHacerComentario.setVisible(false);
-    panelHacerComentario.setVisible(false);
+    public void esconderPaneles() {
+        
+        panelHacerComentario.setVisible(false);
+        panelHacerComentario.setVisible(false);
     }
 
     /**
@@ -67,6 +67,8 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
         fotoPerfil = new javax.swing.JLabel();
         btComentar = new javax.swing.JButton();
         meGusta = new javax.swing.JToggleButton();
+        labelFecha = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         fotoPublicada = new javax.swing.JLabel();
         panelHacerComentario = new javax.swing.JPanel();
         panelComentarios = new javax.swing.JPanel();
@@ -77,39 +79,42 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
 
         meGusta.setText("jToggleButton1");
 
+        labelFecha.setText("jLabel1");
+
         fotoPublicada.setText("jLabel2");
+        jScrollPane1.setViewportView(fotoPublicada);
 
         javax.swing.GroupLayout panelPublicacionPublicadaLayout = new javax.swing.GroupLayout(panelPublicacionPublicada);
         panelPublicacionPublicada.setLayout(panelPublicacionPublicadaLayout);
         panelPublicacionPublicadaLayout.setHorizontalGroup(
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addComponent(fotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(fotoPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(meGusta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(88, 88, 88)
+                .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btComentar)
+                            .addComponent(meGusta, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         panelPublicacionPublicadaLayout.setVerticalGroup(
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btComentar)
+                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(meGusta)
-                .addGap(27, 27, 27))
-            .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
-                        .addComponent(fotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(fotoPublicada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(btComentar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(meGusta))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(fotoPerfil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelHacerComentarioLayout = new javax.swing.GroupLayout(panelHacerComentario);
@@ -150,12 +155,11 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(panelPublicacionPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(panelPublicacionPublicada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(panelHacerComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(panelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,6 +168,8 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
     private javax.swing.JButton btComentar;
     private javax.swing.JLabel fotoPerfil;
     private javax.swing.JLabel fotoPublicada;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelFecha;
     private javax.swing.JToggleButton meGusta;
     private javax.swing.JPanel panelComentarios;
     private javax.swing.JPanel panelHacerComentario;
