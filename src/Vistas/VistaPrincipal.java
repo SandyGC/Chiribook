@@ -51,11 +51,11 @@ public class VistaPrincipal {
 //2. Optional: What happens when the frame closes?
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //le doy tamaño a la ventana y establezco donde aparecerá la ventana
-        frame.setBounds(150, 150, 900, 700);
+        frame.setBounds(150, 150, 900, 600);
 //5. Show it.
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
-
+     
         frame.add(splitPane);
 
     }
@@ -86,11 +86,7 @@ public class VistaPrincipal {
         panelCards.add(miPerfil, "perfil");
         panelCards.add(misAmigos, "amigos");
         panelCards.add(buscarUsuarios,"buscarUsuarios");
-        scrollPane = new JScrollPane(panelCards);
-        //para editar el scroll bar que aparezca solo de arriba a abjo.
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        splitPane.add(scrollPane);
+        splitPane.add(panelCards);
 
     }
 

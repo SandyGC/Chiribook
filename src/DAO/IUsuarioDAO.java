@@ -14,4 +14,5 @@ import Modelo.Usuario;
  */
 public interface IUsuarioDAO extends IDAO<Usuario>{
  //AQUI VAN LOS METODOS PERSONALIZADOS
+    public Usuario readForName(Usuario a);
 }

@@ -94,4 +94,26 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public Usuario readForName(Usuario a) {
+        try {
+            HSQLUsuario u = new HSQLUsuario();
+            ResultSet r = u.readWhere("\"nombre\" = '" + a.getNombreCompleto() + "'");
+            Usuario us = null;
+            while (r.next()) {
+                int id = r.getInt("id");
+                String n = r.getString("nombre");
+                int e = r.getInt("edad");
+                String em = r.getString("email");
+                String pas = r.getString("password");
+                byte[] foto = r.getBytes("foto");
+                us = new Usuario(id, n, em, e, pas, foto);
+            }
+            return us;
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(HSQLUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

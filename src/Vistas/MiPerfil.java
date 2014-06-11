@@ -53,7 +53,7 @@ public class MiPerfil extends javax.swing.JPanel {
     }
 
     public final void rellenarPerfil(Usuario u) {
-        ImageIcon fotop = new ImageIcon("IMAGENES/chribook.png");
+        ImageIcon fotop = new ImageIcon(u.getFotoPerfil());
         System.out.println(JlabelFoto.getWidth() + JlabelFoto.getHeight());
         Image imgEscalada = fotop.getImage().getScaledInstance(100,
                 100, Image.SCALE_SMOOTH);
