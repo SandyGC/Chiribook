@@ -59,7 +59,7 @@
                       <Component id="btComentar" max="32767" attributes="0"/>
                       <Component id="meGusta" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,12 +104,15 @@
         </Container>
         <Component class="javax.swing.JButton" name="btComentar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Comentar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btComentarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="meGusta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jToggleButton1"/>
+            <Property name="text" type="java.lang.String" value="Me Gusta"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlFecha">

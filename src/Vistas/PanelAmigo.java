@@ -41,7 +41,7 @@ public class PanelAmigo extends javax.swing.JPanel {
     }
 
     public JButton getjButton1() {
-        return jButton1;
+        return btVistarPerfil;
     }
 
     public JLabel getjLNombre() {
@@ -74,9 +74,7 @@ public class PanelAmigo extends javax.swing.JPanel {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-
-        jLNombre.setText("jLabel2");
+        btVistarPerfil = new javax.swing.JButton();
 
         jRadioButton1.setText("Familia");
 
@@ -84,7 +82,7 @@ public class PanelAmigo extends javax.swing.JPanel {
 
         jRadioButton3.setText("Compañero de Trabajo");
 
-        jButton1.setText("jButton1");
+        btVistarPerfil.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,7 +97,7 @@ public class PanelAmigo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton2)
                         .addGap(61, 61, 61)
-                        .addComponent(jButton1))
+                        .addComponent(btVistarPerfil))
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton3))
                 .addContainerGap(240, Short.MAX_VALUE))
@@ -117,7 +115,7 @@ public class PanelAmigo extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton2)
-                            .addComponent(jButton1))
+                            .addComponent(btVistarPerfil))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton3)))
                 .addContainerGap(82, Short.MAX_VALUE))
@@ -126,7 +124,7 @@ public class PanelAmigo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btVistarPerfil;
     private javax.swing.JLabel jLFoto;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JRadioButton jRadioButton1;

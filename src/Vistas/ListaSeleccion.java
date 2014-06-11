@@ -23,7 +23,7 @@ public class ListaSeleccion {
 
     public ListaSeleccion(VistaPrincipal vis) {
         v = vis;
-        String datosLista[] = {"MI MURO", "MI PERFIL", "MIS AMIGOS", "MIS GUSTOS"};
+        String datosLista[] = {"MI MURO", "MI PERFIL", "MIS AMIGOS", "MIS GUSTOS", "BUSCAR USUARIOS"};
         lista = new JList(datosLista);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -41,6 +41,8 @@ public class ListaSeleccion {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "amigos");
                     } else if (lista.getSelectedValue().equals("MIS GUSTOS")) {
 
+                    } else if (lista.getSelectedValue().equals("BUSCAR USUARIOS")) {
+                        ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "buscarUsuarios");
                     }
 
                 }

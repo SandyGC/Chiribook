@@ -33,15 +33,16 @@ public final class ControladorMuro {
 
     private MiMuro vistaMuro;
     private Usuario usuario;
-    private Texto texto;
+    private Texto texto, comentario;
     private Foto foto;
-    private ITextoDAO textoDAO;
+    private ITextoDAO textoDAO, comentarioDAO;
     private IFotoDAO fotoDAO;
     private IPublicacionDAO daoPublicacion;
 //le paso la vista usuario la que va usuario modificar
 
     public ControladorMuro(MiMuro vistaMuro, Usuario a) {
         textoDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
+        comentarioDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
         fotoDAO = DBConfig.getInstance().getFactoria().getFotoDAO();
         daoPublicacion = DBConfig.getInstance().getFactoria().getPublicacionDAO();
         this.usuario = a;
@@ -70,7 +71,14 @@ public final class ControladorMuro {
         u.comentarMiMuro(foto);
         fotoDAO.create(foto);
         mostrarPublicacionFoto(foto, u);
-        
+
+    }
+
+    public void crearComentarioDePublicacion(String mensaje, Usuario u) {
+        comentario = new Texto(mensaje, u);
+        texto.comentarPublicacion(comentario, u);
+        comentarioDAO.crearComentario(u, comentario);
+
     }
 
     public byte[] recibeImagen(ImageIcon imagen) {
@@ -121,16 +129,18 @@ public final class ControladorMuro {
      */
     public void rellenarMuro(Usuario u) {
         List<Publicacion> comentarios = daoPublicacion.publicacionfromUser(u);
+
         for (Publicacion publicacion : comentarios) {
+
             if (publicacion instanceof Texto) {
-                Texto te = (Texto) publicacion;
-                mostrarPublicacionTexto(te, u);
+
             }
             if (publicacion instanceof Foto) {
                 Foto fo = (Foto) publicacion;
                 mostrarPublicacionFoto(fo, u);
             }
         }
+       
     }
 
     public Usuario getA() {

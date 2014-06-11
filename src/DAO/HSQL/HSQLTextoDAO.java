@@ -27,8 +27,8 @@ public class HSQLTextoDAO implements ITextoDAO {
     public void create(Texto t) {
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-            p.insert(false, t.getComentario(),null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
-        
+          int id= p.insert(false, t.getComentario(),null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+            devolverIdPublicacion(id);
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(ITextoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,6 +59,26 @@ public class HSQLTextoDAO implements ITextoDAO {
     @Override
     public void delete(Texto t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+//    @Override
+//    public void crearComentario(Usuario a,Texto t) {
+//        try {
+//            HSQLPublicacion p = new HSQLPublicacion();
+//            p.insert(false, t.getComentario(), null, t.getFecha(), t.getFecha(), , t.getUsuario().getId());
+//        } catch (ClassNotFoundException | SQLException | IOException ex) {
+//            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+    @Override
+    public void crearComentario(Usuario a, Texto t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int devolverIdPublicacion(int id) {
+        return id;
     }
 
 

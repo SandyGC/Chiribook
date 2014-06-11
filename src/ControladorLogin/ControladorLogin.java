@@ -33,19 +33,12 @@ public class ControladorLogin {
         String nombre = l.getJtNombre().getText();
         String pass = new String(l.getJtPass().getPassword());
         Usuario a = new Usuario(nombre, pass);
-//        Usuario dao = daoUsuario.read(a);
-//        if (dao.equals(a)) {
-//            System.out.println(dao.toString());
-//            return dao;
-//        }
+
        Usuario correcto= daoUsuario.read(a);
         if (correcto!=null) {
             return correcto;
         }
-//       List<Usuario> us= daoUsuario.readAll();
-//        for (Usuario usuario : us) {
-//            System.out.println(usuario.toString());
-//        }
+
       return null;
         
     }

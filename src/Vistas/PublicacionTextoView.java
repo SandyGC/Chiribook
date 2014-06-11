@@ -39,15 +39,20 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         obtenerTexto();
     }
 
-    public void obtenerTexto() {
+    public final void obtenerTexto() {
 
         btComentar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 mensaje = texto.getText();
-                controladorM.crearPublicacionTexto(mensaje, u);
-                texto.setText("");
+                if (mensaje.isEmpty()) {
+                    jLError.setText("El comentario no puede estar vacio");
+                } else {
+                    controladorM.crearPublicacionTexto(mensaje, u);
+                    texto.setText("");
+                    jLError.setText("");
+                }
             }
         });
     }
@@ -89,6 +94,8 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         texto = new javax.swing.JTextPane();
         radioFoto = new javax.swing.JRadioButton();
         btComentar = new javax.swing.JButton();
+        jLError = new javax.swing.JLabel();
+        btComentarComentario = new javax.swing.JButton();
 
         jScrollPane2.setViewportView(texto);
 
@@ -96,30 +103,41 @@ public class PublicacionTextoView extends javax.swing.JPanel {
 
         btComentar.setText("comentar");
 
+        btComentarComentario.setText("Comentar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btComentar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(46, 46, 46))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btComentarComentario)
+                            .addComponent(btComentar)
+                            .addComponent(radioFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 124, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLError, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btComentar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btComentarComentario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radioFoto))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(radioFoto)))
+                .addGap(25, 25, 25))
         );
 
         radioFoto.getAccessibleContext().setAccessibleName("radioFoto");
@@ -129,6 +147,8 @@ public class PublicacionTextoView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btComentar;
+    private javax.swing.JButton btComentarComentario;
+    private javax.swing.JLabel jLError;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton radioFoto;
     private javax.swing.JTextPane texto;

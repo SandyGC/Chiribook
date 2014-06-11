@@ -24,8 +24,9 @@
                   <Component id="btExaminar" min="-2" max="-2" attributes="0"/>
                   <Component id="btComentar" min="-2" max="-2" attributes="0"/>
                   <Component id="radioTexto" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="jLError" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,7 +42,9 @@
                       <Component id="btComentar" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="radioTexto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLError" pref="32" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -80,9 +83,8 @@
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="fotoPublicacion">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-      </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLError">
     </Component>
   </SubComponents>
 </Form>

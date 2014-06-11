@@ -44,6 +44,13 @@ public class Usuario {
         this.muroUsuario = new Muro(this);
         this.gustos = new ArrayList<>();
     }
+    
+    public Usuario(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+        this.amigos = new ArrayList<>();
+        this.muroUsuario = new Muro(this);
+        this.gustos = new ArrayList<>();
+    }
 
     public Usuario() {
         this.amigos = new ArrayList<>();

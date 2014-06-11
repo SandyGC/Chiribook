@@ -55,30 +55,26 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-            
+
             ResultSet rs = p.readAllOf(a.getId());
             if (rs.next()) {
-                while (rs.next()) {
+                do {
                     if (rs.getBoolean("tipofoto")) {
-
                         Publicacion p1 = new Foto(rs.getBytes("foto"), a);
-                          System.out.println(p1.toString());
                         publicaciones.add(p1);
-                      
                     } else {
-
                         Publicacion p2 = new Texto(rs.getString("texto"), a);
-                              System.out.println(p2.toString());
                         publicaciones.add(p2);
-                  
+
                     }
-                }
+                } while (rs.next());
+
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(IPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
         return publicaciones;
     }
 

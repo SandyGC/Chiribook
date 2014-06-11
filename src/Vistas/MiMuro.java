@@ -51,12 +51,12 @@ public class MiMuro extends javax.swing.JPanel {
 
     public final void panelCard(Usuario u) {
 
-        panelMuro1.setLayout(new CardLayout());
+        panelPublicacion.setLayout(new CardLayout());
 
         PublicacionTextoView p = new PublicacionTextoView(miMuro, u);
-        panelMuro1.add(p, "texto");
+        panelPublicacion.add(p, "texto");
         PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u);
-        panelMuro1.add(p2, "foto");
+        panelPublicacion.add(p2, "foto");
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);
         p2.getRadioTexto().addActionListener(c);
@@ -79,8 +79,8 @@ public class MiMuro extends javax.swing.JPanel {
 
     }
 
-    public JPanel getPanelMuro1() {
-        return panelMuro1;
+    public JPanel getPanelPublicacion() {
+        return panelPublicacion;
     }
 
     public JPanel getPanelMuro2() {
@@ -97,7 +97,7 @@ public class MiMuro extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        panelMuro1 = new javax.swing.JPanel();
+        panelPublicacion = new javax.swing.JPanel();
         panelMuro2 = new javax.swing.JPanel();
         jLnOMBRE = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -105,14 +105,14 @@ public class MiMuro extends javax.swing.JPanel {
 
         jLabel2.setText("jLabel2");
 
-        javax.swing.GroupLayout panelMuro1Layout = new javax.swing.GroupLayout(panelMuro1);
-        panelMuro1.setLayout(panelMuro1Layout);
-        panelMuro1Layout.setHorizontalGroup(
-            panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPublicacionLayout = new javax.swing.GroupLayout(panelPublicacion);
+        panelPublicacion.setLayout(panelPublicacionLayout);
+        panelPublicacionLayout.setHorizontalGroup(
+            panelPublicacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        panelMuro1Layout.setVerticalGroup(
-            panelMuro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelPublicacionLayout.setVerticalGroup(
+            panelPublicacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 107, Short.MAX_VALUE)
         );
 
@@ -141,7 +141,7 @@ public class MiMuro extends javax.swing.JPanel {
                 .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelMuro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -158,7 +158,7 @@ public class MiMuro extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(panelMuro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelMuro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -171,7 +171,7 @@ public class MiMuro extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLnOMBRE;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelMuro1;
     private javax.swing.JPanel panelMuro2;
+    private javax.swing.JPanel panelPublicacion;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author SANGYG
  */
 public class PublicacionFotoView extends javax.swing.JPanel {
-
+    
     Publicacion p;
     Usuario u;
     ControladorMuro controladorM;
@@ -46,36 +46,37 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         this.controladorM = c;
         this.u = u;
         initComponents();
+        this.btComentar.setEnabled(false);
     }
-
+    
     public JButton getBtComentar() {
         return btComentar;
     }
-
+    
     public void setBtComentar(JButton btComentar) {
         this.btComentar = btComentar;
     }
-
+    
     public JButton getBtExaminar() {
         return btExaminar;
     }
-
+    
     public void setBtExaminar(JButton btExaminar) {
         this.btExaminar = btExaminar;
     }
-
+    
     public JLabel getFotoPublicacion() {
         return fotoPublicacion;
     }
-
+    
     public void setFotoPublicacion(JLabel fotoPublicacion) {
         this.fotoPublicacion = fotoPublicacion;
     }
-
+    
     public JRadioButton getRadioTexto() {
         return radioTexto;
     }
-
+    
     public void setRadioTexto(JRadioButton radioTexto) {
         this.radioTexto = radioTexto;
     }
@@ -93,6 +94,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         btExaminar = new javax.swing.JButton();
         radioTexto = new javax.swing.JRadioButton();
         fotoPublicacion = new javax.swing.JLabel();
+        jLError = new javax.swing.JLabel();
 
         btComentar.setText("comentar");
         btComentar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,8 +123,9 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExaminar)
                     .addComponent(btComentar)
-                    .addComponent(radioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(111, Short.MAX_VALUE))
+                    .addComponent(radioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,13 +139,14 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                         .addComponent(btComentar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(radioTexto)
-                        .addGap(0, 50, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLError, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         btComentar.getAccessibleContext().setAccessibleName("btcomentar");
         btExaminar.getAccessibleContext().setAccessibleName("btexaminar");
         radioTexto.getAccessibleContext().setAccessibleName("radioTexto");
-        fotoPublicacion.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
@@ -160,13 +164,18 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = jfc.getSelectedFile();
             try {
-                icon = new ImageIcon(f.toURL());
-                Image imgEscalada = icon.getImage().getScaledInstance(150,
-                        150, Image.SCALE_SMOOTH);
-                Icon iconoEscalado = new ImageIcon(imgEscalada);
-                fotoPublicacion.setIcon(iconoEscalado);
-                controladorM.recibeImagen(icon);
-
+                if (f == null) {
+                    jLError.setText("Debes seleccionar una foto");
+                    btComentar.setEnabled(false);
+                } else {
+                    icon = new ImageIcon(f.toURL());
+                    btComentar.setEnabled(true);
+                    Image imgEscalada = icon.getImage().getScaledInstance(150,
+                            150, Image.SCALE_SMOOTH);
+                    Icon iconoEscalado = new ImageIcon(imgEscalada);
+                    fotoPublicacion.setIcon(iconoEscalado);
+                    controladorM.recibeImagen(icon);
+                }
             } catch (MalformedURLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -178,6 +187,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
     private javax.swing.JButton btComentar;
     private javax.swing.JButton btExaminar;
     private javax.swing.JLabel fotoPublicacion;
+    private javax.swing.JLabel jLError;
     private javax.swing.JRadioButton radioTexto;
     // End of variables declaration//GEN-END:variables
 }

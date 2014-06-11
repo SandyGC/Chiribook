@@ -32,7 +32,7 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelMuro1" max="32767" attributes="0"/>
+              <Component id="panelPublicacion" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -55,7 +55,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="panelMuro1" min="-2" max="-2" attributes="0"/>
+              <Component id="panelPublicacion" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelMuro2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panelMuro1">
+    <Container class="javax.swing.JPanel" name="panelPublicacion">
 
       <Layout>
         <DimensionLayout dim="0">

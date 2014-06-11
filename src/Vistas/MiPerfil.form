@@ -43,19 +43,23 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTEmail" min="-2" pref="168" max="-2" attributes="0"/>
                           <Component id="jtNombre" min="-2" pref="205" max="-2" attributes="0"/>
-                          <Component id="jTEdad" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTEmail" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                                  <Component id="jTEdad" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLErrorEdad" min="-2" pref="179" max="-2" attributes="0"/>
+                                  <Component id="jLErrorEmail" min="-2" pref="179" max="-2" attributes="0"/>
+                                  <Component id="btGuardar" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btGuardar" min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="jLErrorEmail" pref="179" max="32767" attributes="0"/>
-                  <Component id="jLErrorEdad" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="195" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,7 +132,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="654" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

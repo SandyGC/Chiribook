@@ -38,7 +38,7 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
         try {
             HSQLUsuario u = new HSQLUsuario();
             ResultSet r = u.readWhere("\"nombre\" = '" + t.getNombreCompleto() + "' and \"password\"='" + t.getContraseña() + "'");
-             Usuario a=null;
+            Usuario a = null;
             while (r.next()) {
                 int id = r.getInt("id");
                 String n = r.getString("nombre");
@@ -46,7 +46,7 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
                 String em = r.getString("email");
                 String pas = r.getString("password");
                 byte[] foto = r.getBytes("foto");
-              a = new Usuario(id, n, em, e, pas, foto);
+                a = new Usuario(id, n, em, e, pas, foto);
             }
             return a;
         } catch (ClassNotFoundException | SQLException ex) {
@@ -81,7 +81,12 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void update(Usuario t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            HSQLUsuario u = new HSQLUsuario();
+            u.update(t.getId(), t.getNombreCompleto(), t.getEdad(), t.getEmail(), t.getContraseña(), t.getFotoPerfil());
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(HSQLUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

@@ -29,10 +29,10 @@ public class ControladorRadioButtonMuro implements ActionListener {
         JRadioButton radio = (JRadioButton) e.getSource();
         System.out.println(radio.getText());
         if (radio.getText().equals(FOTO)) {
-            ((CardLayout) m.getPanelMuro1().getLayout()).show(m.getPanelMuro1(), "foto");
+            ((CardLayout) m.getPanelPublicacion().getLayout()).show(m.getPanelPublicacion(), "foto");
         } else {
 
-            ((CardLayout) m.getPanelMuro1().getLayout()).show(m.getPanelMuro1(), "texto");
+            ((CardLayout) m.getPanelPublicacion().getLayout()).show(m.getPanelPublicacion(), "texto");
         }
 
     }

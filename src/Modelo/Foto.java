@@ -15,12 +15,13 @@ public class Foto extends Publicacion {
 
     private  byte[] imagen;
 
-
-    public Foto(byte[] imagen, Usuario u) {
-        super( u);
+    public Foto(byte[] imagen,Usuario u) {
+        super(u);
         this.imagen = imagen;
-
     }
+
+
+ 
 
     public byte[] getImagen() {
         return imagen;

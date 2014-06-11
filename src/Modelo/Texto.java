@@ -18,6 +18,8 @@ public class Texto extends Publicacion {
         this.comentario = comentario;
     }
 
+   
+
 
     public String getComentario() {
         return comentario;

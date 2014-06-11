@@ -6,6 +6,7 @@
 package VistaInicioSesionBD;
 
 import ControladorInicioSesionBD.ControladorInicioSesionBD;
+import Vistas.BarraMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -31,6 +32,7 @@ public class VistaInicio extends javax.swing.JFrame {
 
     public VistaInicio() {
         initComponents();
+     
         validacion = new ValidacionComponentes(this);
         controlador = new ControladorInicioSesionBD(this);
         comprobarcamposVacios();
@@ -38,6 +40,7 @@ public class VistaInicio extends javax.swing.JFrame {
         obtenerCampos();
         
     }
+   
 
     /**
      * Metodo que obtiene los datos de la vista para iniciar sesion en la BD
@@ -266,9 +269,9 @@ public class VistaInicio extends javax.swing.JFrame {
                     .addComponent(comboBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(errorBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(btConectar)
-                .addGap(18, 18, 18))
+                .addGap(30, 30, 30))
         );
 
         pack();

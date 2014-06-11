@@ -20,17 +20,29 @@ public class Publicacion {
     private Usuario usuario;
 
     public Publicacion(Usuario u) {
-      
+
         this.usuario = u;
         //fecha actual
         this.fecha = new Date();
         comentarios = new ArrayList<>();
     }
 
+    public Publicacion() {
+         this.fecha = new Date();
+        this.comentarios = new ArrayList<>();
+    }
+
     public ArrayList<Publicacion> getComentarios() {
         return comentarios;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getFecha() {
         return fecha;
@@ -63,6 +75,4 @@ public class Publicacion {
 
     }
 
-
-    
 }

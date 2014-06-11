@@ -8,6 +8,7 @@ package VistaLoginApp;
 import ControladorLogin.ControladorLogin;
 import DAO.UtilConnectionHSQL;
 import Modelo.Usuario;
+import Vistas.BarraMenu;
 import Vistas.VistaPrincipal;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        crearBarraMenu(this);
         validacion = new ValidacionComponentesLogin(this);
         controladorLogin = new ControladorLogin(this);
         cargarFoto();
@@ -43,6 +45,10 @@ public class Login extends javax.swing.JFrame {
     public final void comprobarcamposVacios() {
         this.jtNombre.setInputVerifier(validacion);
         this.jtPass.setInputVerifier(validacion);
+    }
+    public void crearBarraMenu(Login g){
+        BarraMenu b= new BarraMenu(g);
+        this.setJMenuBar(b.getMenuBar());
     }
 
     public void cargarFoto() {

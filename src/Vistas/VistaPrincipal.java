@@ -9,45 +9,36 @@ import ControladorApp.ControladorMuro;
 import Modelo.Usuario;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import static javax.swing.text.html.HTML.Attribute.LANG;
 
 /**
  *
  * @author SandyG
  */
 public class VistaPrincipal {
-    
+
     private JFrame frame;
     private JSplitPane splitPane;
     JPanel panelCards;
     JScrollPane scrollPane;
-    
-  
-    
+
     public VistaPrincipal(Usuario u) {
-    
+
         construirSplitPane();
         construirPanelIzquierdo();
         construirPanelDerecho(u);
         construirVentana();
-        construirBarraMenu();
-    }
-
-   
-
-    /**
-     * Metodo que construye la barra de menu
-     */
-    public final void construirBarraMenu() {
-        BarraMenu barraMenu = new BarraMenu();
-        //edito la barra de menu del jframe
-        frame.setJMenuBar(barraMenu.getMenuBar());
     }
 
     /**
@@ -60,49 +51,52 @@ public class VistaPrincipal {
 //2. Optional: What happens when the frame closes?
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //le doy tamaño a la ventana y establezco donde aparecerá la ventana
-        frame.setBounds(150, 150, 900, 500);
+        frame.setBounds(150, 150, 900, 700);
 //5. Show it.
         frame.setResizable(true);
         frame.setVisible(true);
-        
+
         frame.add(splitPane);
-        
+
     }
-    
+
     public final void construirSplitPane() {
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerLocation(200);
-        
+
     }
-    
+
     public final void construirPanelIzquierdo() {
         PanelIzquierdo pane = new PanelIzquierdo(this);
         splitPane.add(pane.getPanelIz());
     }
-    
+
     public final void construirPanelDerecho(Usuario u) {
         //panel que contiene los 4 paneles
 
         panelCards = new JPanel();
         JPanel muro = new MiMuro(u);
         JPanel miPerfil = new MiPerfil(u);
-        JPanel misAmigos= new MisAmigos(u);
-        
+        JPanel misAmigos = new MisAmigos(u);
+        JPanel buscarUsuarios= new BuscarUsuarios(u);
+
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
         panelCards.add(miPerfil, "perfil");
-        panelCards.add(misAmigos,"amigos");
+        panelCards.add(misAmigos, "amigos");
+        panelCards.add(buscarUsuarios,"buscarUsuarios");
         scrollPane = new JScrollPane(panelCards);
         //para editar el scroll bar que aparezca solo de arriba a abjo.
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         splitPane.add(scrollPane);
-        
+
     }
-    
+
     public JPanel getPanelCards() {
         return panelCards;
     }
-    
+//    Obtener idioma-------------------------
+
 }

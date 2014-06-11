@@ -25,7 +25,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btVistarPerfil" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
                   <Component id="jRadioButton3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btVistarPerfil" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
@@ -62,9 +62,6 @@
     <Component class="javax.swing.JLabel" name="jLFoto">
     </Component>
     <Component class="javax.swing.JLabel" name="jLNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton1">
       <Properties>
@@ -81,7 +78,7 @@
         <Property name="text" type="java.lang.String" value="Compa&#xf1;ero de Trabajo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btVistarPerfil">
       <Properties>
         <Property name="text" type="java.lang.String" value="jButton1"/>
       </Properties>

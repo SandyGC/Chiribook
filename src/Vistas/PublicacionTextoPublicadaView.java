@@ -7,6 +7,7 @@ package Vistas;
 
 import Modelo.Texto;
 import Modelo.Usuario;
+import java.awt.CardLayout;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -80,9 +81,14 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         textoPublicado.setRows(5);
         jScrollPane1.setViewportView(textoPublicado);
 
-        btComentar.setText("jButton1");
+        btComentar.setText("Comentar");
+        btComentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComentarActionPerformed(evt);
+            }
+        });
 
-        meGusta.setText("jToggleButton1");
+        meGusta.setText("Me Gusta");
 
         jlFecha.setText("jLabel1");
 
@@ -100,7 +106,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(meGusta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         panelPublicacionPublicadaLayout.setVerticalGroup(
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,6 +169,11 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
+        // TODO add your handling code here:
+        panelHacerComentario.setVisible(true);
+    }//GEN-LAST:event_btComentarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
