@@ -21,31 +21,39 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="btEditar" min="-2" pref="96" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btGuardar" min="-2" pref="92" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabelEdad" min="-2" pref="54" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                          <Component id="jTEdad" min="-2" pref="208" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="btEditar" min="-2" pref="96" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLEmail" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLEmail" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="jLabelEdad" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JlabelFoto" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTEmail" min="-2" pref="168" max="-2" attributes="0"/>
                           <Component id="jtNombre" min="-2" pref="205" max="-2" attributes="0"/>
-                          <Component id="jTEmail" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="jTEdad" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btGuardar" min="-2" pref="92" max="-2" attributes="0"/>
+                  <Component id="jLErrorEmail" pref="179" max="32767" attributes="0"/>
+                  <Component id="jLErrorEdad" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -54,25 +62,22 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="jtNombre" min="-2" pref="44" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLEmail" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jtNombre" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="JlabelFoto" alignment="3" min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTEdad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLEmail" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jLErrorEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelEdad" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jTEdad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLErrorEdad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -87,11 +92,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTEdad">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLEmail">
       <Properties>
         <Property name="text" type="java.lang.String" value="Email:"/>
@@ -117,16 +117,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTEmailActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JlabelFoto">
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="623" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="654" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -136,17 +138,6 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="JlabelFoto">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="FOTO"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="btEditar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
@@ -154,6 +145,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTEdad">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLErrorEmail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLErrorEdad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel2"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

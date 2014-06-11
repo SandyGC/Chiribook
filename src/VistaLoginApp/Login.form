@@ -37,7 +37,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="216" max="-2" attributes="0"/>
+                          <Component id="jLabelFoto" min="-2" pref="216" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btAltaUsuario" min="-2" max="-2" attributes="0"/>
@@ -63,7 +63,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="81" max="-2" attributes="0"/>
+              <Component id="jLabelFoto" min="-2" pref="81" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlabelNombre" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jLabelFoto">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>

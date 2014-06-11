@@ -127,9 +127,9 @@ public class Usuario {
      * @param a
      */
     public void addAmistad(Usuario a) {
-        Amistad nuevaAmistad = new Amistad(a);
+        Amistad nuevaAmistad = new Amistad(a,false,null);
         amigos.add(nuevaAmistad);
-        a.getAmigos().add(new Amistad(this));
+        a.getAmigos().add(new Amistad(this,false,null));
         //apruebo la amistad en mi lista de amigos
         this.aprobarAmistdad(nuevaAmistad);
 

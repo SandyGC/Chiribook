@@ -13,26 +13,25 @@ public class Amistad {
 
     private Usuario amigo;
     private boolean aprobada=false;
+private String tipo;
 
-    private enum tipoAmistad {
-
-        familiar, amigo, compañero, otro
-    };
-    private tipoAmistad tipo;
-
-    public Amistad(Usuario amigo) {
+    public Amistad(Usuario amigo, boolean aprobada, String tipo) {
         this.amigo = amigo;
-        tipo= tipoAmistad.otro;
+        this.aprobada = aprobada;
+        this.tipo = tipo;
     }
+
+ 
+    
     public void aceptarAmistad(){
             aprobada=true;
     }
 
-    public tipoAmistad getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(tipoAmistad tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -48,18 +47,11 @@ public class Amistad {
         return amigo;
     }
 
-    // para devolver el tipo de amistad 
-    public String tipoAmistad(tipoAmistad tipo) {
-        String relacion;
-        if (tipo.equals(tipoAmistad.amigo)) {
-
-            relacion = "Amigo";
-        } else if (tipo.equals(tipoAmistad.compañero)) {
-            relacion = "Compañero";
-        } else {
-            relacion = "Familiar";
-        }
-        return relacion;
+    @Override
+    public String toString() {
+        return "Amistad{" + "amigo=" + amigo.getNombreCompleto() + ", aprobada=" + aprobada + ", tipo=" + tipo + '}';
     }
+
+
 
 }

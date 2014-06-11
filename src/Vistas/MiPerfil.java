@@ -7,7 +7,12 @@ package Vistas;
 
 import ControladorApp.ControladorPerfil;
 import Modelo.Usuario;
+import java.awt.Image;
+import java.util.InputMismatchException;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,11 +21,11 @@ import javax.swing.ImageIcon;
 public class MiPerfil extends javax.swing.JPanel {
 
     ControladorPerfil controladorPerfil;
+    ValidacionComponentes validador;
 
     /**
      * Creates new form MiPerfild
      */
-
     /**
      * Creates new form MiPerfild
      *
@@ -28,20 +33,57 @@ public class MiPerfil extends javax.swing.JPanel {
      */
     public MiPerfil(Usuario u) {
         controladorPerfil = new ControladorPerfil(this, u);
+        validador = new ValidacionComponentes(this);
+
         initComponents();
+        comprobarCamposVacios();
         rellenarPerfil(u);
     }
 
+    public JLabel getjLErrorEdad() {
+        return jLErrorEdad;
+    }
+
+    public JLabel getjLErrorEmail() {
+        return jLErrorEmail;
+    }
+
+    public JButton getBtGuardar() {
+        return btGuardar;
+    }
+
     public final void rellenarPerfil(Usuario u) {
-        this.JlabelFoto.setIcon(new ImageIcon(u.getFotoPerfil()));
+        ImageIcon fotop = new ImageIcon("IMAGENES/chribook.png");
+        System.out.println(JlabelFoto.getWidth() + JlabelFoto.getHeight());
+        Image imgEscalada = fotop.getImage().getScaledInstance(100,
+                100, Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        this.JlabelFoto.setIcon(iconoEscalado);
+
         this.jTEmail.setText(u.getEmail());
-        this.jTEmail.setEditable(false);
         int e = u.getEdad();
         String ed = Integer.toString(e);
         this.jTEdad.setText(ed);
-        this.jTEdad.setEditable(false);
         this.jtNombre.setText(u.getNombreCompleto());
-        
+        desactivarCampos();
+
+    }
+
+    public void desactivarCampos() {
+        this.jTEmail.setEditable(false);
+        this.jTEdad.setEditable(false);
+        this.btGuardar.setEnabled(false);
+    }
+
+    public void activarCampos() {
+        this.jTEmail.setEditable(true);
+        this.jTEdad.setEditable(true);
+        btGuardar.setEnabled(true);
+    }
+
+    public void comprobarCamposVacios() {
+        this.jTEdad.setInputVerifier(validador);
+        this.jTEmail.setInputVerifier(validador);
     }
 
     /**
@@ -53,18 +95,17 @@ public class MiPerfil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTEdad = new javax.swing.JTextField();
         jLEmail = new javax.swing.JLabel();
         jLabelEdad = new javax.swing.JLabel();
         btGuardar = new javax.swing.JButton();
         jtNombre = new javax.swing.JTextField();
         jTEmail = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         JlabelFoto = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btEditar = new javax.swing.JButton();
-
-        jTEdad.setText("jTextField3");
+        jTEdad = new javax.swing.JTextField();
+        jLErrorEmail = new javax.swing.JLabel();
+        jLErrorEdad = new javax.swing.JLabel();
 
         jLEmail.setText("Email:");
 
@@ -80,21 +121,22 @@ public class MiPerfil extends javax.swing.JPanel {
         jtNombre.setEditable(false);
         jtNombre.setText("NOMBRE");
 
-        jTEmail.setText("jTextField2");
+        jTEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTEmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGap(0, 654, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 58, Short.MAX_VALUE)
         );
-
-        JlabelFoto.setText("FOTO");
-        jScrollPane1.setViewportView(JlabelFoto);
 
         btEditar.setText("Editar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +144,10 @@ public class MiPerfil extends javax.swing.JPanel {
                 btEditarActionPerformed(evt);
             }
         });
+
+        jLErrorEmail.setText("jLabel1");
+
+        jLErrorEdad.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,45 +157,50 @@ public class MiPerfil extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(162, 162, 162)
-                            .addComponent(jTEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(114, 114, 114)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(61, 61, 61))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(JlabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLErrorEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jLErrorEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLErrorEmail))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLErrorEdad))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,21 +213,46 @@ public class MiPerfil extends javax.swing.JPanel {
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         // TODO add your handling code here:
+        String e = this.jTEmail.getText();
+        String eda = this.jTEdad.getText();
+        int edad = recogerSoloEntero(eda);
+        if (edad == -1 || edad < 0 || edad > 100) {
+            this.jLErrorEdad.setText("No se puede guardar dato erroneo");
+        } else {
+            this.jLErrorEdad.setText("");
+            desactivarCampos();
+        }
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
+        activarCampos();
     }//GEN-LAST:event_btEditarActionPerformed
 
+    private void jTEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTEmailActionPerformed
 
+    public int recogerSoloEntero(String ed) {
+        int edad = 0;
+        try {
+            edad = Integer.parseInt(ed);
+        } catch (InputMismatchException | NumberFormatException e) {
+            this.jLErrorEdad.setText("Introduce un numero");
+            edad = -1;
+        }
+        return edad;
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelFoto;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JLabel jLEmail;
+    private javax.swing.JLabel jLErrorEdad;
+    private javax.swing.JLabel jLErrorEmail;
     private javax.swing.JLabel jLabelEdad;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTEdad;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jtNombre;

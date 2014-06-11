@@ -21,6 +21,8 @@ public class ControladorPerfil {
         this.vistaMiPerfil = vistaMiPerfil;
         this.a = a;
     }
-
     
+    public void recibirActualizacion(String email, int edad){
+        
+    }
 }

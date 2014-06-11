@@ -38,7 +38,7 @@ public class ListaSeleccion {
                     } else if (lista.getSelectedValue().equals("MI PERFIL")) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "perfil");
                     } else if (lista.getSelectedValue().equals("MIS AMIGOS")) {
-                        
+                        ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "amigos");
                     } else if (lista.getSelectedValue().equals("MIS GUSTOS")) {
 
                     }

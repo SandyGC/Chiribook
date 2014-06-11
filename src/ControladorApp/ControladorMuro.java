@@ -70,7 +70,7 @@ public final class ControladorMuro {
         u.comentarMiMuro(foto);
         fotoDAO.create(foto);
         mostrarPublicacionFoto(foto, u);
-
+        
     }
 
     public byte[] recibeImagen(ImageIcon imagen) {

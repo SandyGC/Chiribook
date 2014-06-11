@@ -7,11 +7,13 @@
 package DAO;
 
 import Modelo.Amistad;
+import Modelo.Usuario;
+import java.util.List;
 
 /**
  *
  * @author SANGYG
  */
 public interface IAmistadDAO extends IDAO<Amistad>{
-    
+    public List<Amistad> devolverAmigos(Usuario u);
 }

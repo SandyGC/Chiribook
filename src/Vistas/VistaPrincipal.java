@@ -87,9 +87,12 @@ public class VistaPrincipal {
         panelCards = new JPanel();
         JPanel muro = new MiMuro(u);
         JPanel miPerfil = new MiPerfil(u);
+        JPanel misAmigos= new MisAmigos(u);
+        
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
         panelCards.add(miPerfil, "perfil");
+        panelCards.add(misAmigos,"amigos");
         scrollPane = new JScrollPane(panelCards);
         //para editar el scroll bar que aparezca solo de arriba a abjo.
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

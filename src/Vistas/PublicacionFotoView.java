@@ -9,17 +9,21 @@ import ControladorApp.ControladorMuro;
 import Modelo.Publicacion;
 import Modelo.Usuario;
 import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -30,18 +34,20 @@ public class PublicacionFotoView extends javax.swing.JPanel {
     Publicacion p;
     Usuario u;
     ControladorMuro controladorM;
-       ImageIcon icon;
+    ImageIcon icon;
 
     /**
      * Creates new form PublicacionFotoView
+     *
      * @param c
      * @param u
      */
     public PublicacionFotoView(ControladorMuro c, Usuario u) {
-        this.controladorM=c;
-        this.u=u;
+        this.controladorM = c;
+        this.u = u;
         initComponents();
     }
+
     public JButton getBtComentar() {
         return btComentar;
     }
@@ -86,7 +92,6 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         btComentar = new javax.swing.JButton();
         btExaminar = new javax.swing.JButton();
         radioTexto = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
         fotoPublicacion = new javax.swing.JLabel();
 
         btComentar.setText("comentar");
@@ -105,18 +110,14 @@ public class PublicacionFotoView extends javax.swing.JPanel {
 
         radioTexto.setText("texto");
 
-        fotoPublicacion.setText("foto");
-        jScrollPane1.setViewportView(fotoPublicacion);
-        fotoPublicacion.getAccessibleContext().setAccessibleName("");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(53, 53, 53)
+                .addComponent(fotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExaminar)
                     .addComponent(btComentar)
@@ -126,38 +127,47 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btExaminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btComentar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioTexto))
-            .addComponent(jScrollPane1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fotoPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btExaminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btComentar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radioTexto)
+                        .addGap(0, 50, Short.MAX_VALUE))))
         );
 
         btComentar.getAccessibleContext().setAccessibleName("btcomentar");
         btExaminar.getAccessibleContext().setAccessibleName("btexaminar");
         radioTexto.getAccessibleContext().setAccessibleName("radioTexto");
+        fotoPublicacion.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
         // TODO add your handling code here:
-            // Cambiar FOTO
-       controladorM.crearPublicacionFoto(icon, u);
+        // Cambiar FOTO
+        controladorM.crearPublicacionFoto(icon, u);
+        fotoPublicacion.setIcon(null);
 
     }//GEN-LAST:event_btComentarActionPerformed
 
     private void btExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExaminarActionPerformed
         // TODO add your handling code here:
         JFileChooser jfc = new JFileChooser();
-        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        jfc.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif"));
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = jfc.getSelectedFile();
             try {
-             icon = new ImageIcon(f.toURL());
-                 fotoPublicacion.setIcon(icon);
+                icon = new ImageIcon(f.toURL());
+                Image imgEscalada = icon.getImage().getScaledInstance(150,
+                        150, Image.SCALE_SMOOTH);
+                Icon iconoEscalado = new ImageIcon(imgEscalada);
+                fotoPublicacion.setIcon(iconoEscalado);
                 controladorM.recibeImagen(icon);
-               
-            } catch (IOException ex) {
+
+            } catch (MalformedURLException ex) {
                 System.out.println(ex.getMessage());
             }
         }
@@ -168,7 +178,6 @@ public class PublicacionFotoView extends javax.swing.JPanel {
     private javax.swing.JButton btComentar;
     private javax.swing.JButton btExaminar;
     private javax.swing.JLabel fotoPublicacion;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radioTexto;
     // End of variables declaration//GEN-END:variables
 }
