@@ -23,11 +23,14 @@ public class ControladorRadioButtonMuro implements ActionListener {
     public ControladorRadioButtonMuro(MiMuro m) {
         this.m = m;
     }
-
+/**
+ * Action que cambia de paneles a FOTO o TEXTO
+ * @param e 
+ */
     @Override
     public void actionPerformed(ActionEvent e) {
         JRadioButton radio = (JRadioButton) e.getSource();
-        System.out.println(radio.getText());
+      
         if (radio.getText().equals(FOTO)) {
             ((CardLayout) m.getPanelPublicacion().getLayout()).show(m.getPanelPublicacion(), "foto");
         } else {

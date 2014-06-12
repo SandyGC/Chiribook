@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?> <!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN" "http://java.sun.com/products/javahelp/map_2_0.dtd"> <map version="1.0"> 
+    <mapID target="Chiribook" url="html/Chiribook.html" /> 
+    <mapID target="perfil" url="html/miPerfil.html" />
+     <mapID target="amigos" url="html/misAmigos.html" /> 
+	 <mapID target="muro" url="html/miMuro.html" /> 
+    <mapID target="acercade" url="html/acercade.html" />  
+</map> - See more at: http://www.alvarolara.com/2013/05/31/manual-de-javahelp/#sthash.tIKJRNCS.dpuf

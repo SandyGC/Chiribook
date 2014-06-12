@@ -22,25 +22,37 @@ public class ControladorBuscarUsuario {
     BuscarUsuarios vistaBuscar;
     IUsuarioDAO daoUsuario;
     Usuario usuario;
-
+/**
+ * Constructor de la clase
+ * Recibe una vista para poder modificarla y una clase del modelo
+ * para poder consultarlo
+ * @param buscarU
+ * @param u 
+ */
     public ControladorBuscarUsuario(BuscarUsuarios buscarU, Usuario u) {
         this.usuario = u;
         this.vistaBuscar = buscarU;
         daoUsuario = DBConfig.getInstance().getFactoria().getUsuarioDAO();
         rellenarUsuarios();
     }
-
+/**
+ * Metodo que busca un usuario obteniendo el nombre de la vista,
+ * construyendo un objeto y pasandoselo al DAO
+ * @return 
+ */
     public Usuario buscarUsuario() {
         String nombre = vistaBuscar.getjTNombre().getText();
         Usuario a = new Usuario(nombre);
-        System.out.println(nombre);
         Usuario usuarioCorrecto = daoUsuario.readForName(a);
         if (usuarioCorrecto != null) {
             return usuarioCorrecto;
         }
         return null;
     }
-
+/**
+ * Metodo que rellena la lista de usuarios y muestra todos los usuarios
+ * de la base de datos menos el mio, para que asi no me salga como añadir amigos
+ */
     public final void rellenarUsuarios() {
         List<Usuario> usuarios = daoUsuario.readAll();
         ListIterator iter = usuarios.listIterator();
@@ -55,7 +67,11 @@ public class ControladorBuscarUsuario {
             }
         } while (iter.hasNext());
     }
-
+/**
+ * Metodo que rellenar el panel de un amigo, obteniendo
+ * los datos del modelo
+ * @param a 
+ */
     public void rellenarUsuario(Usuario a) {
         vistaBuscar.getjPanelUsuario().removeAll();
         if (a.getNombreCompleto().equals(usuario.getNombreCompleto())) {

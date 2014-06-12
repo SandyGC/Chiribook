@@ -25,7 +25,14 @@ public class ControladorInicioSesionBD {
        
     }
     
-    
+    /**
+     * Metodo para poder acceder a la base de datos
+     * que se crea una clase de utilidad
+     * @param driver
+     * @param host
+     * @param nameDB
+     * @param pass 
+     */
     public void iniciarSesion(String driver,String host,String nameDB,String pass){
         
         UtilConnectionHSQL connection= new UtilConnectionHSQL(driver,"db",nameDB,pass);

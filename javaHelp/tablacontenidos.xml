@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<toc version="1.0"> <!-- categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened" topicimage="ItemIco"--> 
+    <tocitem text="Chiribook" target="Chiribook"> 
+            <tocitem text="MI PERFIL" target="perfil"/> 
+            <tocitem text="MIS AMIGOS" target="amigos"/> 
+            <tocitem text="MI MURO" target="muro"/> 
+    </tocitem> 
+    <tocitem text="Acerca de" target="acercade"/> 
+</toc> - See more at: http://www.alvarolara.com/2013/05/31/manual-de-javahelp/#sthash.tIKJRNCS.dpuf

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package DAO.HSQL;
+package DAOHSQL;
 
 import DAO.IMuroDAO;
 import Modelo.Muro;

@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import DAO.HSQL.HSQLFactoriaDAO;
+import DAOHSQL.HSQLFactoriaDAO;
 
 /**
  *

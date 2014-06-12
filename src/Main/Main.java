@@ -30,7 +30,7 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 VistaInicio V = new VistaInicio();
-              //  VistaPrincipal V1= new VistaPrincipal();
+                
             }
         });
 

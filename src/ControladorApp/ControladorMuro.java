@@ -51,20 +51,24 @@ public final class ControladorMuro {
 
     }
 
-    /**
-     * Crea la publicacion y llama al metodo mostrarPublicacionTexto para
-     * mostrarla
-     *
-     * @param mensaje
-     * @param u
-     */
+/**
+ * Metodo que crea un publicacion de tipo texto
+ * obtenemos los datos de la vista, construimos un objeto y se los pasamos
+ * al DAO
+ * @param mensaje
+ * @param u 
+ */
     public void crearPublicacionTexto(String mensaje, Usuario u) {
         texto = new Texto(mensaje, u);
         u.comentarMiMuro(texto);
         textoDAO.create(texto);
         mostrarPublicacionTexto(texto, u);
     }
-
+/**
+ * Metodo que crea una publicacion de tipo foto
+ * @param imagen
+ * @param u 
+ */
     public void crearPublicacionFoto(ImageIcon imagen, Usuario u) {
         byte[] insfoto = recibeImagen(imagen);
         foto = new Foto(insfoto, u);
@@ -73,14 +77,22 @@ public final class ControladorMuro {
         mostrarPublicacionFoto(foto, u);
 
     }
-
+/**
+ * Metodo que creara un comentario de una publicacion
+ * @param mensaje
+ * @param u 
+ */
     public void crearComentarioDePublicacion(String mensaje, Usuario u) {
         comentario = new Texto(mensaje, u);
         texto.comentarPublicacion(comentario, u);
         comentarioDAO.crearComentario(u, comentario);
 
     }
-
+/**
+ * Metodo que transforma la imagen de ImagenIcon a bytes
+ * @param imagen
+ * @return 
+ */
     public byte[] recibeImagen(ImageIcon imagen) {
         byte[] fot = null;
         try {
@@ -93,13 +105,12 @@ public final class ControladorMuro {
         return fot;
     }
 
-    /**
-     * Metodo que crea una vista de publicacion cada vez que le de al boton
-     * comentar, crerara un panel de tipo Publicacion Publicada
-     *
-     * @param t
-     * @param u
-     */
+ /**
+  * 
+  * Metodo que muestra la publicacion de tipo texto en otro panel una vez hecha
+  * @param t
+  * @param u 
+  */
     public void mostrarPublicacionTexto(Texto t, Usuario u) {
         PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(t, u);
         v.esconderPaneles();
@@ -109,7 +120,11 @@ public final class ControladorMuro {
         v.setVisible(true);
         vistaMuro.updateUI();
     }
-
+/**
+ * Metodo que muestra una publicacion de tipo foto una vez realizada
+ * @param f
+ * @param u 
+ */
     public void mostrarPublicacionFoto(Foto f, Usuario u) {
         PublicacionFotoPublicadaView vfoto = new PublicacionFotoPublicadaView(f, u);
         vfoto.esconderPaneles();

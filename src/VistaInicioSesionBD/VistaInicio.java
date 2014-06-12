@@ -6,11 +6,13 @@
 package VistaInicioSesionBD;
 
 import ControladorInicioSesionBD.ControladorInicioSesionBD;
+import VistaLoginApp.Login;
 import Vistas.BarraMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.prefs.Preferences;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -29,10 +31,17 @@ public class VistaInicio extends javax.swing.JFrame {
     ValidacionComponentes validacion;
     ControladorInicioSesionBD controlador;
     String bd, nameUsBD, pass, host;
-
+    // Preferencias para la clase
+    static final Preferences preferencias
+            = Preferences.userRoot().node(VistaInicio.class.getName());
+    private static final String HOST = "nombre";
+    private static final String PASS = "pass";
+    /**
+     * Contructor de la clase
+     */
     public VistaInicio() {
         initComponents();
-     
+        obtenerDatosUsuario();
         validacion = new ValidacionComponentes(this);
         controlador = new ControladorInicioSesionBD(this);
         comprobarcamposVacios();
@@ -40,8 +49,26 @@ public class VistaInicio extends javax.swing.JFrame {
         obtenerCampos();
         
     }
-   
+    /**
+     * metodo para obtener los guardados en las preferencias
+     */
+    public void obtenerDatosUsuario() {
+        String host = preferencias.get(HOST, "");
+        this.textHost.setText(host);
+        String pass = preferencias.get(PASS, "");
+        this.textPassword.setText(pass);
+    }
+    /**
+     * almacenar datos en las preferencias
+     */
+        public void almacenarDatosUsuario() {
 
+        preferencias.put(HOST, textHost.getText());
+        preferencias.put(PASS, new String(textPassword.getPassword()));
+
+    }
+
+    
     /**
      * Metodo que obtiene los datos de la vista para iniciar sesion en la BD
      */
@@ -55,11 +82,15 @@ public class VistaInicio extends javax.swing.JFrame {
                 pass = new String(textPassword.getPassword());
                 host = textHost.getText();
                 controlador.iniciarSesion(bd.toLowerCase(), host.toLowerCase(), nameUsBD.toLowerCase(), pass.toLowerCase());
+                almacenarDatosUsuario();
             }
         });
     }
-    public void cerrarVista(){
-      this.dispose();
+/**
+ * metodo que cierra la vista
+ */
+    public void cerrarVista() {
+        this.dispose();
     }
 
     /**
@@ -67,92 +98,13 @@ public class VistaInicio extends javax.swing.JFrame {
      * esten vacios.
      */
     public final void comprobarcamposVacios() {
-            getBtConectar().setEnabled(false);
+        btConectar.setEnabled(false);
         this.textPassword.setInputVerifier(validacion);
         this.textHost.setInputVerifier(validacion);
 
     }
 
-    public JButton getBtConectar() {
-        return btConectar;
-    }
 
-    public void setBtConectar(JButton btConectar) {
-        this.btConectar = btConectar;
-    }
-
-    public JComboBox getComboBD() {
-        return comboBD;
-    }
-
-    public void setComboBD(JComboBox comboBD) {
-        this.comboBD = comboBD;
-    }
-
-    public JComboBox getComboNombre() {
-        return comboNombre;
-    }
-
-    public void setComboNombre(JComboBox comboNombre) {
-        this.comboNombre = comboNombre;
-    }
-
-    public JLabel getErrorBD() {
-        return errorBD;
-    }
-
-    public void setErrorBD(JLabel errorBD) {
-        this.errorBD = errorBD;
-    }
-
-    public JLabel getErrorHost() {
-        return errorHost;
-    }
-
-    public void setErrorHost(JLabel errorHost) {
-        this.errorHost = errorHost;
-    }
-
-    public JLabel getErrorNombre() {
-        return errorNombre;
-    }
-
-    public void setErrorNombre(JLabel errorNombre) {
-        this.errorNombre = errorNombre;
-    }
-
-    public JLabel getErrorPassword() {
-        return errorPassword;
-    }
-
-    public void setErrorPassword(JLabel errorPassword) {
-        this.errorPassword = errorPassword;
-    }
-
-
-    public JLabel getLogoChiribook() {
-        return logoChiribook;
-    }
-
-    public void setLogoChiribook(JLabel logoChiribook) {
-        this.logoChiribook = logoChiribook;
-    }
-
-    public JTextField getTextHost() {
-        return textHost;
-    }
-
-    public void setTextHost(JTextField textHost) {
-        this.textHost = textHost;
-    }
-
-    public JPasswordField getTextPassword() {
-        return textPassword;
-    }
-
-    public void setTextPassword(JPasswordField textPassword) {
-        this.textPassword = textPassword;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,7 +132,7 @@ public class VistaInicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoChiribook.setText("jLabel1");
+        logoChiribook.setText("Por defecto usuario= sa y password=\"\"");
 
         comboNombre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SA" }));
         comboNombre.setToolTipText("");
@@ -209,45 +161,45 @@ public class VistaInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btConectar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textHost)
-                                .addComponent(comboBD, 0, 177, Short.MAX_VALUE))
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(errorBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(errorHost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comboNombre, javax.swing.GroupLayout.Alignment.LEADING, 0, 177, Short.MAX_VALUE)
-                                .addComponent(textPassword, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(errorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(5, 5, 5)
-                                    .addComponent(errorPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(logoChiribook, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(logoChiribook, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 77, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btConectar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(textHost)
+                                        .addComponent(comboBD, 0, 177, Short.MAX_VALUE))
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(errorBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(errorHost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(comboNombre, javax.swing.GroupLayout.Alignment.LEADING, 0, 177, Short.MAX_VALUE)
+                                        .addComponent(textPassword, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(12, 12, 12)
+                                            .addComponent(errorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(5, 5, 5)
+                                            .addComponent(errorPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoChiribook, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addContainerGap()
+                .addComponent(logoChiribook, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,4 +286,32 @@ public class VistaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField textHost;
     private javax.swing.JPasswordField textPassword;
     // End of variables declaration//GEN-END:variables
+
+    public static String getHOST() {
+        return HOST;
+    }
+
+    public static String getPASS() {
+        return PASS;
+    }
+
+    public JButton getBtConectar() {
+        return btConectar;
+    }
+
+    public JLabel getErrorHost() {
+        return errorHost;
+    }
+
+    public JLabel getErrorNombre() {
+        return errorNombre;
+    }
+
+    public JLabel getErrorPassword() {
+        return errorPassword;
+    }
+
+    public JLabel getErrorBD() {
+        return errorBD;
+    }
 }

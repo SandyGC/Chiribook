@@ -14,7 +14,8 @@ import java.util.List;
  * @author SANGYG
  */
 public interface ITextoDAO extends IDAO<Texto> {
-
+//metodo que crea comentario pasandole un usuario y la publicacion
     public void crearComentario(Usuario a,Texto t);
+    //metodo que me devuelve el id de la publicacion
     public int devolverIdPublicacion(int id);
 }

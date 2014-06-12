@@ -6,7 +6,7 @@
 package ControladorLogin;
 
 import DAO.DBConfig;
-import DAO.HSQL.HSQLUsuarioDAO;
+import DAOHSQL.HSQLUsuarioDAO;
 import DAO.IUsuarioDAO;
 import DAO.UtilConnectionHSQL;
 import Modelo.Usuario;
@@ -27,7 +27,10 @@ public class ControladorLogin {
         this.l = l;
         daoUsuario = DBConfig.getInstance().getFactoria().getUsuarioDAO();
     }
-
+/**
+ * Metodo que devuelve un usuario para hacer login en la aplicacion
+ * @return 
+ */
     public Usuario buscarUsuario() {
 
         String nombre = l.getJtNombre().getText();

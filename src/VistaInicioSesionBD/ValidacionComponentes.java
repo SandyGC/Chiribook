@@ -21,7 +21,7 @@ public class ValidacionComponentes extends InputVerifier {
     public ValidacionComponentes(VistaInicio vista) {
         this.vista = vista;
     }
-
+//VERIFICA LOS COMPONENTES
     @Override
     public boolean verify(JComponent c) {
 

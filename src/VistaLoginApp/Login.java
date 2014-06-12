@@ -9,12 +9,17 @@ import ControladorLogin.ControladorLogin;
 import Modelo.Usuario;
 import Vistas.BarraMenu;
 import Vistas.VistaPrincipal;
+import static java.awt.Event.F1;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,6 +42,7 @@ public class Login extends javax.swing.JFrame {
     private static final String COUNTRY = "country";
     private static final String NOMBRE = "nombre";
     private static final String PASS = "pass";
+    private BarraMenu b;
     // Preferencias para la clase
     static final Preferences preferencias
             = Preferences.userRoot().node(Login.class.getName());
@@ -56,18 +62,26 @@ public class Login extends javax.swing.JFrame {
         comprobarcamposVacios();
         iniciarSesion();
     }
-
+/**
+ * Metodo que comprueba campos vacios
+ */
     public final void comprobarcamposVacios() {
         this.btConectar.setEnabled(false);
         this.jtNombre.setInputVerifier(validacion);
         this.jtPass.setInputVerifier(validacion);
     }
-
+/**
+ * Metodoq ue crea la barra de menu
+ * @param g 
+ */
     public void crearBarraMenu(Login g) {
-        BarraMenu b = new BarraMenu(g);
+        b = new BarraMenu(g);
         this.setJMenuBar(b.getMenuBar());
+        cargarAyuda();
     }
-
+/**
+ * Metodo que carga la foto
+ */
     public void cargarFoto() {
         ImageIcon imgIcon = new ImageIcon("IMAGENES/chribook.png");
 
@@ -76,6 +90,26 @@ public class Login extends javax.swing.JFrame {
         Icon iconoEscalado = new ImageIcon(imgEscalada);
         jLabelFoto.setIcon(iconoEscalado);
 
+    }
+
+    /**
+     * Metodo que cargara los ficheros de ayuda y establecera los botones para
+     * acceder a ella.
+     */
+    private void cargarAyuda() {
+        try {
+            // Carga el fichero de ayuda 
+            File fichero = new File("javaHelp/help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+          //   Crea el HelpSet y el HelpBroker       
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            // Pone ayuda a item de menu al pulsar F1. mntmIndice es el JMenuitem 
+            hb.enableHelpOnButton(b.getBotonAyuda(), "Chiribook", helpset);
+            hb.enableHelpKey(this.getContentPane(), "Chiribook", helpset);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -104,77 +138,28 @@ public class Login extends javax.swing.JFrame {
     public void cerrarVista() {
         this.dispose();
     }
+/**
+ * Metodo que carga el lengua
+ */
+    public final void cargarLenguaje() {
+        Locale currentLocale = lenguajeActual(new String[]{""});
+        bundle = ResourceBundle.getBundle("Resources/Bundle", currentLocale);
 
-    public JButton getBtAltaUsuario() {
-        return btAltaUsuario;
-    }
-
-    public void setBtAltaUsuario(JButton btAltaUsuario) {
-        this.btAltaUsuario = btAltaUsuario;
-    }
-
-    public JButton getBtConectar() {
-        return btConectar;
-    }
-
-    public void setBtConectar(JButton btConectar) {
-        this.btConectar = btConectar;
-    }
-
-    public JLabel getErrorNombre() {
-        return errorNombre;
-    }
-
-    public void setErrorNombre(JLabel errorNombre) {
-        this.errorNombre = errorNombre;
-    }
-
-    public JLabel getErrorPass() {
-        return errorPass;
-    }
-
-    public void setErrorPass(JLabel errorPass) {
-        this.errorPass = errorPass;
-    }
-
-    public JLabel getJlabelNombre() {
-        return jlabelNombre;
-    }
-
-    public void setJlabelNombre(JLabel jlabelNombre) {
-        this.jlabelNombre = jlabelNombre;
-    }
-
-    public JLabel getJlabelPass() {
-        return jlabelPass;
-    }
-
-    public void setJlabelPass(JLabel jlabelPass) {
-        this.jlabelPass = jlabelPass;
     }
 
     public JTextField getJtNombre() {
         return jtNombre;
     }
 
-    public void setJtNombre(JTextField jtNombre) {
-        this.jtNombre = jtNombre;
-    }
-
     public JPasswordField getJtPass() {
         return jtPass;
     }
-
-    public void setJtPass(JPasswordField jtPass) {
-        this.jtPass = jtPass;
-    }
-
-    public void cargarLenguaje() {
-        Locale currentLocale = lenguajeActual(new String[]{""});
-        bundle = ResourceBundle.getBundle("Resources/Bundle", currentLocale);
-
-    }
-
+    
+/**
+ * metodo que comprueba el lenguaje actual
+ * @param args
+ * @return 
+ */
     public Locale lenguajeActual(String[] args) {
         String language;
         String country;
@@ -196,7 +181,9 @@ public class Login extends javax.swing.JFrame {
 
         return new Locale(language, country);
     }
-
+/**
+ * Almacenar datos en las preferencias
+ */
     public void almacenarDatosUsuario() {
 
         preferencias.put(NOMBRE, jtNombre.getText());
@@ -204,6 +191,16 @@ public class Login extends javax.swing.JFrame {
 
     }
 
+    public Login(JTextField jtNombre, JPasswordField jtPass) {
+        this.jtNombre = jtNombre;
+        this.jtPass = jtPass;
+    }
+
+
+    
+/**
+ * Obtener datos de las preffrencias
+ */
     public void obtenerDatosUsuario() {
         String nombre = preferencias.get(NOMBRE, "");
         this.jtNombre.setText(nombre);
@@ -353,4 +350,19 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jtNombre;
     private javax.swing.JPasswordField jtPass;
     // End of variables declaration//GEN-END:variables
+
+
+    public JButton getBtConectar() {
+        return btConectar;
+    }
+
+    public JLabel getJlabelNombre() {
+        return jlabelNombre;
+    }
+
+    public JLabel getJlabelPass() {
+        return jlabelPass;
+    }
+
+
 }

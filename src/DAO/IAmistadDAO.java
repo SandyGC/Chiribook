@@ -15,5 +15,6 @@ import java.util.List;
  * @author SANGYG
  */
 public interface IAmistadDAO extends IDAO<Amistad>{
+    //Metodo que devuelve una lista de amistad de un usuario
     public List<Amistad> devolverAmigos(Usuario u);
 }

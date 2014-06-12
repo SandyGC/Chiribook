@@ -29,13 +29,24 @@ public class ControladorAmigos {
     MisAmigos vistaAmigos;
     IAmistadDAO daoAmistad;
     Usuario a;
-
+/**
+ * Constructor de la clase controlador
+ * Recibe una vista para poder acceder a ella y una clase del modelo
+ * par apoder consultar datos
+ * @param vistaAmigos
+ * @param a 
+ */
     public ControladorAmigos(MisAmigos vistaAmigos, Usuario a) {
         this.vistaAmigos = vistaAmigos;
         daoAmistad = DBConfig.getInstance().getFactoria().getAmistadDAO();
         recuperarListaAmigos(a);
     }
-
+/**
+ * Recupera la lista de mis amigos
+ * Consulto con el dao para qu eme devuelva todas las amistades
+ * y compruebo si esta esta aprobada es mi amigo y muestro el panel correspondiente
+ * @param us 
+ */
     public final void recuperarListaAmigos(Usuario us) {
         List<Amistad> amigos = daoAmistad.devolverAmigos(us);
         for (Amistad amistad : amigos) {
@@ -46,7 +57,6 @@ public class ControladorAmigos {
                     panel.getjLFoto().setText("No image");
                 } else {
                     panel.cargarFoto(foto);
-
                 }
                 panel.getjLNombre().setText(amistad.getAmigo().getNombreCompleto());
                 panel.setVisible(true);
@@ -54,7 +64,11 @@ public class ControladorAmigos {
             }
         }
     }
-
+/**
+ * Metodo que transforma la imagen de bytes a ImageIcon
+ * @param foto
+ * @return 
+ */
     public ImageIcon recibeImagen(byte[] foto) {
         if (foto==null) {
             return null;

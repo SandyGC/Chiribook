@@ -22,7 +22,7 @@ public class ListaSeleccion {
     ListSelectionModel listaSeleccion;
     VistaPrincipal v;
     ResourceBundle bundle;
-
+//cambia de cards segun selecciones
     public ListaSeleccion(final ResourceBundle bundle,VistaPrincipal vis) {
         this.bundle=bundle;
         v = vis;

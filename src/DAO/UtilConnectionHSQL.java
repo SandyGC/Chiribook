@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ *Clase de utilidad para acceder a HSQL
  * @author SandyG
  */
 public class UtilConnectionHSQL {

@@ -15,5 +15,6 @@ import java.util.List;
  * @author SANGYG
  */
 public interface IPublicacionDAO extends IDAO<Publicacion>{
+    //Metodo que devuelve una lista de piblicaciones d eun usuario pasandole el objeto usuario
     public List<Publicacion> publicacionfromUser(Usuario a);
 }

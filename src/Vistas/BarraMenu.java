@@ -10,6 +10,8 @@ import VistaLoginApp.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -29,9 +31,9 @@ import javax.swing.RootPaneContainer;
 public class BarraMenu {
 
     private JMenuBar menuBar;
-    private JMenu menuSalir, menuIdioma;
+    private JMenu menuSalir, menuIdioma, menuHelp;
 
-    private JMenuItem español, ingles;
+    private JMenuItem español, ingles, itemContenidos;
 
     private Login g;
 
@@ -46,10 +48,17 @@ public class BarraMenu {
 
     }
 
+//--------------Metodo que devuelve la instancia del boton ayuda de la barra de menu
+    public JMenuItem getBotonAyuda() {
+        return itemContenidos;
+    }
+
     public JMenuBar getMenuBar() {
         return menuBar;
     }
-
+/**
+ * JOption para que aprece al cambiar el menu
+ */
     public final void JOptionPane() {
         JOptionPane.showOptionDialog(null,
                 bundle.getString("necesita_reiniciar"),
@@ -60,8 +69,10 @@ public class BarraMenu {
                 new Object[]{bundle.getString("mensajes_OK")},
                 "Salir");
     }
-
-    public final void addComponentes() {        // CREO MI PRIMERA OPCION DE MENU
+/**
+ * añadr componentes
+ */
+    public final void addComponentes() {       
         menuSalir = new JMenu(bundle.getString("salir"));
         //establezco los nemonicos
         menuSalir.setMnemonic(KeyEvent.VK_D);
@@ -70,6 +81,15 @@ public class BarraMenu {
         menuIdioma = new JMenu(bundle.getString("idioma"));
         menuIdioma.setMnemonic(KeyEvent.VK_I);
         menuBar.add(menuIdioma);
+        //-----------en la barra de menu
+        menuHelp = new JMenu(bundle.getString("ayuda"));
+
+        itemContenidos = new JMenuItem(bundle.getString("contenido"));
+ 
+
+        menuHelp.add(itemContenidos);
+
+        menuBar.add(menuHelp);
 
         español = new JMenuItem(bundle.getString("espanol"));
         español.addActionListener(new ActionListener() {
