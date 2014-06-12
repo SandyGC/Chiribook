@@ -6,13 +6,15 @@
 package VistaLoginApp;
 
 import ControladorLogin.ControladorLogin;
-import DAO.UtilConnectionHSQL;
 import Modelo.Usuario;
 import Vistas.BarraMenu;
 import Vistas.VistaPrincipal;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,9 +33,22 @@ public class Login extends javax.swing.JFrame {
      */
     ValidacionComponentesLogin validacion;
     ControladorLogin controladorLogin;
+    private static final String LANG = "lang";
+    private static final String COUNTRY = "country";
+    private static final String NOMBRE = "nombre";
+    private static final String PASS = "pass";
+    // Preferencias para la clase
+    static final Preferences preferencias
+            = Preferences.userRoot().node(Login.class.getName());
+    ResourceBundle bundle;
 
     public Login() {
+        cargarLenguaje();
         initComponents();
+        jlabelNombre.setText(bundle.getString("nombre"));
+        jlabelPass.setText(bundle.getString("pass"));
+        btConectar.setText(bundle.getString("conectar"));
+        obtenerDatosUsuario();
         crearBarraMenu(this);
         validacion = new ValidacionComponentesLogin(this);
         controladorLogin = new ControladorLogin(this);
@@ -43,11 +58,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     public final void comprobarcamposVacios() {
+        this.btConectar.setEnabled(false);
         this.jtNombre.setInputVerifier(validacion);
         this.jtPass.setInputVerifier(validacion);
     }
-    public void crearBarraMenu(Login g){
-        BarraMenu b= new BarraMenu(g);
+
+    public void crearBarraMenu(Login g) {
+        BarraMenu b = new BarraMenu(g);
         this.setJMenuBar(b.getMenuBar());
     }
 
@@ -71,11 +88,12 @@ public class Login extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 Usuario a = controladorLogin.buscarUsuario();
                 if (a == null) {
-                    jLabelFoto.setText("No existe el usuario");
+                    jLErrorInici.setText(bundle.getString("existe_usuario"));
                 } else {
 
-                    jLabelFoto.setText("Usuario encontrado");
-                    VistaPrincipal v = new VistaPrincipal(a);
+                    jLErrorInici.setText(bundle.getString("saludo"));
+                    almacenarDatosUsuario();
+                    VistaPrincipal v = new VistaPrincipal(bundle, a);
                     cerrarVista();
                 }
 
@@ -151,6 +169,52 @@ public class Login extends javax.swing.JFrame {
         this.jtPass = jtPass;
     }
 
+    public void cargarLenguaje() {
+        Locale currentLocale = lenguajeActual(new String[]{""});
+        bundle = ResourceBundle.getBundle("Resources/Bundle", currentLocale);
+
+    }
+
+    public Locale lenguajeActual(String[] args) {
+        String language;
+        String country;
+
+        // Si no se pasa por argumento, intenta obtenerlo
+        // del fichero de propiedades
+        if (args.length != 2) {
+            language = preferencias.get(LANG, "en");
+            country = preferencias.get(COUNTRY, "EN");
+        } else {
+            language = new String(args[0]);
+            country = new String(args[1]);
+
+            // Si se ha pasado como argumento, 
+            // lo guarda en el fichero de propiedades
+            preferencias.put(LANG, language);
+            preferencias.put(COUNTRY, country);
+        }
+
+        return new Locale(language, country);
+    }
+
+    public void almacenarDatosUsuario() {
+
+        preferencias.put(NOMBRE, jtNombre.getText());
+        preferencias.put(PASS, new String(jtPass.getPassword()));
+
+    }
+
+    public void obtenerDatosUsuario() {
+        String nombre = preferencias.get(NOMBRE, "");
+        this.jtNombre.setText(nombre);
+        String pass = preferencias.get(PASS, "");
+        this.jtPass.setText(pass);
+    }
+
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -169,6 +233,7 @@ public class Login extends javax.swing.JFrame {
         btAltaUsuario = new javax.swing.JButton();
         errorNombre = new javax.swing.JLabel();
         errorPass = new javax.swing.JLabel();
+        jLErrorInici = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,28 +252,27 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlabelPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(btConectar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlabelPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btAltaUsuario)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtNombre)
-                                        .addComponent(jtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLErrorInici, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(errorNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(errorPass, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))))))
+                                    .addComponent(jtNombre)
+                                    .addComponent(jtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                                .addComponent(btConectar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btAltaUsuario)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(errorNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(errorPass, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -230,7 +294,9 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(errorPass, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
-                .addGap(79, 79, 79)
+                .addGap(28, 28, 28)
+                .addComponent(jLErrorInici, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConectar)
                     .addComponent(btAltaUsuario))
@@ -280,6 +346,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btConectar;
     private javax.swing.JLabel errorNombre;
     private javax.swing.JLabel errorPass;
+    private javax.swing.JLabel jLErrorInici;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jlabelNombre;
     private javax.swing.JLabel jlabelPass;

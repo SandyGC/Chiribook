@@ -10,6 +10,8 @@ import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -37,6 +39,22 @@ public class PanelUsuario extends javax.swing.JPanel {
             jLFoto.setIcon(imgIcon);
         }
 
+    }
+
+    public JButton getBtAñadirAmigo() {
+        return btAñadirAmigo;
+    }
+
+    public JButton getBtVisitarPerfil() {
+        return btVisitarPerfil;
+    }
+
+    public JLabel getjLFoto() {
+        return jLFoto;
+    }
+
+    public JLabel getjLNombre() {
+        return jLNombre;
     }
 
     /**
@@ -68,9 +86,10 @@ public class PanelUsuario extends javax.swing.JPanel {
                 .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btVisitarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAñadirAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btVisitarPerfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAñadirAmigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

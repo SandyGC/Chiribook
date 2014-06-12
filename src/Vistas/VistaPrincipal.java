@@ -33,11 +33,10 @@ public class VistaPrincipal {
     JPanel panelCards;
     JScrollPane scrollPane;
 
-    public VistaPrincipal(Usuario u) {
-
+    public VistaPrincipal(ResourceBundle bundle,Usuario u) {
         construirSplitPane();
-        construirPanelIzquierdo();
-        construirPanelDerecho(u);
+        construirPanelIzquierdo(bundle);
+        construirPanelDerecho(bundle,u);
         construirVentana();
     }
 
@@ -51,7 +50,7 @@ public class VistaPrincipal {
 //2. Optional: What happens when the frame closes?
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //le doy tamaño a la ventana y establezco donde aparecerá la ventana
-        frame.setBounds(150, 150, 900, 600);
+        frame.setBounds(150, 150, 900, 500);
 //5. Show it.
         frame.setResizable(false);
         frame.setVisible(true);
@@ -67,19 +66,19 @@ public class VistaPrincipal {
 
     }
 
-    public final void construirPanelIzquierdo() {
-        PanelIzquierdo pane = new PanelIzquierdo(this);
+    public final void construirPanelIzquierdo(ResourceBundle bundle) {
+        PanelIzquierdo pane = new PanelIzquierdo(bundle,this);
         splitPane.add(pane.getPanelIz());
     }
 
-    public final void construirPanelDerecho(Usuario u) {
+    public final void construirPanelDerecho(ResourceBundle bundle,Usuario u) {
         //panel que contiene los 4 paneles
 
         panelCards = new JPanel();
-        JPanel muro = new MiMuro(u);
-        JPanel miPerfil = new MiPerfil(u);
-        JPanel misAmigos = new MisAmigos(u);
-        JPanel buscarUsuarios= new BuscarUsuarios(u);
+        JPanel muro = new MiMuro(u,bundle);
+        JPanel miPerfil = new MiPerfil(u,bundle);
+        JPanel misAmigos = new MisAmigos(u,bundle);
+        JPanel buscarUsuarios= new BuscarUsuarios(u,bundle);
 
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
@@ -93,6 +92,9 @@ public class VistaPrincipal {
     public JPanel getPanelCards() {
         return panelCards;
     }
-//    Obtener idioma-------------------------
+    public void recuperarBundel(){
+    
+    
+    }
 
 }

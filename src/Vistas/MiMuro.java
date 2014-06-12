@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -31,9 +32,10 @@ public class MiMuro extends javax.swing.JPanel {
      */
     ControladorRadioButtonMuro c;
     ControladorMuro miMuro;
+    ResourceBundle bundle;
 
-    public MiMuro(Usuario u) {
-
+    public MiMuro(Usuario u,ResourceBundle bundle) {
+        
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
         c = new ControladorRadioButtonMuro(this);
@@ -45,17 +47,17 @@ public class MiMuro extends javax.swing.JPanel {
         miMuro = new ControladorMuro(this, u);
         jLnOMBRE.setText(u.getNombreCompleto());
         cargarImagen(u);
-        panelCard(u);
+        panelCard(u,bundle);
 
     }
 
-    public final void panelCard(Usuario u) {
+    public final void panelCard(Usuario u,ResourceBundle bundle) {
 
         panelPublicacion.setLayout(new CardLayout());
 
-        PublicacionTextoView p = new PublicacionTextoView(miMuro, u);
+        PublicacionTextoView p = new PublicacionTextoView(miMuro, u,bundle);
         panelPublicacion.add(p, "texto");
-        PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u);
+        PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u,bundle);
         panelPublicacion.add(p2, "foto");
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);

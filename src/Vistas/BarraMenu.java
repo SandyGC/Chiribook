@@ -28,24 +28,21 @@ import javax.swing.RootPaneContainer;
  */
 public class BarraMenu {
 
-    JMenuBar menuBar;
-    JMenu menuDesconectar, menuEdicion, menuChiribook,
-            menuIdioma, submenu;
-    JMenuItem menuItem;
+    private JMenuBar menuBar;
+    private JMenu menuSalir, menuIdioma;
+
+    private JMenuItem español, ingles;
+
+    private Login g;
+
     private ResourceBundle bundle;
-    // Preferencias para la clase
-    static final Preferences preferencias
-            = Preferences.userRoot().node(BarraMenu.class.getName());
-    private static final String LANG = "LANG2";
-    private static final String COUNTRY = "COUNTRY2";
-    Login g;
 
     public BarraMenu(Login g) {
         //CREO LA BARRA DE MENU
         this.g = g;
+        this.bundle = g.getBundle();
         menuBar = new JMenuBar();
         addComponentes();
- 
 
     }
 
@@ -53,49 +50,49 @@ public class BarraMenu {
         return menuBar;
     }
 
-    public final void addComponentes() {
+    public final void JOptionPane() {
+        JOptionPane.showOptionDialog(null,
+                bundle.getString("necesita_reiniciar"),
+                null,
+                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new Object[]{bundle.getString("mensajes_OK")},
+                "Salir");
+    }
 
-        // CREO MI PRIMERA OPCION DE MENU
-        menuDesconectar = new JMenu("Desconectar");
+    public final void addComponentes() {        // CREO MI PRIMERA OPCION DE MENU
+        menuSalir = new JMenu(bundle.getString("salir"));
         //establezco los nemonicos
-        menuDesconectar.setMnemonic(KeyEvent.VK_D);
-        menuBar.add(menuDesconectar);
+        menuSalir.setMnemonic(KeyEvent.VK_D);
+        menuBar.add(menuSalir);
 
-        menuEdicion = new JMenu("Edicion");
-        menuEdicion.setMnemonic(KeyEvent.VK_F1);
-        menuBar.add(menuEdicion);
-
-        menuChiribook = new JMenu("ChiriBook");
-        menuChiribook.setMnemonic(KeyEvent.VK_C);
-        menuBar.add(menuChiribook);
-
-        menuIdioma = new JMenu("Idioma");
-        menuChiribook.setMnemonic(KeyEvent.VK_I);
+        menuIdioma = new JMenu(bundle.getString("idioma"));
+        menuIdioma.setMnemonic(KeyEvent.VK_I);
         menuBar.add(menuIdioma);
 
-    }
+        español = new JMenuItem(bundle.getString("espanol"));
+        español.addActionListener(new ActionListener() {
 
-    private void initLocale() {
-        // Obtengo las preferencias del usuario
-        Preferences userPreferences = Preferences.userRoot();
-        // Obtengo un valor de preferencias 
-        String lang = userPreferences.get(LANG, "es");
-        String country = userPreferences.get(COUNTRY, "ES");
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                g.lenguajeActual(new String[]{"es", "ES"});
+                JOptionPane();
+            }
+        });
 
-        bundle = ResourceBundle.getBundle(
-                "Resources/Bundle_" + lang + "_" + country);
+        ingles = new JMenuItem(bundle.getString("ingles"));
+        ingles.addActionListener(new ActionListener() {
 
-        Locale.setDefault(new Locale(lang, country));
-    }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                g.lenguajeActual(new String[]{"en", "EN"});
+                JOptionPane();
+            }
+        });
+        menuIdioma.add(español);
+        menuIdioma.add(ingles);
 
-    private void changeLanguage(String language, String country) {
-        Preferences userPreferences = Preferences.userRoot();
-
-        // Guardo un valor en preferencias 
-        userPreferences.put(LANG, language);
-        userPreferences.put(COUNTRY, country);
-
-        JOptionPane.showConfirmDialog(g, bundle.getString("NECESITA_REINICIAR"));
     }
 
 }

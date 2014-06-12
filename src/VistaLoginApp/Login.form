@@ -23,34 +23,32 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jlabelNombre" max="32767" attributes="0"/>
+                  <Component id="jlabelPass" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelFoto" min="-2" pref="216" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="btConectar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jlabelNombre" max="32767" attributes="0"/>
-                          <Component id="jlabelPass" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jLErrorInici" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtNombre" max="32767" attributes="0"/>
+                                  <Component id="jtPass" pref="194" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="btConectar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelFoto" min="-2" pref="216" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btAltaUsuario" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jtNombre" max="32767" attributes="0"/>
-                                      <Component id="jtPass" pref="194" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="errorNombre" max="32767" attributes="0"/>
-                                  <Component id="errorPass" pref="156" max="32767" attributes="0"/>
-                              </Group>
+                          <Component id="btAltaUsuario" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="errorNombre" max="32767" attributes="0"/>
+                              <Component id="errorPass" pref="156" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -83,7 +81,9 @@
                       <Component id="errorPass" pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="jLErrorInici" min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btConectar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btAltaUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -126,6 +126,8 @@
     <Component class="javax.swing.JLabel" name="errorNombre">
     </Component>
     <Component class="javax.swing.JLabel" name="errorPass">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLErrorInici">
     </Component>
   </SubComponents>
 </Form>

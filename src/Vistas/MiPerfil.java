@@ -9,6 +9,7 @@ import ControladorApp.ControladorPerfil;
 import Modelo.Usuario;
 import java.awt.Image;
 import java.util.InputMismatchException;
+import java.util.ResourceBundle;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public class MiPerfil extends javax.swing.JPanel {
 
     ControladorPerfil controladorPerfil;
     ValidacionComponentes validador;
+    ResourceBundle bundle;
 
     /**
      * Creates new form MiPerfild
@@ -30,8 +32,10 @@ public class MiPerfil extends javax.swing.JPanel {
      * Creates new form MiPerfild
      *
      * @param u
+     * @param bundle
      */
-    public MiPerfil(Usuario u) {
+    public MiPerfil(Usuario u,ResourceBundle bundle) {
+        this.bundle=bundle;
         controladorPerfil = new ControladorPerfil(this, u);
         validador = new ValidacionComponentes(this);
 

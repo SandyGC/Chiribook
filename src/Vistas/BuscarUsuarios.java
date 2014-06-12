@@ -7,6 +7,7 @@ package Vistas;
 
 import ControladorApp.ControladorBuscarUsuario;
 import Modelo.Usuario;
+import java.util.ResourceBundle;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,13 +26,16 @@ public class BuscarUsuarios extends javax.swing.JPanel {
      * @param u
      */
     ControladorBuscarUsuario controladorBuscar;
+    ResourceBundle bundle;
 
-    public BuscarUsuarios(Usuario u) {
-        
+    public BuscarUsuarios(Usuario u, ResourceBundle bundle) {
+        this.bundle = bundle;
         initComponents();
+          jLNombreUsuario.setText(bundle.getString("introduce_nombre"));
         jPanelUsuarios.setLayout(new BoxLayout(jPanelUsuarios, BoxLayout.Y_AXIS));
-        controladorBuscar = new ControladorBuscarUsuario(this);
-        controladorBuscar.rellenarUsuarios();
+        jPanelUsuario.setLayout(new BoxLayout(jPanelUsuario, BoxLayout.Y_AXIS));
+        controladorBuscar = new ControladorBuscarUsuario(this, u);
+
     }
 
     public JButton getBtBuscar() {
@@ -57,7 +61,6 @@ public class BuscarUsuarios extends javax.swing.JPanel {
     public JPanel getjPanelUsuarios() {
         return jPanelUsuarios;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,9 +171,11 @@ public class BuscarUsuarios extends javax.swing.JPanel {
         // TODO add your handling code here:
         Usuario a = controladorBuscar.buscarUsuario();
         if (a == null) {
-            jLNombreUsuario.setText("El usuario no existe");
+            jLNombreUsuario.setText(bundle.getString("existe_usuario"));
         } else {
-            jLNombreUsuario.setText("Usuario encontrado");
+            jLNombreUsuario.setText(bundle.getString("usuarioen"));
+            controladorBuscar.rellenarUsuario(a);
+
         }
     }//GEN-LAST:event_btBuscarActionPerformed
 

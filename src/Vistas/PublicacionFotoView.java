@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -30,11 +31,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author SANGYG
  */
 public class PublicacionFotoView extends javax.swing.JPanel {
-    
+
     Publicacion p;
     Usuario u;
     ControladorMuro controladorM;
     ImageIcon icon;
+    ResourceBundle bundle;
 
     /**
      * Creates new form PublicacionFotoView
@@ -42,41 +44,45 @@ public class PublicacionFotoView extends javax.swing.JPanel {
      * @param c
      * @param u
      */
-    public PublicacionFotoView(ControladorMuro c, Usuario u) {
+    public PublicacionFotoView(ControladorMuro c, Usuario u, ResourceBundle bundle) {
+        this.bundle = bundle;
         this.controladorM = c;
         this.u = u;
         initComponents();
+        btComentar.setText(bundle.getString("comentar"));
+        btExaminar.setText(bundle.getString("examinar"));
+        radioTexto.setText(bundle.getString("texto"));
         this.btComentar.setEnabled(false);
     }
-    
+
     public JButton getBtComentar() {
         return btComentar;
     }
-    
+
     public void setBtComentar(JButton btComentar) {
         this.btComentar = btComentar;
     }
-    
+
     public JButton getBtExaminar() {
         return btExaminar;
     }
-    
+
     public void setBtExaminar(JButton btExaminar) {
         this.btExaminar = btExaminar;
     }
-    
+
     public JLabel getFotoPublicacion() {
         return fotoPublicacion;
     }
-    
+
     public void setFotoPublicacion(JLabel fotoPublicacion) {
         this.fotoPublicacion = fotoPublicacion;
     }
-    
+
     public JRadioButton getRadioTexto() {
         return radioTexto;
     }
-    
+
     public void setRadioTexto(JRadioButton radioTexto) {
         this.radioTexto = radioTexto;
     }
@@ -165,7 +171,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
             File f = jfc.getSelectedFile();
             try {
                 if (f == null) {
-                    jLError.setText("Debes seleccionar una foto");
+                    jLError.setText(bundle.getString("debes_selecciona"));
                     btComentar.setEnabled(false);
                 } else {
                     icon = new ImageIcon(f.toURL());

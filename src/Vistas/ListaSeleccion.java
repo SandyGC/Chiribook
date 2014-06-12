@@ -6,6 +6,7 @@
 package Vistas;
 
 import java.awt.CardLayout;
+import java.util.ResourceBundle;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -20,10 +21,12 @@ public class ListaSeleccion {
     JList lista;
     ListSelectionModel listaSeleccion;
     VistaPrincipal v;
+    ResourceBundle bundle;
 
-    public ListaSeleccion(VistaPrincipal vis) {
+    public ListaSeleccion(final ResourceBundle bundle,VistaPrincipal vis) {
+        this.bundle=bundle;
         v = vis;
-        String datosLista[] = {"MI MURO", "MI PERFIL", "MIS AMIGOS", "MIS GUSTOS", "BUSCAR USUARIOS"};
+        String datosLista[] = {bundle.getString("muro"), bundle.getString("perfil"), bundle.getString("amigos"), bundle.getString("gustos"), bundle.getString("buscar_u")};
         lista = new JList(datosLista);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -33,15 +36,15 @@ public class ListaSeleccion {
             public void valueChanged(ListSelectionEvent e) {
 
                 if (e.getValueIsAdjusting()) {
-                    if (lista.getSelectedValue().equals("MI MURO")) {
+                    if (lista.getSelectedValue().equals(bundle.getString("muro"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "muro");
-                    } else if (lista.getSelectedValue().equals("MI PERFIL")) {
+                    } else if (lista.getSelectedValue().equals(bundle.getString("perfil"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "perfil");
-                    } else if (lista.getSelectedValue().equals("MIS AMIGOS")) {
+                    } else if (lista.getSelectedValue().equals(bundle.getString("amigos"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "amigos");
-                    } else if (lista.getSelectedValue().equals("MIS GUSTOS")) {
+                    } else if (lista.getSelectedValue().equals(bundle.getString("gustos"))) {
 
-                    } else if (lista.getSelectedValue().equals("BUSCAR USUARIOS")) {
+                    } else if (lista.getSelectedValue().equals(bundle.getString("buscar_u"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "buscarUsuarios");
                     }
 

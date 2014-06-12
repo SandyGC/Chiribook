@@ -36,7 +36,7 @@ public class ControladorAmigos {
         recuperarListaAmigos(a);
     }
 
-    public void recuperarListaAmigos(Usuario us) {
+    public final void recuperarListaAmigos(Usuario us) {
         List<Amistad> amigos = daoAmistad.devolverAmigos(us);
         for (Amistad amistad : amigos) {
             if (amistad.isAprobada()) {

@@ -8,6 +8,7 @@ package Vistas;
 
 import Modelo.Usuario;
 import java.awt.BorderLayout;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,18 +25,18 @@ public class PanelIzquierdo {
         return panelIz;
     }
 
-    public PanelIzquierdo(VistaPrincipal v) {
+    public PanelIzquierdo(ResourceBundle bundle,VistaPrincipal v) {
         vista=v;
         this.panelIz = new JPanel();
         panelIz.setLayout(new BorderLayout());
         ImageIcon icono = new ImageIcon("IMAGENES/chribook.png");
         JLabel label = new JLabel(icono);
         panelIz.add(label, BorderLayout.PAGE_START);
-        construirJList();
+        construirJList(bundle);
     }
     
-    public final void construirJList(){
-    ListaSeleccion lista= new ListaSeleccion(vista);
+    public final void construirJList(ResourceBundle bundle){
+    ListaSeleccion lista= new ListaSeleccion(bundle,vista);
     panelIz.add(lista.getLista(),BorderLayout.CENTER);
     }
     

@@ -54,7 +54,7 @@ public class VistaInicio extends javax.swing.JFrame {
                 bd = (String) comboBD.getSelectedItem();
                 pass = new String(textPassword.getPassword());
                 host = textHost.getText();
-                controlador.iniciarSesion(bd, host, nameUsBD, pass);
+                controlador.iniciarSesion(bd.toLowerCase(), host.toLowerCase(), nameUsBD.toLowerCase(), pass.toLowerCase());
             }
         });
     }
@@ -67,6 +67,7 @@ public class VistaInicio extends javax.swing.JFrame {
      * esten vacios.
      */
     public final void comprobarcamposVacios() {
+            getBtConectar().setEnabled(false);
         this.textPassword.setInputVerifier(validacion);
         this.textHost.setInputVerifier(validacion);
 
@@ -181,7 +182,7 @@ public class VistaInicio extends javax.swing.JFrame {
 
         logoChiribook.setText("jLabel1");
 
-        comboNombre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SA", "SANDY" }));
+        comboNombre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SA" }));
         comboNombre.setToolTipText("");
         comboNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +192,7 @@ public class VistaInicio extends javax.swing.JFrame {
 
         btConectar.setText("CONECTAR");
 
-        comboBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "hsql", "MySql", "SQL" }));
+        comboBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "hsql" }));
 
         jLabel1.setText("UsuarioBD");
 

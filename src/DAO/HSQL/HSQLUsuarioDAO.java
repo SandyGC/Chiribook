@@ -65,6 +65,7 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
 
             while (r.next()) {
                 Usuario us = new Usuario();
+
                 us.setId(r.getInt("id"));
                 us.setEdad(r.getInt("edad"));
                 us.setEmail(r.getString("email"));
@@ -72,6 +73,7 @@ public class HSQLUsuarioDAO implements IUsuarioDAO {
                 us.setNombreCompleto(r.getString("nombre"));
                 us.setContraseña(r.getString("password"));
                 usuarios.add(us);
+
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(HSQLUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);

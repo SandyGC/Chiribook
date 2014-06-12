@@ -13,6 +13,7 @@ import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -31,12 +32,17 @@ public class PublicacionTextoView extends javax.swing.JPanel {
     Usuario u;
     ControladorMuro controladorM;
     String mensaje;
+    ResourceBundle bundle;
 
-    public PublicacionTextoView(ControladorMuro c, Usuario u) {
+    public PublicacionTextoView(ControladorMuro c, Usuario u, ResourceBundle bundle) {
+        this.bundle = bundle;
         this.controladorM = c;
         this.u = u;
         initComponents();
+        btComentar.setText(bundle.getString("comentar"));
+        radioFoto.setText(bundle.getString("foto"));
         obtenerTexto();
+        btComentarComentario.setVisible(false);
     }
 
     public final void obtenerTexto() {
@@ -47,7 +53,7 @@ public class PublicacionTextoView extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 mensaje = texto.getText();
                 if (mensaje.isEmpty()) {
-                    jLError.setText("El comentario no puede estar vacio");
+                    jLError.setText(bundle.getString("error"));
                 } else {
                     controladorM.crearPublicacionTexto(mensaje, u);
                     texto.setText("");

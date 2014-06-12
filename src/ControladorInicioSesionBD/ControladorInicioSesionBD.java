@@ -28,7 +28,7 @@ public class ControladorInicioSesionBD {
     
     public void iniciarSesion(String driver,String host,String nameDB,String pass){
         
-        UtilConnectionHSQL connection= new UtilConnectionHSQL(driver,host,nameDB,pass);
+        UtilConnectionHSQL connection= new UtilConnectionHSQL(driver,"db",nameDB,pass);
         if (connection.crearConexion()==null) {
             vista.getErrorBD().setText("No se puede conectar a la BD");
         }else{

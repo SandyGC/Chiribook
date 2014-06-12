@@ -24,16 +24,19 @@ public class ValidacionComponentes extends InputVerifier {
 
     @Override
     public boolean verify(JComponent c) {
-       
+
         JTextField field = (JTextField) c;
 
-        boolean verify = !field.getText().isEmpty();
+        boolean verify = field.getText().isEmpty();
 
-        if (!verify) {
+        if (verify) {
             vista.getErrorHost().setText("El campo no puede ser vacio");
+            vista.getBtConectar().setEnabled(false);
+        }
+        if (verify) {
             vista.getErrorPassword().setText("El campo no puede ser vacio");
             vista.getBtConectar().setEnabled(false);
-        } else {
+        } else if (!verify) {
             vista.getErrorHost().setText("");
             vista.getErrorPassword().setText("");
             vista.getBtConectar().setEnabled(true);

@@ -21,9 +21,11 @@
               <Component id="jLFoto" min="-2" pref="119" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btVisitarPerfil" min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="btAñadirAmigo" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                   <Component id="jLNombre" min="-2" pref="188" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btVisitarPerfil" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btAñadirAmigo" alignment="0" pref="132" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="111" max="32767" attributes="0"/>
           </Group>

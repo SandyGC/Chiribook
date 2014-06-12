@@ -9,6 +9,7 @@ package Vistas;
 import ControladorApp.ControladorAmigos;
 import Modelo.Usuario;
 import java.awt.BorderLayout;
+import java.util.ResourceBundle;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -18,11 +19,15 @@ import javax.swing.JPanel;
  */
 public class MisAmigos extends javax.swing.JPanel {
 ControladorAmigos controladorAmigos;
+ResourceBundle bundle;
+
     /**
      * Creates new form MisAmigos
      * @param u
+     * @param bundle
      */
-    public MisAmigos(Usuario u) {
+    public MisAmigos(Usuario u,ResourceBundle bundle) {
+       this.bundle=bundle;
         initComponents();
         jPanelAmigos.setLayout(new BoxLayout(jPanelAmigos, BoxLayout.Y_AXIS));
         controladorAmigos= new ControladorAmigos(this, u);

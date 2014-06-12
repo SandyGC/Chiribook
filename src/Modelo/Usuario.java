@@ -208,15 +208,7 @@ public class Usuario {
      muroUsuario.addPublicacion(c);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Usuario u = (Usuario) obj;
-        if (this.id == u.getId()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     @Override
     public String toString() {
