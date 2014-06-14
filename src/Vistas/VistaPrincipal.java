@@ -56,7 +56,7 @@ public class VistaPrincipal {
 //le doy tamaño a la ventana y establezco donde aparecerá la ventana
         frame.setBounds(150, 150, 900, 500);
 //5. Show it.
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
      
         frame.add(splitPane);
@@ -95,10 +95,6 @@ public class VistaPrincipal {
 
     public JPanel getPanelCards() {
         return panelCards;
-    }
-    public void recuperarBundel(){
-    
-    
     }
 
 }
