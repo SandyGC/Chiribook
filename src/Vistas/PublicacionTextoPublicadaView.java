@@ -200,17 +200,21 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         // TODO add your handling code here:
         panelHacerComentario.setVisible(true);
         panelHacerComentario.setLayout(new CardLayout());
-        PublicacionTextoView p = new PublicacionTextoView(controladorMuro, usuario, bundle);
-        p.desactivarActivarComentar();
-        panelHacerComentario.add(p, bundle.getString("texto"));
-        this.comentarComent = p.getBtComentarComentario();
+        PublicacionTextoView publicacionTexto = new PublicacionTextoView(controladorMuro, usuario, bundle);
+        publicacionTexto.desactivarActivarComentar();
+        panelHacerComentario.add(publicacionTexto, bundle.getString("texto"));
+        
+        this.comentarComent = publicacionTexto.getBtComentarComentario();
+        
         PublicacionFotoView p2 = new PublicacionFotoView(controladorMuro, usuario, bundle);
         panelHacerComentario.add(p2, bundle.getString("foto"));
         //eventos usuario los que responde el radiobutton
         ControladorRadioButtonMuro cbutton = new ControladorRadioButtonMuro(null, bundle, panelHacerComentario);
-        p.getRadioFoto().addActionListener(cbutton);
+        publicacionTexto.getRadioFoto().addActionListener(cbutton);
         p2.getRadioTexto().addActionListener(cbutton);
-        cbtComentar= new ControladorBtComentarComentario(p.getTexto().getText(), panelComentarios,usuario);
+        
+        cbtComentar= new ControladorBtComentarComentario(publicacionTexto, panelComentarios,usuario);
+        
         comentarComent.addActionListener(cbtComentar);
 
     }//GEN-LAST:event_btComentarActionPerformed

@@ -5,14 +5,15 @@
  */
 package ControladorApp;
 
-import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
 import Vistas.ComentarioTexto;
+import Vistas.PublicacionTextoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -20,24 +21,29 @@ import javax.swing.JPanel;
  */
 public class ControladorBtComentarComentario implements ActionListener {
 
-    private JPanel panel;
-    private String texto;
+    private JPanel panelAdd;
+   private PublicacionTextoView panelComent;
+    private JTextArea text;
+//    private String texto;
     private Usuario usuario;
     private Texto publiTexto;
+    
 
-    public ControladorBtComentarComentario(String tex, JPanel panel,Usuario u) {
-        this.texto=texto;
-        this.panel=panel;
+    public ControladorBtComentarComentario(PublicacionTextoView panelComent, JPanel panelAdd,Usuario u) {
+        this.panelAdd=panelAdd;
+       this.panelComent=panelComent;
         this.usuario=u;
-        publiTexto= new Texto(tex,u);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+       publiTexto= new Texto(panelComent.getTexto().getText(),usuario);
+        
         ComentarioTexto comentText= new ComentarioTexto(publiTexto);
-        panel.setVisible(true);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(comentText);
+        panelAdd.setVisible(true);
+        panelAdd.setLayout(new BoxLayout(panelAdd, BoxLayout.Y_AXIS));
+        panelAdd.add(comentText);
     }
 
 }
