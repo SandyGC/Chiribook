@@ -25,6 +25,7 @@
                   <Component id="btComentar" min="-2" max="-2" attributes="0"/>
                   <Component id="radioTexto" min="-2" pref="77" max="-2" attributes="0"/>
                   <Component id="jLError" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                  <Component id="comentarComentario" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
@@ -38,12 +39,14 @@
                   <Component id="fotoPublicacion" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btExaminar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comentarComentario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btComentar" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="radioTexto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLError" pref="32" max="32767" attributes="0"/>
+                      <Component id="jLError" pref="15" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -85,6 +88,11 @@
     <Component class="javax.swing.JLabel" name="fotoPublicacion">
     </Component>
     <Component class="javax.swing.JLabel" name="jLError">
+    </Component>
+    <Component class="javax.swing.JButton" name="comentarComentario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="comentar-"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

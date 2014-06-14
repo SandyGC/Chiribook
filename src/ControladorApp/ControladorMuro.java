@@ -21,6 +21,7 @@ import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -38,15 +39,17 @@ public final class ControladorMuro {
     private ITextoDAO textoDAO, comentarioDAO;
     private IFotoDAO fotoDAO;
     private IPublicacionDAO daoPublicacion;
+    private ResourceBundle bundle;
 //le paso la vista usuario la que va usuario modificar
 
-    public ControladorMuro(MiMuro vistaMuro, Usuario a) {
+    public ControladorMuro(MiMuro vistaMuro, Usuario a,ResourceBundle bundle) {
         textoDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
         comentarioDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
         fotoDAO = DBConfig.getInstance().getFactoria().getFotoDAO();
         daoPublicacion = DBConfig.getInstance().getFactoria().getPublicacionDAO();
         this.usuario = a;
         this.vistaMuro = vistaMuro;
+        this.bundle=bundle;
         rellenarMuro(a);
 
     }
@@ -86,7 +89,6 @@ public final class ControladorMuro {
         comentario = new Texto(mensaje, u);
         texto.comentarPublicacion(comentario, u);
         comentarioDAO.crearComentario(u, comentario);
-
     }
 /**
  * Metodo que transforma la imagen de ImagenIcon a bytes
@@ -112,7 +114,7 @@ public final class ControladorMuro {
   * @param u 
   */
     public void mostrarPublicacionTexto(Texto t, Usuario u) {
-        PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(t, u);
+        PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(t, u,this,bundle);
         v.esconderPaneles();
         //llamo al metodo de la vista que rellenara esta vista
         v.rellenarpublicacionPublicada(t);

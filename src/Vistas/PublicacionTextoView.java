@@ -86,7 +86,12 @@ public class PublicacionTextoView extends javax.swing.JPanel {
     public void setTexto(JTextPane texto) {
         this.texto = texto;
     }
-
+    public void desactivarActivarComentar(){
+    this.btComentar.setEnabled(false);
+    this.btComentar.setVisible(false);
+    this.btComentarComentario.setEnabled(true);
+    this.btComentarComentario.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,6 +163,10 @@ public class PublicacionTextoView extends javax.swing.JPanel {
     private void radioFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioFotoActionPerformed
+
+    public JButton getBtComentarComentario() {
+        return btComentarComentario;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

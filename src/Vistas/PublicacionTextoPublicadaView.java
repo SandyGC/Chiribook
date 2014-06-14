@@ -5,12 +5,20 @@
  */
 package Vistas;
 
+import ControladorApp.ControladorBtComentarComentario;
+import ControladorApp.ControladorMuro;
+import ControladorApp.ControladorRadioButtonMuro;
 import Modelo.Texto;
 import Modelo.Usuario;
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -19,7 +27,11 @@ import javax.swing.ImageIcon;
 public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
 
     Texto t;
-    Usuario a;
+    private Usuario usuario;
+    private ControladorMuro controladorMuro;
+    private ResourceBundle bundle;
+    private JButton comentarComent;
+    private ControladorBtComentarComentario cbtComentar;
 
     /**
      * Creates new form PublicacionPublicadaView
@@ -27,10 +39,13 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
      * @param t
      * @param a
      */
-    public PublicacionTextoPublicadaView(Texto t, Usuario a) {
+    public PublicacionTextoPublicadaView(Texto t, Usuario a, ControladorMuro c, ResourceBundle bundle) {
+        this.bundle = bundle;
+        this.controladorMuro = c;
         this.t = t;
-        this.a = a;
+        this.usuario = a;
         initComponents();
+   
     }
 
     /**
@@ -42,9 +57,10 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     public final void rellenarpublicacionPublicada(Texto t) {
         textoPublicado.setEditable(false);
         textoPublicado.setText(t.getComentario());
-        ImageIcon foto = new ImageIcon(a.getFotoPerfil());
+        ImageIcon foto = new ImageIcon(usuario.getFotoPerfil());
         fotoPublicacionPublicada.setIcon(foto);
         jlFecha.setText(t.getFecha().toString());
+        jlNombre.setText(usuario.getNombreCompleto());
     }
 
     /**
@@ -55,6 +71,8 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         panelHacerComentario.setVisible(false);
         panelHacerComentario.setVisible(false);
     }
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,6 +90,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         btComentar = new javax.swing.JButton();
         meGusta = new javax.swing.JToggleButton();
         jlFecha = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
         panelHacerComentario = new javax.swing.JPanel();
         panelComentarios = new javax.swing.JPanel();
 
@@ -92,36 +111,42 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
 
         jlFecha.setText("jLabel1");
 
+        jlNombre.setText("jLabel1");
+
         javax.swing.GroupLayout panelPublicacionPublicadaLayout = new javax.swing.GroupLayout(panelPublicacionPublicada);
         panelPublicacionPublicada.setLayout(panelPublicacionPublicadaLayout);
         panelPublicacionPublicadaLayout.setHorizontalGroup(
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fotoPublicacionPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(fotoPublicacionPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(jlFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(42, 42, 42)
+                    .addComponent(jlFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(jlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(meGusta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(meGusta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelPublicacionPublicadaLayout.setVerticalGroup(
             panelPublicacionPublicadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fotoPublicacionPublicada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPublicacionPublicadaLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(jlNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlFecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPublicacionPublicadaLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btComentar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(meGusta)
-                .addGap(27, 27, 27))
-            .addComponent(fotoPublicacionPublicada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPublicacionPublicadaLayout.createSequentialGroup()
-                .addComponent(jlFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelHacerComentarioLayout = new javax.swing.GroupLayout(panelHacerComentario);
@@ -163,7 +188,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(panelPublicacionPublicada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelHacerComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,6 +199,20 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
         // TODO add your handling code here:
         panelHacerComentario.setVisible(true);
+        panelHacerComentario.setLayout(new CardLayout());
+        PublicacionTextoView p = new PublicacionTextoView(controladorMuro, usuario, bundle);
+        p.desactivarActivarComentar();
+        panelHacerComentario.add(p, bundle.getString("texto"));
+        this.comentarComent = p.getBtComentarComentario();
+        PublicacionFotoView p2 = new PublicacionFotoView(controladorMuro, usuario, bundle);
+        panelHacerComentario.add(p2, bundle.getString("foto"));
+        //eventos usuario los que responde el radiobutton
+        ControladorRadioButtonMuro cbutton = new ControladorRadioButtonMuro(null, bundle, panelHacerComentario);
+        p.getRadioFoto().addActionListener(cbutton);
+        p2.getRadioTexto().addActionListener(cbutton);
+        cbtComentar= new ControladorBtComentarComentario(p.getTexto().getText(), panelComentarios,usuario);
+        comentarComent.addActionListener(cbtComentar);
+
     }//GEN-LAST:event_btComentarActionPerformed
 
 
@@ -182,6 +221,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     private javax.swing.JLabel fotoPublicacionPublicada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlFecha;
+    private javax.swing.JLabel jlNombre;
     private javax.swing.JToggleButton meGusta;
     private javax.swing.JPanel panelComentarios;
     private javax.swing.JPanel panelHacerComentario;

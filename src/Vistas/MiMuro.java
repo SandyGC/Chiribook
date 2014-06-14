@@ -31,19 +31,19 @@ public class MiMuro extends javax.swing.JPanel {
      * Creates new form MiMuro
      */
     ControladorRadioButtonMuro c;
-    ControladorMuro miMuro;
+    ControladorMuro controladorMiiMuro;
     ResourceBundle bundle;
 
     public MiMuro(Usuario u, ResourceBundle bundle) {
 
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
-        c = new ControladorRadioButtonMuro(this, bundle);
+        c = new ControladorRadioButtonMuro(this, bundle,null);
         initComponents();
         panel2();
         //controlador que controla la vista muro y le paso this
         //para poder editar lso componentes de esta vista
-        miMuro = new ControladorMuro(this, u);
+        controladorMiiMuro = new ControladorMuro(this, u,bundle);
         jLnOMBRE.setText(u.getNombreCompleto());
         cargarImagen(u);
         panelCard(u, bundle);
@@ -54,9 +54,9 @@ public class MiMuro extends javax.swing.JPanel {
 
         panelPublicacion.setLayout(new CardLayout());
 
-        PublicacionTextoView p = new PublicacionTextoView(miMuro, u, bundle);
+        PublicacionTextoView p = new PublicacionTextoView(controladorMiiMuro, u, bundle);
         panelPublicacion.add(p, bundle.getString("texto"));
-        PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u, bundle);
+        PublicacionFotoView p2 = new PublicacionFotoView(controladorMiiMuro, u, bundle);
         panelPublicacion.add(p2, bundle.getString("foto"));
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);

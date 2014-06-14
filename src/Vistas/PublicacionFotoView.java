@@ -54,6 +54,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         btExaminar.setText(bundle.getString("examinar"));
         radioTexto.setText(bundle.getString("texto"));
         this.btComentar.setEnabled(false);
+        this.comentarComentario.setVisible(false);
     }
 
     public JButton getBtComentar() {
@@ -102,6 +103,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         radioTexto = new javax.swing.JRadioButton();
         fotoPublicacion = new javax.swing.JLabel();
         jLError = new javax.swing.JLabel();
+        comentarComentario = new javax.swing.JButton();
 
         btComentar.setText("comentar");
         btComentar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +121,8 @@ public class PublicacionFotoView extends javax.swing.JPanel {
 
         radioTexto.setText("texto");
 
+        comentarComentario.setText("comentar-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,7 +135,8 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                     .addComponent(btExaminar)
                     .addComponent(btComentar)
                     .addComponent(radioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comentarComentario))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,12 +147,14 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                     .addComponent(fotoPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btExaminar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comentarComentario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btComentar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(radioTexto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLError, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(jLError, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -193,6 +200,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btComentar;
     private javax.swing.JButton btExaminar;
+    private javax.swing.JButton comentarComentario;
     private javax.swing.JLabel fotoPublicacion;
     private javax.swing.JLabel jLError;
     private javax.swing.JRadioButton radioTexto;
