@@ -56,9 +56,10 @@ public class BarraMenu {
     public JMenuBar getMenuBar() {
         return menuBar;
     }
-/**
- * JOption para que aprece al cambiar el menu
- */
+
+    /**
+     * JOption para que aprece al cambiar el menu
+     */
     public final void JOptionPane() {
         JOptionPane.showOptionDialog(null,
                 bundle.getString("necesita_reiniciar"),
@@ -69,10 +70,11 @@ public class BarraMenu {
                 new Object[]{bundle.getString("mensajes_OK")},
                 "Salir");
     }
-/**
- * añadr componentes
- */
-    public final void addComponentes() {       
+
+    /**
+     * añadr componentes
+     */
+    public final void addComponentes() {
         menuSalir = new JMenu(bundle.getString("salir"));
         //establezco los nemonicos
         menuSalir.setMnemonic(KeyEvent.VK_D);
@@ -85,7 +87,6 @@ public class BarraMenu {
         menuHelp = new JMenu(bundle.getString("ayuda"));
 
         itemContenidos = new JMenuItem(bundle.getString("contenido"));
- 
 
         menuHelp.add(itemContenidos);
 

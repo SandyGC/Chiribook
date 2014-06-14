@@ -43,6 +43,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
      *
      * @param c
      * @param u
+     * @param bundle
      */
     public PublicacionFotoView(ControladorMuro c, Usuario u, ResourceBundle bundle) {
         this.bundle = bundle;

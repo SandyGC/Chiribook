@@ -9,7 +9,9 @@ import Vistas.MiMuro;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import javax.swing.JRadioButton;
+import org.hsqldb.resources.BundleHandler;
 
 /**
  *
@@ -17,10 +19,12 @@ import javax.swing.JRadioButton;
  */
 public class ControladorRadioButtonMuro implements ActionListener {
 
-    public static final String FOTO = "FOTO";
-    MiMuro m;
+    public static final String FOTO = "foto";
+    private MiMuro m;
+    private ResourceBundle bundle;
 
-    public ControladorRadioButtonMuro(MiMuro m) {
+    public ControladorRadioButtonMuro(MiMuro m,ResourceBundle b) {
+        this.bundle=b;
         this.m = m;
     }
 /**
@@ -31,7 +35,7 @@ public class ControladorRadioButtonMuro implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JRadioButton radio = (JRadioButton) e.getSource();
       
-        if (radio.getText().equals(FOTO)) {
+        if (radio.getText().equals(bundle.getString(FOTO))) {
             ((CardLayout) m.getPanelPublicacion().getLayout()).show(m.getPanelPublicacion(), "foto");
         } else {
 

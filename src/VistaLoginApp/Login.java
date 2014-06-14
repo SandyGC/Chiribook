@@ -24,6 +24,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -42,7 +43,8 @@ public class Login extends javax.swing.JFrame {
     private static final String COUNTRY = "country";
     private static final String NOMBRE = "nombre";
     private static final String PASS = "pass";
-    private BarraMenu b;
+    private BarraMenu barraMenu;
+    private JMenuBar  jmenuBar;
     // Preferencias para la clase
     static final Preferences preferencias
             = Preferences.userRoot().node(Login.class.getName());
@@ -75,8 +77,9 @@ public class Login extends javax.swing.JFrame {
  * @param g 
  */
     public void crearBarraMenu(Login g) {
-        b = new BarraMenu(g);
-        this.setJMenuBar(b.getMenuBar());
+        barraMenu = new BarraMenu(g);
+        jmenuBar= barraMenu.getMenuBar();
+        this.setJMenuBar(jmenuBar);
         cargarAyuda();
     }
 /**
@@ -105,7 +108,7 @@ public class Login extends javax.swing.JFrame {
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
             // Pone ayuda a item de menu al pulsar F1. mntmIndice es el JMenuitem 
-            hb.enableHelpOnButton(b.getBotonAyuda(), "Chiribook", helpset);
+            hb.enableHelpOnButton(barraMenu.getBotonAyuda(), "Chiribook", helpset);
             hb.enableHelpKey(this.getContentPane(), "Chiribook", helpset);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -127,7 +130,7 @@ public class Login extends javax.swing.JFrame {
 
                     jLErrorInici.setText(bundle.getString("saludo"));
                     almacenarDatosUsuario();
-                    VistaPrincipal v = new VistaPrincipal(bundle, a);
+                    VistaPrincipal v = new VistaPrincipal(bundle, a, jmenuBar);
                     cerrarVista();
                 }
 

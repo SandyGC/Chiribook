@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -30,10 +31,12 @@ public class VistaPrincipal {
 
     private JFrame frame;
     private JSplitPane splitPane;
-    JPanel panelCards;
-    JScrollPane scrollPane;
+    private JPanel panelCards;
+    private JScrollPane scrollPane;
+    private JMenuBar barraMenu;
 
-    public VistaPrincipal(ResourceBundle bundle,Usuario u) {
+    public VistaPrincipal(ResourceBundle bundle,Usuario u,JMenuBar barraMenu) {
+        this.barraMenu=barraMenu;
         construirSplitPane();
         construirPanelIzquierdo(bundle);
         construirPanelDerecho(bundle,u);
@@ -49,6 +52,7 @@ public class VistaPrincipal {
         frame.setLayout(new BorderLayout());
 //2. Optional: What happens when the frame closes?
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setJMenuBar(barraMenu);
 //le doy tamaño a la ventana y establezco donde aparecerá la ventana
         frame.setBounds(150, 150, 900, 500);
 //5. Show it.
