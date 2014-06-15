@@ -44,7 +44,7 @@ public class Usuario {
         this.muroUsuario = new Muro(this);
         this.gustos = new ArrayList<>();
     }
-    
+
     public Usuario(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
         this.amigos = new ArrayList<>();
@@ -134,9 +134,9 @@ public class Usuario {
      * @param a
      */
     public void addAmistad(Usuario a) {
-        Amistad nuevaAmistad = new Amistad(a,false,null);
+        Amistad nuevaAmistad = new Amistad(a, false, null);
         amigos.add(nuevaAmistad);
-        a.getAmigos().add(new Amistad(this,false,null));
+        a.getAmigos().add(new Amistad(this, false, null));
         //apruebo la amistad en mi lista de amigos
         this.aprobarAmistdad(nuevaAmistad);
 
@@ -168,11 +168,11 @@ public class Usuario {
      */
     public boolean existeAmistad(Usuario a) {
         boolean existeAmistad = false;
+        if (this.equals(a)) {
+            existeAmistad = true;
+        }
         ArrayList<Amistad> amigosA = this.getAmigos();
         for (Amistad amistad : amigosA) {
-            if (this.equals(a)) {
-                existeAmistad = true;
-            }
             if (amistad.getAmigo().equals(a)) {
                 if (amistad.isAprobada()) {
                     existeAmistad = true;
@@ -205,10 +205,8 @@ public class Usuario {
      * @param a
      */
     public void comentarMiMuro(Publicacion c) {
-     muroUsuario.addPublicacion(c);
+        muroUsuario.addPublicacion(c);
     }
-
-
 
     @Override
     public String toString() {

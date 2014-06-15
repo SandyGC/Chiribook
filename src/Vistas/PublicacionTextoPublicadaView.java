@@ -26,7 +26,7 @@ import javax.swing.JButton;
  */
 public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
 
-    Texto t;
+    Texto texto;
     private Usuario usuario;
     private ControladorMuro controladorMuro;
     private ResourceBundle bundle;
@@ -42,7 +42,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     public PublicacionTextoPublicadaView(Texto t, Usuario a, ControladorMuro c, ResourceBundle bundle) {
         this.bundle = bundle;
         this.controladorMuro = c;
-        this.t = t;
+        this.texto = t;
         this.usuario = a;
         initComponents();
    
@@ -213,7 +213,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         publicacionTexto.getRadioFoto().addActionListener(cbutton);
         p2.getRadioTexto().addActionListener(cbutton);
         
-        cbtComentar= new ControladorBtComentarComentario(publicacionTexto, panelComentarios,usuario);
+        cbtComentar= new ControladorBtComentarComentario(texto,publicacionTexto, panelComentarios,usuario);
         
         comentarComent.addActionListener(cbtComentar);
 

@@ -26,7 +26,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
 
     @Override
     public void create(Publicacion t) {
-
+  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -60,10 +60,10 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
             if (rs.next()) {
                 do {
                     if (rs.getBoolean("tipofoto")) {
-                        Publicacion p1 = new Foto(rs.getBytes("foto"), a);
+                        Publicacion p1 = new Foto(rs.getBytes("foto"),rs.getInt("id"), a);
                         publicaciones.add(p1);
                     } else {
-                        Publicacion p2 = new Texto(rs.getString("texto"), a);
+                        Publicacion p2 = new Texto(rs.getString("texto"),rs.getInt("id"), a);
                         publicaciones.add(p2);
 
                     }

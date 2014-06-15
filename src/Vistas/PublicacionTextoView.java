@@ -118,6 +118,11 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         });
 
         btComentar.setText("comentar");
+        btComentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComentarActionPerformed(evt);
+            }
+        });
 
         btComentarComentario.setText("Comentar");
 
@@ -163,6 +168,10 @@ public class PublicacionTextoView extends javax.swing.JPanel {
     private void radioFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioFotoActionPerformed
+
+    private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btComentarActionPerformed
 
     public JButton getBtComentarComentario() {
         return btComentarComentario;

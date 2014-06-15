@@ -5,6 +5,8 @@
  */
 package ControladorApp;
 
+import DAO.DBConfig;
+import DAO.ITextoDAO;
 import Modelo.Texto;
 import Modelo.Usuario;
 import Vistas.ComentarioTexto;
@@ -22,25 +24,26 @@ import javax.swing.JTextArea;
 public class ControladorBtComentarComentario implements ActionListener {
 
     private JPanel panelAdd;
-   private PublicacionTextoView panelComent;
-    private JTextArea text;
-//    private String texto;
+    private PublicacionTextoView panelComent;
+    private ITextoDAO daoTexto;
     private Usuario usuario;
-    private Texto publiTexto;
-    
+    private Texto publiTexto, publicacionDueña;
 
-    public ControladorBtComentarComentario(PublicacionTextoView panelComent, JPanel panelAdd,Usuario u) {
-        this.panelAdd=panelAdd;
-       this.panelComent=panelComent;
-        this.usuario=u;
+    public ControladorBtComentarComentario(Texto publicacionDueña, PublicacionTextoView panelComent, JPanel panelAdd, Usuario u) {
+        this.daoTexto = DBConfig.getInstance().getFactoria().getTextoDAO();
+        this.panelAdd = panelAdd;
+        this.panelComent = panelComent;
+        this.usuario = u;
+        this.publicacionDueña = publicacionDueña;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-       publiTexto= new Texto(panelComent.getTexto().getText(),usuario);
-        
-        ComentarioTexto comentText= new ComentarioTexto(publiTexto);
+
+        publiTexto = new Texto(panelComent.getTexto().getText(), usuario);
+        publicacionDueña.comentarPublicacion(publiTexto, usuario);
+        daoTexto.crearComentario(publicacionDueña, publiTexto);
+        ComentarioTexto comentText = new ComentarioTexto(publiTexto);
         panelAdd.setVisible(true);
         panelAdd.setLayout(new BoxLayout(panelAdd, BoxLayout.Y_AXIS));
         panelAdd.add(comentText);

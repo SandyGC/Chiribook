@@ -19,11 +19,17 @@ public class Publicacion {
     private final ArrayList<Publicacion> comentarios;
     private Usuario usuario;
 
-    public Publicacion(Usuario u) {
+    public Publicacion(int id, Usuario u) {
 
         this.usuario = u;
-        //fecha actual
+        this.id=id;
         this.fecha = new Date();
+        comentarios = new ArrayList<>();
+    }
+
+    public Publicacion(Usuario usuario) {
+        this.usuario = usuario;
+         this.fecha = new Date();
         comentarios = new ArrayList<>();
     }
 
@@ -74,5 +80,12 @@ public class Publicacion {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Publicacion{" + "id=" + id + ", fecha=" + fecha + ", comentarios=" + comentarios + ", usuario=" + usuario + '}';
+    }
+    
+    
 
 }

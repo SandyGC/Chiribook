@@ -36,7 +36,7 @@ public final class ControladorMuro {
     private Usuario usuario;
     private Texto texto, comentario;
     private Foto foto;
-    private ITextoDAO textoDAO, comentarioDAO;
+    private ITextoDAO textoDAO;
     private IFotoDAO fotoDAO;
     private IPublicacionDAO daoPublicacion;
     private ResourceBundle bundle;
@@ -44,7 +44,6 @@ public final class ControladorMuro {
 
     public ControladorMuro(MiMuro vistaMuro, Usuario a,ResourceBundle bundle) {
         textoDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
-        comentarioDAO = DBConfig.getInstance().getFactoria().getTextoDAO();
         fotoDAO = DBConfig.getInstance().getFactoria().getFotoDAO();
         daoPublicacion = DBConfig.getInstance().getFactoria().getPublicacionDAO();
         this.usuario = a;
@@ -65,6 +64,7 @@ public final class ControladorMuro {
         texto = new Texto(mensaje, u);
         u.comentarMiMuro(texto);
         textoDAO.create(texto);
+        
         mostrarPublicacionTexto(texto, u);
     }
 /**
@@ -80,16 +80,7 @@ public final class ControladorMuro {
         mostrarPublicacionFoto(foto, u);
 
     }
-/**
- * Metodo que creara un comentario de una publicacion
- * @param mensaje
- * @param u 
- */
-    public void crearComentarioDePublicacion(String mensaje, Usuario u) {
-        comentario = new Texto(mensaje, u);
-        texto.comentarPublicacion(comentario, u);
-        comentarioDAO.crearComentario(u, comentario);
-    }
+
 /**
  * Metodo que transforma la imagen de ImagenIcon a bytes
  * @param imagen
