@@ -13,14 +13,17 @@ public class Texto extends Publicacion {
 
     private final String comentario;
 
-    public Texto(String comentario, Usuario u) {
-        super( u);
+    public Texto(String comentario, int id, Usuario u) {
+        super(id, u);
         this.comentario = comentario;
     }
 
-   
-
-
+    public Texto(String comentario, Usuario usuario) {
+        super(usuario);
+        this.comentario = comentario;
+    }
+    
+    
     public String getComentario() {
         return comentario;
     }
@@ -30,9 +33,18 @@ public class Texto extends Publicacion {
         super.comentarPublicacion(p, a); //To change body of generated methods, choose Tools | Templates.
     }
     
+//    @Override
+//    public String toString() {
+//        return "el comentario es: " + comentario+ " del usuario: "+super.getUsuario().getNombreCompleto();
+//    }
     @Override
     public String toString() {
-        return "el comentario es: " + comentario+ " del usuario: "+super.getUsuario().getNombreCompleto();
+        return super.toString()+"Texto{" + "comentario=" + comentario + '}';
     }
+   
+   
+    
 
+    
+    
 }

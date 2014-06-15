@@ -31,34 +31,33 @@ public class MiMuro extends javax.swing.JPanel {
      * Creates new form MiMuro
      */
     ControladorRadioButtonMuro c;
-    ControladorMuro miMuro;
+    ControladorMuro controladorMiiMuro;
     ResourceBundle bundle;
 
-    public MiMuro(Usuario u,ResourceBundle bundle) {
-        
+    public MiMuro(Usuario u, ResourceBundle bundle) {
+
         //controlador que controla los eventos del radiobutton y nececita this
         //para poder acceder a los componentes de esta vista
-        c = new ControladorRadioButtonMuro(this,bundle);
+        c = new ControladorRadioButtonMuro(this, bundle,null);
         initComponents();
-
         panel2();
         //controlador que controla la vista muro y le paso this
         //para poder editar lso componentes de esta vista
-        miMuro = new ControladorMuro(this, u);
+        controladorMiiMuro = new ControladorMuro(this, u,bundle);
         jLnOMBRE.setText(u.getNombreCompleto());
         cargarImagen(u);
-        panelCard(u,bundle);
+        panelCard(u, bundle);
 
     }
 
-    public final void panelCard(Usuario u,ResourceBundle bundle) {
+    public final void panelCard(Usuario u, ResourceBundle bundle) {
 
         panelPublicacion.setLayout(new CardLayout());
 
-        PublicacionTextoView p = new PublicacionTextoView(miMuro, u,bundle);
-        panelPublicacion.add(p, "texto");
-        PublicacionFotoView p2 = new PublicacionFotoView(miMuro, u,bundle);
-        panelPublicacion.add(p2, "foto");
+        PublicacionTextoView p = new PublicacionTextoView(controladorMiiMuro, u, bundle);
+        panelPublicacion.add(p, bundle.getString("texto"));
+        PublicacionFotoView p2 = new PublicacionFotoView(controladorMiiMuro, u, bundle);
+        panelPublicacion.add(p2, bundle.getString("foto"));
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);
         p2.getRadioTexto().addActionListener(c);
@@ -78,7 +77,6 @@ public class MiMuro extends javax.swing.JPanel {
 
     public final void panel2() {
         panelMuro2.setLayout(new BoxLayout(panelMuro2, BoxLayout.Y_AXIS));
-
     }
 
     public JPanel getPanelPublicacion() {
@@ -101,7 +99,6 @@ public class MiMuro extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         panelPublicacion = new javax.swing.JPanel();
         jLnOMBRE = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jLFoto = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         panelMuro2 = new javax.swing.JPanel();
@@ -118,8 +115,6 @@ public class MiMuro extends javax.swing.JPanel {
             panelPublicacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 84, Short.MAX_VALUE)
         );
-
-        jScrollPane1.setViewportView(jLFoto);
 
         javax.swing.GroupLayout panelMuro2Layout = new javax.swing.GroupLayout(panelMuro2);
         panelMuro2.setLayout(panelMuro2Layout);
@@ -140,27 +135,25 @@ public class MiMuro extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLnOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
             .addComponent(jScrollPane2)
-            .addComponent(panelPublicacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLnOMBRE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLnOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(panelPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,7 +162,6 @@ public class MiMuro extends javax.swing.JPanel {
     private javax.swing.JLabel jLFoto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLnOMBRE;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelMuro2;
     private javax.swing.JPanel panelPublicacion;

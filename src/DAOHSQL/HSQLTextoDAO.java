@@ -27,7 +27,7 @@ public class HSQLTextoDAO implements ITextoDAO {
     public void create(Texto t) {
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-          int id= p.insert(false, t.getComentario(),null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+            int id = p.insert(false, t.getComentario(), null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
             devolverIdPublicacion(id);
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(ITextoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,25 +61,34 @@ public class HSQLTextoDAO implements ITextoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public void crearComentario(Usuario a,Texto t) {
-//        try {
-//            HSQLPublicacion p = new HSQLPublicacion();
-//            p.insert(false, t.getComentario(), null, t.getFecha(), t.getFecha(), , t.getUsuario().getId());
-//        } catch (ClassNotFoundException | SQLException | IOException ex) {
-//            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-
-    @Override
-    public void crearComentario(Usuario a, Texto t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public int devolverIdPublicacion(int id) {
         return id;
     }
 
+    @Override
+    public void crearComentario(Texto publicacionDueña, Texto publicacion) {
+        try {
+            HSQLPublicacion publi = new HSQLPublicacion();
+            //hago un insert del comentario
+            System.out.println(publicacionDueña.getId());
+            publi.insert(false,
+                    publicacion.getComentario(),
+                    null,
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
+                    publicacionDueña.getId(),
+                    publicacion.getUsuario().getId());
+            
+            //actualizo la publicacion a la que pertenece ese comentario cambiandole la fecha
+            publi.update(publicacionDueña.getId(), false, publicacionDueña.getComentario(), null, publicacion.getFecha(), publicacion.getFecha(), null, publicacionDueña.getId());
+
+           
+            
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }
