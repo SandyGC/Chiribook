@@ -37,9 +37,11 @@ public class MiPerfil extends javax.swing.JPanel {
     public MiPerfil(Usuario u,ResourceBundle bundle) {
         this.bundle=bundle;
         controladorPerfil = new ControladorPerfil(this, u);
-        validador = new ValidacionComponentes(this);
+        validador = new ValidacionComponentes(this,bundle);
 
         initComponents();
+        this.btEditar.setText(bundle.getString("editar"));
+        this.btGuardar.setText(bundle.getString("guardar"));
         comprobarCamposVacios();
         rellenarPerfil(u);
     }
@@ -149,10 +151,6 @@ public class MiPerfil extends javax.swing.JPanel {
             }
         });
 
-        jLErrorEmail.setText("jLabel1");
-
-        jLErrorEdad.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,7 +221,7 @@ public class MiPerfil extends javax.swing.JPanel {
         String eda = this.jTEdad.getText();
         int edad = recogerSoloEntero(eda);
         if (edad == -1 || edad < 0 || edad > 100) {
-            this.jLErrorEdad.setText("No se puede guardar dato erroneo");
+            this.jLErrorEdad.setText(bundle.getString("erroredad"));
         } else {
             this.jLErrorEdad.setText("");
             desactivarCampos();

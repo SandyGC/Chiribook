@@ -4,24 +4,20 @@
  */
 package Vistas;
 
-import Modelo.Usuario;
-import java.util.ResourceBundle;
+import Modelo.Texto;
 
 /**
  *
  * @author Vairon
  */
 public class PanelGustoTexto extends javax.swing.JPanel {
-private Usuario usuario;
-private ResourceBundle bundle;
+private Texto texto;
     /**
      * Creates new form PanelGustoTexto
      */
-    public PanelGustoTexto(Usuario u,ResourceBundle b) {
-        this.usuario=u;
-        this.bundle=b;
+    public PanelGustoTexto(Texto t) {
+        this.texto=t;
         initComponents();
-      //  this.
     }
 
     /**
@@ -33,68 +29,68 @@ private ResourceBundle bundle;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlFoto = new javax.swing.JLabel();
-        jlabelNombre = new javax.swing.JLabel();
-        jlabelFecha = new javax.swing.JLabel();
+        jLabelFoto = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        btGusta = new javax.swing.JButton();
+        jTextAreaTexto = new javax.swing.JTextArea();
+        btMeGusta = new javax.swing.JToggleButton();
 
-        jlFoto.setText("jLabel1");
+        jLabelFoto.setText("jLabel1");
 
-        jlabelNombre.setText("jLabel2");
+        jLabelNombre.setText("jLabel2");
 
-        jlabelFecha.setText("jLabel3");
+        jLabelFecha.setText("jLabel3");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaTexto.setColumns(20);
+        jTextAreaTexto.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaTexto);
 
-        btGusta.setText("jButton1");
+        btMeGusta.setText("jToggleButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                        .addComponent(jLabelFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(jlabelFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btGusta, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))))
+                        .addComponent(btMeGusta)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jLabelNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlabelFecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelFecha)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btGusta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(btMeGusta))))
+                    .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGusta;
+    private javax.swing.JToggleButton btMeGusta;
+    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelNombre;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel jlFoto;
-    private javax.swing.JLabel jlabelFecha;
-    private javax.swing.JLabel jlabelNombre;
+    private javax.swing.JTextArea jTextAreaTexto;
     // End of variables declaration//GEN-END:variables
 }

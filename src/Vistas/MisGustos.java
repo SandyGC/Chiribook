@@ -4,17 +4,23 @@
  */
 package Vistas;
 
+import Modelo.Usuario;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Vairon
  */
 public class MisGustos extends javax.swing.JPanel {
-
+private ResourceBundle bundle;
     /**
      * Creates new form MisGustos
      */
-    public MisGustos() {
+    public MisGustos( ResourceBundle bundle) {
+    
+        this.bundle=bundle;
         initComponents();
+        this.jltitulo.setText(bundle.getString("misGustos"));
     }
 
     /**
@@ -27,16 +33,30 @@ public class MisGustos extends javax.swing.JPanel {
     private void initComponents() {
 
         jltitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PanelGustos = new javax.swing.JPanel();
 
-        jltitulo.setText("jLabel1");
+        javax.swing.GroupLayout PanelGustosLayout = new javax.swing.GroupLayout(PanelGustos);
+        PanelGustos.setLayout(PanelGustosLayout);
+        PanelGustosLayout.setHorizontalGroup(
+            PanelGustosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 447, Short.MAX_VALUE)
+        );
+        PanelGustosLayout.setVerticalGroup(
+            PanelGustosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 294, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(PanelGustos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jltitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jltitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -44,10 +64,13 @@ public class MisGustos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelGustos;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jltitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -89,6 +89,11 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         });
 
         meGusta.setText("Me Gusta");
+        meGusta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meGustaActionPerformed(evt);
+            }
+        });
 
         jlFecha.setText("jLabel1");
 
@@ -175,6 +180,12 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         // TODO add your handling code here:
         panelHacerComentario.setVisible(true);
     }//GEN-LAST:event_btComentarActionPerformed
+
+    private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
+        // TODO add your handling code here:
+        PanelGustoTexto panel= new PanelGustoTexto(t);
+        
+    }//GEN-LAST:event_meGustaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

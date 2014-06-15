@@ -22,6 +22,7 @@ public class ValidacionComponentes extends InputVerifier {
         this.vista = vista;
     }
 //VERIFICA LOS COMPONENTES
+
     @Override
     public boolean verify(JComponent c) {
 
@@ -30,11 +31,14 @@ public class ValidacionComponentes extends InputVerifier {
         boolean verify = field.getText().isEmpty();
 
         if (verify) {
-            vista.getErrorHost().setText("El campo no puede ser vacio");
+            vista.getErrorHost().setText("NOT EMPTY");
+            vista.getErrorPassword().setText("");
             vista.getBtConectar().setEnabled(false);
         }
         if (verify) {
-            vista.getErrorPassword().setText("El campo no puede ser vacio");
+            vista.getErrorHost().setText("");
+            vista.getErrorPassword().setText("NOT EMPTY");
+          
             vista.getBtConectar().setEnabled(false);
         } else if (!verify) {
             vista.getErrorHost().setText("");
@@ -43,5 +47,4 @@ public class ValidacionComponentes extends InputVerifier {
         }
         return true;
     }
-
 }

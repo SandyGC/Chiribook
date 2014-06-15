@@ -6,6 +6,7 @@
 package VistaLoginApp;
 
 import VistaInicioSesionBD.VistaInicio;
+import java.util.ResourceBundle;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
@@ -17,9 +18,11 @@ import javax.swing.JTextField;
 public class ValidacionComponentesLogin extends InputVerifier {
 
     Login vista;
+    ResourceBundle bundle;
 
-    public ValidacionComponentesLogin(Login vista) {
+    public ValidacionComponentesLogin(Login vista,ResourceBundle bundle) {
         this.vista = vista;
+        this.bundle=bundle;
     }
 
     @Override
@@ -29,10 +32,10 @@ public class ValidacionComponentesLogin extends InputVerifier {
         boolean verify = field.getText().isEmpty();
    
         if (verify) {
-            vista.getErrorNombre().setText("El campo no puede ser vacio");
+            vista.getErrorNombre().setText(bundle.getString("campovacio"));
             vista.getBtConectar().setEnabled(false);
         }  if (verify) {
-            vista.getErrorPass().setText("El campo no puede ser vacio");
+            vista.getErrorPass().setText(bundle.getString("campovacio"));
             vista.getBtConectar().setEnabled(false);
         } else if(!verify){
             vista.getErrorNombre().setText("");

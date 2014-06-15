@@ -58,7 +58,7 @@ public class Login extends javax.swing.JFrame {
         btConectar.setText(bundle.getString("conectar"));
         obtenerDatosUsuario();
         crearBarraMenu(this);
-        validacion = new ValidacionComponentesLogin(this);
+        validacion = new ValidacionComponentesLogin(this,bundle);
         controladorLogin = new ControladorLogin(this);
         cargarFoto();
         comprobarcamposVacios();
