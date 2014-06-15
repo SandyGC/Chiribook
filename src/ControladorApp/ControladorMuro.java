@@ -148,7 +148,8 @@ public final class ControladorMuro {
         for (Publicacion publicacion : comentarios) {
 
             if (publicacion instanceof Texto) {
-
+                    Texto texto= (Texto) publicacion;
+                    mostrarPublicacionTexto(texto, u);
             }
             if (publicacion instanceof Foto) {
                 Foto fo = (Foto) publicacion;

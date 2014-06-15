@@ -359,13 +359,15 @@ public class Login extends javax.swing.JFrame {
         return btConectar;
     }
 
-    public JLabel getJlabelNombre() {
-        return jlabelNombre;
+    public JLabel getErrorNombre() {
+        return errorNombre;
     }
 
-    public JLabel getJlabelPass() {
-        return jlabelPass;
+    public JLabel getErrorPass() {
+        return errorPass;
     }
+
+  
 
 
 }

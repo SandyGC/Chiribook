@@ -83,12 +83,14 @@ public class VistaPrincipal {
         JPanel miPerfil = new MiPerfil(u,bundle);
         JPanel misAmigos = new MisAmigos(u,bundle);
         JPanel buscarUsuarios= new BuscarUsuarios(u,bundle);
+        //JPanel misGustos=new MisGustos(u,bundle);
 
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
         panelCards.add(miPerfil, "perfil");
         panelCards.add(misAmigos, "amigos");
         panelCards.add(buscarUsuarios,"buscarUsuarios");
+     //   panelCards.add();
         splitPane.add(panelCards);
 
     }
