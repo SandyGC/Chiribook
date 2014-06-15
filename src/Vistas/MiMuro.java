@@ -55,9 +55,9 @@ public class MiMuro extends javax.swing.JPanel {
         panelPublicacion.setLayout(new CardLayout());
 
         PublicacionTextoView p = new PublicacionTextoView(controladorMiiMuro, u, bundle);
-        panelPublicacion.add(p, bundle.getString("texto"));
+        panelPublicacion.add(p, "texto");
         PublicacionFotoView p2 = new PublicacionFotoView(controladorMiiMuro, u, bundle);
-        panelPublicacion.add(p2, bundle.getString("foto"));
+        panelPublicacion.add(p2, "foto");
         //eventos a los que responde el radiobutton
         p.getRadioFoto().addActionListener(c);
         p2.getRadioTexto().addActionListener(c);

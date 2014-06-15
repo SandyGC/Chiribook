@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author SandyG
@@ -20,6 +22,11 @@ public class Texto extends Publicacion {
 
     public Texto(String comentario, Usuario usuario) {
         super(usuario);
+        this.comentario = comentario;
+    }
+
+    public Texto(String comentario, int id, Date fecha, Usuario usuario) {
+        super(id, fecha, usuario);
         this.comentario = comentario;
     }
     

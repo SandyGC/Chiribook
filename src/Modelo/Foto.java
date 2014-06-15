@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.awt.Image;
+import java.util.Date;
 
 /**
  *
@@ -22,6 +23,11 @@ public class Foto extends Publicacion {
 
     public Foto(byte[] imagen, Usuario usuario) {
         super(usuario);
+        this.imagen = imagen;
+    }
+
+    public Foto(byte[] imagen, int id, Date fecha, Usuario usuario) {
+        super(id, fecha, usuario);
         this.imagen = imagen;
     }
 
