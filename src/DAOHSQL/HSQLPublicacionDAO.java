@@ -16,6 +16,8 @@ import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,10 +64,10 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
             if (rs.next()) {
                 do {
                     if (rs.getBoolean("tipofoto")) {
-                        Publicacion p1 = new Foto(rs.getBytes("foto"), rs.getInt("id"), a);
+                        Publicacion p1 = new Foto(rs.getBytes("foto"), rs.getInt("id"),rs.getDate("fecha"), a);
                         publicaciones.add(p1);
                     } else {
-                        Publicacion p2 = new Texto(rs.getString("texto"), rs.getInt("id"), a);
+                        Publicacion p2 = new Texto(rs.getString("texto"), rs.getInt("id"), rs.getDate("fecha"),a);
                         publicaciones.add(p2);
 
                     }
@@ -76,7 +78,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(IPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+     //   Collections.sort(publicaciones);
         return publicaciones;
     }
 
