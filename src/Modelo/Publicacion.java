@@ -32,6 +32,13 @@ public class Publicacion {
         this.comentarios = new ArrayList<>();
     }
 
+    public Publicacion(int id, Date fecha,Usuario usuario) {
+        this.id = id;
+        this.fecha = fecha;
+        this.comentarios = new ArrayList<>();
+        this.usuario = usuario;
+    }
+
     public ArrayList<Publicacion> getComentarios() {
         return comentarios;
     }

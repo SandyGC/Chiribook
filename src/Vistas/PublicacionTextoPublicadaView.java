@@ -9,10 +9,6 @@ import DAO.DBConfig;
 import DAO.IPublicacionDAO;
 import Modelo.Texto;
 import Modelo.Usuario;
-import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
-import java.awt.CardLayout;
-import java.awt.Image;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
