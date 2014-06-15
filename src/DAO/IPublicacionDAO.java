@@ -20,4 +20,6 @@ public interface IPublicacionDAO extends IDAO<Publicacion> {
 //metodo que realiza la accion de dar me gusta a una publicacion,
     //le paso el usuario que realiza la accion y la publicacion que le gusta
     public void guardarGustos(Usuario usuarioAccion,Publicacion p);
+    //metodo para recuperar los gustos de un usuario
+    public List<Publicacion> gustosDeUsuario(Usuario us);
 }

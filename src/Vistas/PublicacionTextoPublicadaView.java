@@ -8,6 +8,8 @@ package Vistas;
 import ControladorApp.ControladorBtComentarComentario;
 import ControladorApp.ControladorMuro;
 import ControladorApp.ControladorRadioButtonMuro;
+import DAO.DBConfig;
+import DAO.IPublicacionDAO;
 import Modelo.Texto;
 import Modelo.Usuario;
 import java.awt.CardLayout;
@@ -227,7 +229,7 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
         // TODO add your handling code here:
         IPublicacionDAO gustos= DBConfig.getInstance().getFactoria().getPublicacionDAO();
-        gustos.guardarGustos(a, t);
+        gustos.guardarGustos(usuario, texto);
     }//GEN-LAST:event_meGustaActionPerformed
 
 

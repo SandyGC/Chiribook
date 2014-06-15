@@ -81,7 +81,13 @@ public class HSQLTextoDAO implements ITextoDAO {
                     publicacion.getUsuario().getId());
             
             //actualizo la publicacion a la que pertenece ese comentario cambiandole la fecha
-            publi.update(publicacionDueña.getId(), false, publicacionDueña.getComentario(), null, publicacion.getFecha(), publicacion.getFecha(), null, publicacionDueña.getId());
+            publi.update(publicacionDueña.getId(), 
+                    false, 
+                    publicacionDueña.getComentario(), 
+                    null, 
+                    publicacion.getFecha(), 
+                    publicacion.getFecha(), 
+                    null, publicacionDueña.getUsuario().getId());
 
            
             

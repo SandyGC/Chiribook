@@ -27,7 +27,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
 
     @Override
     public void create(Publicacion t) {
-  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -61,10 +61,10 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
             if (rs.next()) {
                 do {
                     if (rs.getBoolean("tipofoto")) {
-                        Publicacion p1 = new Foto(rs.getBytes("foto"),rs.getInt("id"), a);
+                        Publicacion p1 = new Foto(rs.getBytes("foto"), rs.getInt("id"), a);
                         publicaciones.add(p1);
                     } else {
-                        Publicacion p2 = new Texto(rs.getString("texto"),rs.getInt("id"), a);
+                        Publicacion p2 = new Texto(rs.getString("texto"), rs.getInt("id"), a);
                         publicaciones.add(p2);
 
                     }
@@ -84,9 +84,34 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
         try {
             HSQLGustos gustos = new HSQLGustos();
             gustos.insert(usuarioAccion.getId(), p.getId());
-            HSQLPublicacion pu= new HSQLPublicacion();
+            HSQLPublicacion pu = new HSQLPublicacion();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public List<Publicacion> gustosDeUsuario(Usuario us) {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            HSQLGustos gustos = new HSQLGustos();
+            HSQLPublicacion publi= new HSQLPublicacion();
+            ResultSet rs = gustos.readAllOf(us.getId());
+            Publicacion publicacion = null;
+            while (rs.next()) {
+                int idP=rs.getInt("publicacion");
+               ResultSet rsPublicacion= publi.read(idP);
+                while (rsPublicacion.next()) {
+                   // rsPublicacion.getbo
+                    
+                 
+                }
+               
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 }
