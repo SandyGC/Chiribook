@@ -72,6 +72,11 @@ ResourceBundle bundle;
         jTBuscar.setText("jTextField1");
 
         btBuscar.setText("jButton4");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBuscarLayout = new javax.swing.GroupLayout(jPanelBuscar);
         jPanelBuscar.setLayout(jPanelBuscarLayout);
@@ -107,7 +112,7 @@ ResourceBundle bundle;
             .addGroup(jPanelAmigosLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
         jPanelAmigosLayout.setVerticalGroup(
             jPanelAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,6 +144,11 @@ ResourceBundle bundle;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

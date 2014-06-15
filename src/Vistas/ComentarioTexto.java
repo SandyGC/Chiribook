@@ -9,7 +9,9 @@ package Vistas;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,13 +20,15 @@ import javax.swing.ImageIcon;
 public class ComentarioTexto extends javax.swing.JPanel {
 private Usuario usuario;
 private String texto;
+private ResourceBundle bundle;
 
     /**
      * Creates new form ComentarioTexto
      * @param u
      * @param texto
      */
-    public ComentarioTexto(Texto t) {
+    public ComentarioTexto(Texto t, ResourceBundle bundle) {
+        this.bundle = bundle;
         initComponents();
         this.usuario=t.getUsuario();
         this.jLabelFoto.setIcon(new ImageIcon(t.getUsuario().getFotoPerfil()));
@@ -50,6 +54,12 @@ private String texto;
         jLabelFecha = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTextComentario);
+
+        jLabelFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelFotoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,6 +90,12 @@ private String texto;
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabelFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFotoMouseClicked
+      MiMuro muroAmigo = new MiMuro(usuario, bundle);
+      MuroAmigo JFramemuroAmigo =new MuroAmigo(muroAmigo);
+      JFramemuroAmigo.setVisible(true);
+    }//GEN-LAST:event_jLabelFotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

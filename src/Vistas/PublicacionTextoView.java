@@ -125,6 +125,11 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         });
 
         btComentarComentario.setText("Comentar");
+        btComentarComentario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComentarComentarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,6 +177,10 @@ public class PublicacionTextoView extends javax.swing.JPanel {
     private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btComentarActionPerformed
+
+    private void btComentarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarComentarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btComentarComentarioActionPerformed
 
     public JButton getBtComentarComentario() {
         return btComentarComentario;

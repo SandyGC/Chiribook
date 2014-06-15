@@ -16,6 +16,9 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 import javax.swing.Action;
 import javax.swing.Icon;
@@ -97,6 +100,11 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         panelComentarios = new javax.swing.JPanel();
 
         fotoPublicacionPublicada.setText("foto");
+        fotoPublicacionPublicada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fotoPublicacionPublicadaMouseClicked(evt);
+            }
+        });
 
         textoPublicado.setColumns(20);
         textoPublicado.setRows(5);
@@ -220,10 +228,12 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         publicacionTexto.getRadioFoto().addActionListener(cbutton);
         p2.getRadioTexto().addActionListener(cbutton);
         
-        cbtComentar= new ControladorBtComentarComentario(texto,publicacionTexto, panelComentarios,usuario);
+        cbtComentar= new ControladorBtComentarComentario(texto,publicacionTexto, panelComentarios,usuario, bundle);
         
         comentarComent.addActionListener(cbtComentar);
 
+       
+        
     }//GEN-LAST:event_btComentarActionPerformed
 
     private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
@@ -231,6 +241,11 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         IPublicacionDAO gustos= DBConfig.getInstance().getFactoria().getPublicacionDAO();
         gustos.guardarGustos(usuario, texto);
     }//GEN-LAST:event_meGustaActionPerformed
+
+    private void fotoPublicacionPublicadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotoPublicacionPublicadaMouseClicked
+        // TODO add your handling code here:
+        System.out.println(evt.getSource().toString());
+    }//GEN-LAST:event_fotoPublicacionPublicadaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
