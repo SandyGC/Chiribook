@@ -25,39 +25,39 @@ import java.util.logging.Logger;
  * @author SandyG
  */
 public class HSQLPublicacionDAO implements IPublicacionDAO {
-
+    
     @Override
     public void create(Publicacion t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Publicacion read(Publicacion t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public List<Publicacion> readAll() {
         return null;
-
+        
     }
-
+    
     @Override
     public void update(Publicacion t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void delete(Publicacion t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public List<Publicacion> publicacionfromUser(Usuario a) {
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-
+            
             ResultSet rs = p.readAllOf(a.getId());
             if (rs.next()) {
                 do {
@@ -67,19 +67,19 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
                     } else {
                         Publicacion p2 = new Texto(rs.getString("texto"), rs.getInt("id"), a);
                         publicaciones.add(p2);
-
+                        
                     }
                 } while (rs.next());
-
+                
             }
-
+            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(IPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return publicaciones;
     }
-
+    
     @Override
     public void guardarGustos(Usuario usuarioAccion, Publicacion p) {
         try {
@@ -90,39 +90,37 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
             Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public List<Publicacion> gustosDeUsuario(Usuario us) {
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             HSQLGustos gustos = new HSQLGustos();
-            HSQLPublicacion publi= new HSQLPublicacion();
+            HSQLPublicacion publi = new HSQLPublicacion();
             ResultSet rs = gustos.readAllOf(us.getId());
-            Publicacion publicacion = null;
             while (rs.next()) {
-                int idP=rs.getInt("publicacion");
-               ResultSet rsPublicacion= publi.read(idP);
+                int idP = rs.getInt("publicacion");
+                ResultSet rsPublicacion = publi.read(idP);
                 while (rsPublicacion.next()) {
-                    if (rsPublicacion.getBoolean("tipofoto")==true) {
-                       byte[]foto=rsPublicacion.getBytes("foto");
-                       
-                       // Publicacion publiFoto= new Foto(foto, idP, us);
-                       //hola esto deberia sair eb masrter
-                    }else {
-                    Publicacion publiTexto=new Texto(null, idP, us);
-                    
+                    if (rsPublicacion.getBoolean("tipofoto") == true) {
+                        byte[] foto = rsPublicacion.getBytes("foto");
+                        int id = rsPublicacion.getInt("id");
+                        Publicacion publiFoto = new Foto(foto, id, us);
+                        publicaciones.add(publiFoto);
+                    } else {
+                        String men = rsPublicacion.getString("texto");
+                        int idT = rsPublicacion.getInt("id");
+                        Publicacion publiTexto = new Texto(men, idT, us);
+                        publicaciones.add(publiTexto);
                     }
- 
                     
-                    
-                 
                 }
-               
+                
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
-
+        return publicaciones;
+        
     }
 }

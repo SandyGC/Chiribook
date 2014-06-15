@@ -43,7 +43,10 @@ public class ListaSeleccion {
                     } else if (lista.getSelectedValue().equals(bundle.getString("amigos"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "amigos");
                     } else if (lista.getSelectedValue().equals(bundle.getString("gustos"))) {
+                       v.construir();
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "misGustos");
+                       
+                     
                     } else if (lista.getSelectedValue().equals(bundle.getString("buscar_u"))) {
                         ((CardLayout) v.getPanelCards().getLayout()).show(v.getPanelCards(), "buscarUsuarios");
                     }

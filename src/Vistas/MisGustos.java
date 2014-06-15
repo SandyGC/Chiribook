@@ -4,23 +4,34 @@
  */
 package Vistas;
 
+import ControladorApp.ControladorGustos;
 import Modelo.Usuario;
 import java.util.ResourceBundle;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Vairon
  */
 public class MisGustos extends javax.swing.JPanel {
-private ResourceBundle bundle;
+
+    private ResourceBundle bundle;
+    private ControladorGustos controladorGustos;
+
     /**
      * Creates new form MisGustos
      */
-    public MisGustos( ResourceBundle bundle) {
-    
-        this.bundle=bundle;
+    public MisGustos(Usuario u, ResourceBundle bundle) {
+        this.bundle = bundle;
         initComponents();
+        this.controladorGustos = new ControladorGustos(u, this, bundle);
+        PanelGustos.setLayout(new BoxLayout(PanelGustos, BoxLayout.Y_AXIS));
         this.jltitulo.setText(bundle.getString("misGustos"));
+    }
+
+    public JPanel getPanelGustos() {
+        return PanelGustos;
     }
 
     /**

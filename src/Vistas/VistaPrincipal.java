@@ -33,12 +33,15 @@ public class VistaPrincipal {
     private JSplitPane splitPane;
     private JPanel panelCards;
     private JMenuBar barraMenu;
+    private MisGustos misGustos;
+    private ResourceBundle bundle;
+    private Usuario usuario;
 
-    public VistaPrincipal(ResourceBundle bundle,Usuario u,JMenuBar barraMenu) {
-        this.barraMenu=barraMenu;
+    public VistaPrincipal(ResourceBundle bundle, Usuario u, JMenuBar barraMenu) {
+        this.barraMenu = barraMenu;
         construirSplitPane();
         construirPanelIzquierdo(bundle);
-        construirPanelDerecho(bundle,u);
+        construirPanelDerecho(bundle, u);
         construirVentana();
     }
 
@@ -57,7 +60,7 @@ public class VistaPrincipal {
 //5. Show it.
         frame.setResizable(true);
         frame.setVisible(true);
-     
+
         frame.add(splitPane);
 
     }
@@ -70,32 +73,45 @@ public class VistaPrincipal {
     }
 
     public final void construirPanelIzquierdo(ResourceBundle bundle) {
-        PanelIzquierdo pane = new PanelIzquierdo(bundle,this);
+        PanelIzquierdo pane = new PanelIzquierdo(bundle, this);
         splitPane.add(pane.getPanelIz());
     }
 
-    public final void construirPanelDerecho(ResourceBundle bundle,Usuario u) {
+    public final void construirPanelDerecho(ResourceBundle bundle, Usuario u) {
         //panel que contiene los 4 paneles
 
+        this.bundle = bundle;
+        this.usuario = u;
+
         panelCards = new JPanel();
-        JPanel muro = new MiMuro(u,bundle);
-        JPanel miPerfil = new MiPerfil(u,bundle);
-        JPanel misAmigos = new MisAmigos(u,bundle);
-        JPanel buscarUsuarios= new BuscarUsuarios(u,bundle);
-        JPanel misGustos=new MisGustos(bundle);
+        JPanel muro = new MiMuro(u, bundle);
+        JPanel miPerfil = new MiPerfil(u, bundle);
+        JPanel misAmigos = new MisAmigos(u, bundle);
+        JPanel buscarUsuarios = new BuscarUsuarios(u, bundle);
+        misGustos = new MisGustos(u, bundle);
 
         panelCards.setLayout(new CardLayout());
         panelCards.add(muro, "muro");
         panelCards.add(miPerfil, "perfil");
         panelCards.add(misAmigos, "amigos");
-        panelCards.add(buscarUsuarios,"buscarUsuarios");
-        panelCards.add(misGustos,"misGustos");
+        panelCards.add(buscarUsuarios, "buscarUsuarios");
+        panelCards.add(misGustos, "misGustos");
         splitPane.add(panelCards);
 
+    }
+
+    public MisGustos getMisGustos() {
+        return misGustos;
     }
 
     public JPanel getPanelCards() {
         return panelCards;
     }
 
+    public void construir() {
+        panelCards.remove(misGustos);
+        misGustos = new MisGustos(usuario, bundle);
+        panelCards.add(misGustos, "misGustos");
+
+    }
 }

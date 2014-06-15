@@ -5,19 +5,39 @@
 package Vistas;
 
 import Modelo.Texto;
+import java.util.ResourceBundle;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Vairon
  */
 public class PanelGustoTexto extends javax.swing.JPanel {
-private Texto texto;
+
+    private Texto texto;
+    private ResourceBundle bundle;
+
     /**
      * Creates new form PanelGustoTexto
      */
-    public PanelGustoTexto(Texto t) {
-        this.texto=t;
+    public PanelGustoTexto(Texto t, ResourceBundle bundle) {
+        this.bundle = bundle;
+        this.texto = t;
         initComponents();
+        preparPanel();
+        rellenarPanel();
+    }
+    
+    public void preparPanel() {
+        this.setVisible(true);
+        this.btMeGusta.setText(bundle.getString("megusta"));
+    }
+    public void rellenarPanel(){
+    this.jLabelFecha.setText(texto.getFecha().toString());
+    this.jLabelNombre.setText(texto.getUsuario().getNombreCompleto());
+    this.jTextAreaTexto.setText(texto.getComentario());
+    this.jLabelFoto.setIcon(new ImageIcon(texto.getUsuario().getFotoPerfil()));
     }
 
     /**
