@@ -12,6 +12,7 @@ import Modelo.Texto;
 import Modelo.Usuario;
 import com.ieschirinos.dam.hsqlchiribook.HSQLGustos;
 import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
+import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -102,7 +103,16 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
                 int idP=rs.getInt("publicacion");
                ResultSet rsPublicacion= publi.read(idP);
                 while (rsPublicacion.next()) {
-                   // rsPublicacion.getbo
+                    if (rsPublicacion.getBoolean("tipofoto")==true) {
+                       byte[]foto=rsPublicacion.getBytes("foto");
+                       
+                       // Publicacion publiFoto= new Foto(foto, idP, us);
+                    }else {
+                    Publicacion publiTexto=new Texto(null, idP, us);
+                    
+                    }
+ 
+                    
                     
                  
                 }
