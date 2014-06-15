@@ -107,6 +107,7 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
                        byte[]foto=rsPublicacion.getBytes("foto");
                        
                        // Publicacion publiFoto= new Foto(foto, idP, us);
+                       //hola esto deberia sair eb masrter
                     }else {
                     Publicacion publiTexto=new Texto(null, idP, us);
                     
