@@ -22,4 +22,6 @@ public interface IPublicacionDAO extends IDAO<Publicacion> {
     public void guardarGustos(Usuario usuarioAccion,Publicacion p);
     //metodo para recuperar los gustos de un usuario
     public List<Publicacion> gustosDeUsuario(Usuario us);
+    //metodo que lee los comentarios de una publicacion
+    public List<Publicacion> comentariosDePublicacion(Publicacion p);
 }

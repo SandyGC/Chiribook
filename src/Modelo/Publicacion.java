@@ -33,6 +33,8 @@ public class Publicacion {
         comentarios = new ArrayList<>();
     }
 
+    
+
     public Publicacion() {
          this.fecha = new Date();
         this.comentarios = new ArrayList<>();
@@ -49,7 +51,7 @@ public class Publicacion {
         return comentarios;
     }
 
-    public int getId() {
+     public int getId() {
         return id;
     }
 

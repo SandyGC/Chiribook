@@ -6,6 +6,7 @@
 
 package Vistas;
 
+import ControladorApp.ControladorAbrirMuroAmigo;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
@@ -18,10 +19,11 @@ import javax.swing.JFrame;
  * @author SANGYG
  */
 public class ComentarioTexto extends javax.swing.JPanel {
+    
 private Usuario usuario;
 private String texto;
 private ResourceBundle bundle;
-
+private ControladorAbrirMuroAmigo controladorMuroAmigo;
     /**
      * Creates new form ComentarioTexto
      * @param u
@@ -35,6 +37,8 @@ private ResourceBundle bundle;
         this.jLabelFecha.setText(t.getFecha().toString());
         this.jTextComentario.setText(t.getComentario());
         this.jLabelNombre.setText(t.getUsuario().getNombreCompleto());
+        this.controladorMuroAmigo = new ControladorAbrirMuroAmigo(usuario, bundle);
+        jLabelFoto.addMouseListener(controladorMuroAmigo);
     }
     
 
@@ -92,9 +96,7 @@ private ResourceBundle bundle;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFotoMouseClicked
-      MiMuro muroAmigo = new MiMuro(usuario, bundle);
-      MuroAmigo JFramemuroAmigo =new MuroAmigo(muroAmigo);
-      JFramemuroAmigo.setVisible(true);
+      
     }//GEN-LAST:event_jLabelFotoMouseClicked
 
 
