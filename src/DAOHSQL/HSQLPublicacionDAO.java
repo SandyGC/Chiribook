@@ -10,6 +10,7 @@ import Modelo.Foto;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
+import com.ieschirinos.dam.hsqlchiribook.HSQLGustos;
 import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,6 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
 
     @Override
     public void create(Publicacion t) {
-
     }
 
     @Override
@@ -78,4 +78,14 @@ public class HSQLPublicacionDAO implements IPublicacionDAO {
         return publicaciones;
     }
 
+    @Override
+    public void guardarGustos(Usuario usuarioAccion, Publicacion p) {
+        try {
+            HSQLGustos gustos = new HSQLGustos();
+            gustos.insert(usuarioAccion.getId(), p.getId());
+            HSQLPublicacion pu= new HSQLPublicacion();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(HSQLPublicacionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -5,8 +5,11 @@
  */
 package Vistas;
 
+import DAO.DBConfig;
+import DAO.IPublicacionDAO;
 import Modelo.Texto;
 import Modelo.Usuario;
+import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
 import java.awt.CardLayout;
 import java.awt.Image;
 import javax.swing.Icon;
@@ -183,8 +186,8 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
 
     private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
         // TODO add your handling code here:
-        PanelGustoTexto panel= new PanelGustoTexto(t);
-        
+        IPublicacionDAO gustos= DBConfig.getInstance().getFactoria().getPublicacionDAO();
+        gustos.guardarGustos(a, t);
     }//GEN-LAST:event_meGustaActionPerformed
 
 

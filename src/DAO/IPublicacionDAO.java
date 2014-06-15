@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAO;
 
 import Modelo.Publicacion;
@@ -14,7 +13,11 @@ import java.util.List;
  *
  * @author SANGYG
  */
-public interface IPublicacionDAO extends IDAO<Publicacion>{
+public interface IPublicacionDAO extends IDAO<Publicacion> {
     //Metodo que devuelve una lista de piblicaciones d eun usuario pasandole el objeto usuario
+
     public List<Publicacion> publicacionfromUser(Usuario a);
+//metodo que realiza la accion de dar me gusta a una publicacion,
+    //le paso el usuario que realiza la accion y la publicacion que le gusta
+    public void guardarGustos(Usuario usuarioAccion,Publicacion p);
 }
