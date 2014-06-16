@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Modelo.Foto;
 import Modelo.Texto;
 import Modelo.Usuario;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public interface ITextoDAO extends IDAO<Texto> {
 //metodo que crea comentario pasandole un usuario y la publicacion
     public void crearComentario(Texto publicacionDueña,Texto publicacion );
+    public void crearComentarioFoto(Foto fotoPublicacionDueña,Texto publicacion);
     //metodo que me devuelve el id de la publicacion
     public int devolverIdPublicacion(int id);
 }

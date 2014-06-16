@@ -13,10 +13,11 @@ import Modelo.Foto;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
+import Vistas.ComentarioFoto;
+import Vistas.ComentarioTexto;
 import Vistas.MiMuro;
 import Vistas.PublicacionFotoPublicadaView;
 import Vistas.PublicacionTextoPublicadaView;
-import Vistas.VistaPrincipal;
 import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
 import java.awt.Image;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
 /**
@@ -109,14 +111,15 @@ public final class ControladorMuro {
      * @param t
      * @param u
      */
-    public void mostrarPublicacionTexto(Texto t, Usuario u) {
+    public PublicacionTextoPublicadaView mostrarPublicacionTexto(Texto t, Usuario u) {
         PublicacionTextoPublicadaView v = new PublicacionTextoPublicadaView(t, u, this, bundle);
-        v.esconderPaneles();
+        //v.esconderPaneles();
         //llamo al metodo de la vista que rellenara esta vista
         v.rellenarpublicacionPublicada(t);
         vistaMuro.getPanelMuro2().add(v);
         v.setVisible(true);
         vistaMuro.updateUI();
+        return v;
     }
 
     /**
@@ -125,14 +128,14 @@ public final class ControladorMuro {
      * @param f
      * @param u
      */
-    public void mostrarPublicacionFoto(Foto f, Usuario u) {
-        PublicacionFotoPublicadaView vfoto = new PublicacionFotoPublicadaView(f, u);
-        vfoto.esconderPaneles();
+    public PublicacionFotoPublicadaView mostrarPublicacionFoto(Foto f, Usuario u) {
+        PublicacionFotoPublicadaView vfoto = new PublicacionFotoPublicadaView(f, u, this, bundle);
+        // vfoto.esconderPaneles();
         vfoto.rellenarpublicacionPublicada(f);
         vistaMuro.getPanelMuro2().add(vfoto);
         vfoto.setVisible(true);
         vistaMuro.updateUI();
-
+        return vfoto;
     }
 
     /**
@@ -143,24 +146,31 @@ public final class ControladorMuro {
      * @param u
      */
     public void rellenarMuro(Usuario u) {
+        PublicacionTextoPublicadaView textopublicada = null;
+        PublicacionFotoPublicadaView fotoPublicada = null;
+
         List<Publicacion> publicaciones = daoPublicacion.publicacionfromUser(u);
 
         for (Publicacion publicacion : publicaciones) {
 
             if (publicacion instanceof Texto) {
                 Texto texto = (Texto) publicacion;
-                mostrarPublicacionTexto(texto, u);
+                textopublicada = mostrarPublicacionTexto(texto, u);
+                textopublicada.comentariosVisibles();
+                //   recuperarComentarios(publicacion, null, textopublicada);
             }
             if (publicacion instanceof Foto) {
                 Foto fo = (Foto) publicacion;
-                mostrarPublicacionFoto(fo, u);
+                fotoPublicada = mostrarPublicacionFoto(fo, u);
+                //     recuperarComentarios(publicacion, fotoPublicada, null);
             }
-            recuperarComentarios(publicacion);
+            recuperarComentarios(publicacion, fotoPublicada, textopublicada);
         }
 
     }
 
-    public void recuperarComentarios(Publicacion publi) {
+    public void recuperarComentarios(Publicacion publi, PublicacionFotoPublicadaView publiPadreFoto,
+            PublicacionTextoPublicadaView publiPadreTexto) {
         List<Publicacion> comentarios = daoPublicacion.comentariosDePublicacion(publi);
 
 
@@ -168,15 +178,30 @@ public final class ControladorMuro {
             if (publicacion instanceof Texto) {
                 Texto texto = (Texto) publicacion;
                 publi.getComentarios().add(texto);
+                mostratComentarioTexto(texto, bundle, publiPadreTexto);
             }
             if (publicacion instanceof Foto) {
                 Foto fo = (Foto) publicacion;
                 publi.getComentarios().add(fo);
-
+                mostrarComentarioFoto(fo, bundle, publiPadreTexto);
             }
         }
-        
 
+
+    }
+
+    public void mostratComentarioTexto(Texto texto, ResourceBundle bundle,
+            PublicacionTextoPublicadaView publiPadre) {
+
+        ComentarioTexto comentTexto = new ComentarioTexto(texto, bundle);
+        publiPadre.insertComentario(texto);
+
+    }
+
+    public void mostrarComentarioFoto(Foto foto, ResourceBundle bundle,
+            PublicacionTextoPublicadaView publiPadre) {
+        ComentarioFoto comentFoto = new ComentarioFoto(foto);
+        publiPadre.inserComentarioFoto(foto);
     }
 
     public Usuario getA() {

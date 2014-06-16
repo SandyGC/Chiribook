@@ -10,18 +10,12 @@ import ControladorApp.ControladorMuro;
 import ControladorApp.ControladorRadioButtonMuro;
 import DAO.DBConfig;
 import DAO.IPublicacionDAO;
+import Modelo.Foto;
 import Modelo.Texto;
 import Modelo.Usuario;
 import java.awt.CardLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
-import javax.swing.Action;
-import javax.swing.Icon;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -35,14 +29,16 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     private Usuario usuario;
     private ControladorMuro controladorMuro;
     private ResourceBundle bundle;
-    private JButton comentarComent;
-    private ControladorBtComentarComentario cbtComentar;
+    private JButton comentarComentTexto, comentarComentFoto;
+    private ControladorBtComentarComentario cbtComentarTexto, cbtComentarioFoto;
 
     /**
      * Creates new form PublicacionPublicadaView
      *
      * @param t
      * @param a
+     * @param c
+     * @param bundle
      */
     public PublicacionTextoPublicadaView(Texto t, Usuario a, ControladorMuro c, ResourceBundle bundle) {
         this.bundle = bundle;
@@ -50,7 +46,8 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         this.texto = t;
         this.usuario = a;
         initComponents();
-   
+        this.btComentar.setText(bundle.getString("comentar"));
+        this.panelComentarios.setVisible(true);
     }
 
     /**
@@ -72,12 +69,27 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
      * Metodo que esconde los paneles en los que aparece la opcion par publicar
      * y los comentarios de esa publicacion.
      */
-    public void esconderPaneles() {
-        panelHacerComentario.setVisible(false);
-        panelHacerComentario.setVisible(false);
+//    public void esconderPaneles() {
+//        panelHacerComentario.setVisible(false);
+//        panelComentarios.setVisible(false);
+//    }
+    public void insertComentario(Texto t) {
+        panelComentarios.setVisible(true);
+        ComentarioTexto comentTexto = new ComentarioTexto(t, bundle);
+        panelComentarios.add(comentTexto);
     }
 
- 
+    public void inserComentarioFoto(Foto foto) {
+        panelComentarios.setVisible(true);
+        ComentarioFoto comentFoto = new ComentarioFoto(foto);
+        panelComentarios.add(comentFoto);
+
+    }
+
+    public void comentariosVisibles() {
+        panelComentarios.setLayout(new BoxLayout(panelComentarios, BoxLayout.Y_AXIS));
+        panelComentarios.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,31 +226,40 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
     private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
         // TODO add your handling code here:
         panelHacerComentario.setVisible(true);
+        //al panel le hago el cardLayout
         panelHacerComentario.setLayout(new CardLayout());
+        //me creo el panel que añado que es de texto
         PublicacionTextoView publicacionTexto = new PublicacionTextoView(controladorMuro, usuario, bundle);
         publicacionTexto.desactivarActivarComentar();
-        panelHacerComentario.add(publicacionTexto, bundle.getString("texto"));
-        
-        this.comentarComent = publicacionTexto.getBtComentarComentario();
-        
-        PublicacionFotoView p2 = new PublicacionFotoView(controladorMuro, usuario, bundle);
-        panelHacerComentario.add(p2, bundle.getString("foto"));
+        //añado el card
+        panelHacerComentario.add(publicacionTexto, "texto");
+        //me creo el otro panel que añado al card
+        PublicacionFotoView publicacionFoto = new PublicacionFotoView(controladorMuro, usuario, bundle);
+        publicacionFoto.desactivarActivarComentar();
+        //añado el panel foto al card
+        panelHacerComentario.add(publicacionFoto, "foto");
+
+        //recupero el boton comentarComentario de la publicacion texto
+        this.comentarComentTexto = publicacionTexto.getBtComentarComentario();
+        this.comentarComentFoto = publicacionFoto.getBtComentarComentario();
         //eventos usuario los que responde el radiobutton
         ControladorRadioButtonMuro cbutton = new ControladorRadioButtonMuro(null, bundle, panelHacerComentario);
+        //obtengo los dos radio buttons de los paneles distinttos para añadirles el action listener
         publicacionTexto.getRadioFoto().addActionListener(cbutton);
-        p2.getRadioTexto().addActionListener(cbutton);
-        
-        cbtComentar= new ControladorBtComentarComentario(texto,publicacionTexto, panelComentarios,usuario, bundle);
-        
-        comentarComent.addActionListener(cbtComentar);
+        publicacionFoto.getRadioTexto().addActionListener(cbutton);
 
-       
-        
+        //instancio el controlador que se encargara de la publicacion que le paso añadirlo al panel de comentarios
+        cbtComentarTexto = new ControladorBtComentarComentario(texto, publicacionTexto, panelComentarios, usuario, bundle);
+
+        cbtComentarioFoto = new ControladorBtComentarComentario(texto, publicacionFoto, panelComentarios, usuario, bundle);
+        //le añado el actionListener
+        comentarComentTexto.addActionListener(cbtComentarTexto);
+        comentarComentFoto.addActionListener(cbtComentarioFoto);
     }//GEN-LAST:event_btComentarActionPerformed
 
     private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
         // TODO add your handling code here:
-        IPublicacionDAO gustos= DBConfig.getInstance().getFactoria().getPublicacionDAO();
+        IPublicacionDAO gustos = DBConfig.getInstance().getFactoria().getPublicacionDAO();
         gustos.guardarGustos(usuario, texto);
     }//GEN-LAST:event_meGustaActionPerformed
 
@@ -246,8 +267,6 @@ public class PublicacionTextoPublicadaView extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.out.println(evt.getSource().toString());
     }//GEN-LAST:event_fotoPublicacionPublicadaMouseClicked
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btComentar;
     private javax.swing.JLabel fotoPublicacionPublicada;

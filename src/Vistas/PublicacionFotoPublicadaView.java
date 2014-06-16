@@ -5,35 +5,47 @@
  */
 package Vistas;
 
+import ControladorApp.ControladorBtComentarComentario;
+import ControladorApp.ControladorMuro;
+import ControladorApp.ControladorRadioButtonMuro;
 import Modelo.Foto;
 import Modelo.Usuario;
 import com.ieschirinos.dam.hsqlchiribook.ImageConverter;
+import java.awt.CardLayout;
 import java.awt.Image;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
  * @author SANGYG
  */
 public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
-    
-   private Foto foto;
+
+    private Foto foto;
     private Usuario usuario;
+    private ControladorMuro controladorMuro;
+    private ResourceBundle bundle;
+    private JButton comentarComent;
+   ControladorBtComentarComentario cbtComentarioFoto;
 
     /**
      * Creates new form PublicacionPublicadaView
      *
-     * @param f
+     * @param foto
      * @param a
      */
-    public PublicacionFotoPublicadaView(Foto f, Usuario a) {
-        this.foto = f;
+    public PublicacionFotoPublicadaView(Foto foto, Usuario a, ControladorMuro c, ResourceBundle bundle) {
+        this.controladorMuro = c;
+        this.foto = foto;
+        this.bundle = bundle;
         this.usuario = a;
         initComponents();
     }
-    
+
     public final void rellenarpublicacionPublicada(Foto f) {
-        
+
         Image i = ImageConverter.bytes2Image(f.getImagen());
         if (i != null) {
             fotoPublicada.setText("");
@@ -42,15 +54,15 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
             labelFecha.setText(f.getFecha().toString());
             jlNombre.setText(usuario.getNombreCompleto());
         } else {
-            
+
             fotoPublicada.setText("No Image");
             fotoPublicada.setIcon(null);
         }
-        
+
     }
-    
+
     public void esconderPaneles() {
-        
+
         panelHacerComentario.setVisible(false);
         panelHacerComentario.setVisible(false);
     }
@@ -78,6 +90,11 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
         fotoPerfil.setText("jLabel1");
 
         btComentar.setText("Comentar");
+        btComentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComentarActionPerformed(evt);
+            }
+        });
 
         meGusta.setText("Me Gusta");
         meGusta.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +195,41 @@ public class PublicacionFotoPublicadaView extends javax.swing.JPanel {
     private void meGustaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meGustaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_meGustaActionPerformed
+
+    private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
+//                // TODO add your handling code here:
+//  panelHacerComentario.setVisible(true);
+//        //al panel le hago el cardLayout
+//        panelHacerComentario.setLayout(new CardLayout());
+//        //me creo el panel que añado que es de texto
+//        PublicacionTextoView publicacionTexto = new PublicacionTextoView(controladorMuro, usuario, bundle);
+//        publicacionTexto.desactivarActivarComentar();
+//        //añado el card
+//        panelHacerComentario.add(publicacionTexto, "texto");
+//        //me creo el otro panel que añado al card
+//        PublicacionFotoView publicacionFoto = new PublicacionFotoView(controladorMuro, usuario, bundle);
+//        publicacionFoto.desactivarActivarComentar();
+//        //añado el panel foto al card
+//        panelHacerComentario.add(publicacionFoto, "foto");
+//
+//        //recupero el boton comentarComentario de la publicacion texto
+//        //this = publicacionFoto.getBtComentarComentario();
+//        
+//        this.comentarComentFoto = publicacionFoto.getBtComentarComentario();
+//        //eventos usuario los que responde el radiobutton
+//        ControladorRadioButtonMuro cbutton = new ControladorRadioButtonMuro(null, bundle, panelHacerComentario);
+//        //obtengo los dos radio buttons de los paneles distinttos para añadirles el action listener
+//        publicacionTexto.getRadioFoto().addActionListener(cbutton);
+//        publicacionFoto.getRadioTexto().addActionListener(cbutton);
+//
+//        //instancio el controlador que se encargara de la publicacion que le paso añadirlo al panel de comentarios
+//        cbtComentarTexto = new ControladorBtComentarComentario(foto, publicacionTexto, panelComentarios, usuario, bundle);
+//
+//        cbtComentarioFoto = new ControladorBtComentarComentario(foto, publicacionFoto, panelComentarios, usuario, bundle);
+//        //le añado el actionListener
+//        comentarComentTexto.addActionListener(cbtComentarTexto);
+//        comentarComentFoto.addActionListener(cbtComentarioFoto);
+    }//GEN-LAST:event_btComentarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

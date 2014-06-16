@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAOHSQL;
 
 import DAO.IFotoDAO;
 import Modelo.Foto;
+import Modelo.Texto;
 import com.ieschirinos.dam.hsqlchiribook.HSQLPublicacion;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,13 +19,13 @@ import java.util.logging.Logger;
  *
  * @author SandyG
  */
-public class HSQLFotoDAO implements IFotoDAO{
+public class HSQLFotoDAO implements IFotoDAO {
 
     @Override
     public void create(Foto t) {
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-            p.insert(true,null,t.getImagen(), t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+            p.insert(true, null, t.getImagen(), t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(HSQLFotoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,4 +51,33 @@ public class HSQLFotoDAO implements IFotoDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void crearComentario(Texto publicacionDueña, Foto publicacion) {
+        try {
+            HSQLPublicacion publi = new HSQLPublicacion();
+            //hago un insert del comentario
+            System.out.println(publicacionDueña.getId());
+            publi.insert(true,
+                    null,
+                    publicacion.getImagen(),
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
+                    publicacionDueña.getId(),
+                    publicacion.getUsuario().getId());
+
+            //actualizo la publicacion a la que pertenece ese comentario cambiandole la fecha
+            publi.update(publicacionDueña.getId(),
+                    false,
+                    publicacionDueña.getComentario(),
+                    null,
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
+                    null, publicacionDueña.getUsuario().getId());
+
+
+
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

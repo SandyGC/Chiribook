@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Vistas;
 
 import ControladorApp.ControladorAmigos;
@@ -18,25 +17,27 @@ import javax.swing.JPanel;
  * @author SANGYG
  */
 public class MisAmigos extends javax.swing.JPanel {
-ControladorAmigos controladorAmigos;
-ResourceBundle bundle;
+
+    ControladorAmigos controladorAmigos;
+    ResourceBundle bundle;
 
     /**
      * Creates new form MisAmigos
+     *
      * @param u
      * @param bundle
      */
-    public MisAmigos(Usuario u,ResourceBundle bundle) {
-       this.bundle=bundle;
+    public MisAmigos(Usuario u, ResourceBundle bundle) {
+        this.bundle = bundle;
         initComponents();
         jPanelAmigos.setLayout(new BoxLayout(jPanelAmigos, BoxLayout.Y_AXIS));
-        controladorAmigos= new ControladorAmigos(this, u);
+        controladorAmigos = new ControladorAmigos(this, u);
+
     }
 
     public JPanel getjPanelAmigos() {
         return jPanelAmigos;
     }
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,11 +68,13 @@ ResourceBundle bundle;
             .addGap(0, 83, Short.MAX_VALUE)
         );
 
-        jLError.setText("jLabel1");
+        jTBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTBuscarActionPerformed(evt);
+            }
+        });
 
-        jTBuscar.setText("jTextField1");
-
-        btBuscar.setText("jButton4");
+        btBuscar.setText("Buscar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
@@ -147,10 +150,11 @@ ResourceBundle bundle;
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btBuscarActionPerformed
 
-
+    private void jTBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTBuscarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
     private javax.swing.JLabel jLError;

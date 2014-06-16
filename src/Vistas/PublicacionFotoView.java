@@ -54,7 +54,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         btExaminar.setText(bundle.getString("examinar"));
         radioTexto.setText(bundle.getString("texto"));
         this.btComentar.setEnabled(false);
-        this.comentarComentario.setVisible(false);
+        this.btComentarComentario.setVisible(false);
     }
 
     public JButton getBtComentar() {
@@ -69,26 +69,20 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         return btExaminar;
     }
 
-    public void setBtExaminar(JButton btExaminar) {
-        this.btExaminar = btExaminar;
-    }
-
-    public JLabel getFotoPublicacion() {
-        return fotoPublicacion;
-    }
-
-    public void setFotoPublicacion(JLabel fotoPublicacion) {
-        this.fotoPublicacion = fotoPublicacion;
-    }
-
     public JRadioButton getRadioTexto() {
         return radioTexto;
     }
 
-    public void setRadioTexto(JRadioButton radioTexto) {
-        this.radioTexto = radioTexto;
+    public JButton getBtComentarComentario() {
+        return btComentarComentario;
     }
 
+   public void desactivarActivarComentar(){
+    this.btComentar.setEnabled(false);
+    this.btComentar.setVisible(false);
+    this.btComentarComentario.setVisible(true);
+    this.btComentarComentario.setEnabled(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,7 +97,7 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         radioTexto = new javax.swing.JRadioButton();
         fotoPublicacion = new javax.swing.JLabel();
         jLError = new javax.swing.JLabel();
-        comentarComentario = new javax.swing.JButton();
+        btComentarComentario = new javax.swing.JButton();
 
         btComentar.setText("comentar");
         btComentar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +114,18 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         });
 
         radioTexto.setText("texto");
+        radioTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTextoActionPerformed(evt);
+            }
+        });
 
-        comentarComentario.setText("comentar-");
+        btComentarComentario.setText("comentar-");
+        btComentarComentario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComentarComentarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,15 +133,21 @@ public class PublicacionFotoView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(fotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(fotoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btExaminar)
-                    .addComponent(btComentar)
-                    .addComponent(radioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comentarComentario))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLError, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(radioTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btComentarComentario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btExaminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btComentar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,12 +158,12 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btExaminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comentarComentario)
+                        .addComponent(btComentarComentario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btComentar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(radioTexto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLError, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
                         .addContainerGap())))
         );
@@ -181,9 +191,11 @@ public class PublicacionFotoView extends javax.swing.JPanel {
                 if (f == null) {
                     jLError.setText(bundle.getString("debes_selecciona"));
                     btComentar.setEnabled(false);
+                    btComentarComentario.setEnabled(false);
                 } else {
                     icon = new ImageIcon(f.toURL());
                     btComentar.setEnabled(true);
+                    btComentarComentario.setEnabled(true);
                     Image imgEscalada = icon.getImage().getScaledInstance(150,
                             150, Image.SCALE_SMOOTH);
                     Icon iconoEscalado = new ImageIcon(imgEscalada);
@@ -196,11 +208,23 @@ public class PublicacionFotoView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btExaminarActionPerformed
 
+    private void radioTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioTextoActionPerformed
+
+    private void btComentarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarComentarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btComentarComentarioActionPerformed
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btComentar;
+    private javax.swing.JButton btComentarComentario;
     private javax.swing.JButton btExaminar;
-    private javax.swing.JButton comentarComentario;
     private javax.swing.JLabel fotoPublicacion;
     private javax.swing.JLabel jLError;
     private javax.swing.JRadioButton radioTexto;

@@ -111,18 +111,8 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         jScrollPane2.setViewportView(texto);
 
         radioFoto.setText("FOTO");
-        radioFoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioFotoActionPerformed(evt);
-            }
-        });
 
         btComentar.setText("comentar");
-        btComentar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComentarActionPerformed(evt);
-            }
-        });
 
         btComentarComentario.setText("Comentar");
         btComentarComentario.addActionListener(new java.awt.event.ActionListener() {
@@ -169,14 +159,6 @@ public class PublicacionTextoView extends javax.swing.JPanel {
         radioFoto.getAccessibleContext().setAccessibleName("radioFoto");
         btComentar.getAccessibleContext().setAccessibleName("btComentar");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void radioFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioFotoActionPerformed
-
-    private void btComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btComentarActionPerformed
 
     private void btComentarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComentarComentarioActionPerformed
         // TODO add your handling code here:

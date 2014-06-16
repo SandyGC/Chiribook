@@ -7,11 +7,12 @@
 package DAO;
 
 import Modelo.Foto;
+import Modelo.Texto;
 
 /**
  *
  * @author SANGYG
  */
 public interface IFotoDAO extends IDAO<Foto>{
-    
+    public void crearComentario(Texto publicacionDueña, Foto publicacion);
 }

@@ -6,6 +6,7 @@
 package DAOHSQL;
 
 import DAO.ITextoDAO;
+import Modelo.Foto;
 import Modelo.Publicacion;
 import Modelo.Texto;
 import Modelo.Usuario;
@@ -27,7 +28,8 @@ public class HSQLTextoDAO implements ITextoDAO {
     public void create(Texto t) {
         try {
             HSQLPublicacion p = new HSQLPublicacion();
-            int id = p.insert(false, t.getComentario(), null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
+            int id = p.insert(false, t.getComentario(),
+                    null, t.getFecha(), t.getFecha(), null, t.getUsuario().getId());
             devolverIdPublicacion(id);
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(ITextoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,22 +81,54 @@ public class HSQLTextoDAO implements ITextoDAO {
                     publicacion.getFecha(),
                     publicacionDueña.getId(),
                     publicacion.getUsuario().getId());
-            
+
             //actualizo la publicacion a la que pertenece ese comentario cambiandole la fecha
-            publi.update(publicacionDueña.getId(), 
-                    false, 
-                    publicacionDueña.getComentario(), 
-                    null, 
-                    publicacion.getFecha(), 
-                    publicacion.getFecha(), 
+            publi.update(publicacionDueña.getId(),
+                    false,
+                    publicacionDueña.getComentario(),
+                    null,
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
                     null, publicacionDueña.getUsuario().getId());
 
-           
-            
+
+
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
+    /**
+     * Insertando un comentario de tipo texto en una publicacion de tipo Foto
+     *
+     * @param fotoPublicacionDueña
+     * @param publicacion
+     */
+    @Override
+    public void crearComentarioFoto(Foto fotoPublicacionDueña, Texto publicacion) {
+        try {
+            HSQLPublicacion publi = new HSQLPublicacion();
+            //hago un insert del comentario
+            System.out.println(fotoPublicacionDueña.getId());
+            publi.insert(false,
+                    publicacion.getComentario(),
+                    null,
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
+                    fotoPublicacionDueña.getId(),
+                    publicacion.getUsuario().getId());
+
+            //actualizo la publicacion a la que pertenece ese comentario cambiandole la fecha
+            publi.update(fotoPublicacionDueña.getId(),
+                    true,
+                    null,
+                    fotoPublicacionDueña.getImagen(),
+                    publicacion.getFecha(),
+                    publicacion.getFecha(),
+                    null, fotoPublicacionDueña.getUsuario().getId());
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(HSQLTextoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
